@@ -4,9 +4,9 @@ public class Player {
 
     private String playerName;
     private int points;
-    private String difficulty;
+    private Difficulty difficulty;
 
-    public Player(String playerName, int points, String difficulty) {
+    public Player(String playerName, int points, Difficulty difficulty) {
         this.playerName = playerName;
         this.points = points;
         this.difficulty = difficulty;
@@ -20,7 +20,7 @@ public class Player {
         return points;
     }
 
-    public String getDifficulty() {
+    public Difficulty getDifficulty() {
         return difficulty;
     }
 
@@ -32,7 +32,7 @@ public class Player {
         this.points = points;
     }
 
-    public void setDifficulty(String difficulty) {
+    public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
     }
 
