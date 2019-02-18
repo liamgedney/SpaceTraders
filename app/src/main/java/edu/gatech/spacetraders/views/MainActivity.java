@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -14,6 +15,15 @@ import edu.gatech.spacetraders.entity.Difficulty;
 import edu.gatech.spacetraders.entity.Player;
 
 public class MainActivity extends AppCompatActivity {
+
+    private boolean isAnInteger(String s) {
+        try {
+            int num = Integer.parseInt(s);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     String nameStr;
     Difficulty diffSpinText;
@@ -42,25 +52,36 @@ public class MainActivity extends AppCompatActivity {
         engrSkill = (EditText) findViewById(R.id.engr_skill_input);
 
         diffSpinner = (Spinner) findViewById(R.id.difficulty_spinner);
+        diffSpinner.setAdapter(new ArrayAdapter<Difficulty>(this, android.R.layout.simple_spinner_item, Difficulty.values()));
         createButton = (Button) findViewById(R.id.create_button);
 
         createButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
-                nameStr = playerName.getText().toString();
-                pil = Integer.valueOf(pilotSkill.getText().toString());
-                fight = Integer.valueOf(fighterSkill.getText().toString());
-                trade = Integer.valueOf(traderSkill.getText().toString());
-                engr = Integer.valueOf(engrSkill.getText().toString());
-                diffSpinText = (Difficulty) diffSpinner.getSelectedItem();
-                int totalSkill = pil + fight + trade + engr;
-                if (totalSkill > 16) {
-                    Toast.makeText(MainActivity.this, "Must have less than 16 skill points", Toast.LENGTH_SHORT).show();
+                if (playerName.getText().toString().equals("")) {
+                    Toast.makeText(MainActivity.this, "Please enter a name.", Toast.LENGTH_SHORT).show();
+                } else if (!isAnInteger(pilotSkill.getText().toString())
+                            || !isAnInteger(fighterSkill.getText().toString())
+                            || !isAnInteger(traderSkill.getText().toString())
+                            || !isAnInteger(engrSkill.getText().toString())) {
+                    Toast.makeText(MainActivity.this, "Points must be non-negative integers.", Toast.LENGTH_SHORT).show();
+                } else if (Integer.valueOf(pilotSkill.getText().toString()) < 0
+                            || Integer.valueOf(fighterSkill.getText().toString()) < 0
+                            || Integer.valueOf(traderSkill.getText().toString()) < 0
+                            || Integer.valueOf(engrSkill.getText().toString()) < 0) {
+                    Toast.makeText(MainActivity.this, "Points must be non-negative integers.", Toast.LENGTH_SHORT).show();
+                } else if (Integer.valueOf(pilotSkill.getText().toString()) + Integer.valueOf(fighterSkill.getText().toString())
+                        + Integer.valueOf(traderSkill.getText().toString()) + Integer.valueOf(engrSkill.getText().toString()) != 16) {
+                    Toast.makeText(MainActivity.this, "You must have a total of 16 skill points.", Toast.LENGTH_SHORT).show();
                 } else {
+                    nameStr = playerName.getText().toString();
+                    pil = Integer.valueOf(pilotSkill.getText().toString());
+                    fight = Integer.valueOf(fighterSkill.getText().toString());
+                    trade = Integer.valueOf(traderSkill.getText().toString());
+                    engr = Integer.valueOf(engrSkill.getText().toString());
+                    diffSpinText = (Difficulty) diffSpinner.getSelectedItem();
                     Player ourPlayer = new Player(nameStr, pil, fight, trade, engr, diffSpinText);
+                    System.out.println(ourPlayer);
                 }
-
-
-
             }
         });
     }
