@@ -10,12 +10,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import edu.gatech.spacetraders.R;
+import edu.gatech.spacetraders.entity.Difficulty;
 import edu.gatech.spacetraders.entity.Player;
 
 public class MainActivity extends AppCompatActivity {
 
     String nameStr;
-    String diffSpinText;
+    Difficulty diffSpinText;
     int pil;
     int fight;
     int trade;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 fight = Integer.valueOf(fighterSkill.getText().toString());
                 trade = Integer.valueOf(traderSkill.getText().toString());
                 engr = Integer.valueOf(engrSkill.getText().toString());
-                diffSpinText = diffSpinner.getSelectedItem().toString();
+                diffSpinText = (Difficulty) diffSpinner.getSelectedItem();
                 int totalSkill = pil + fight + trade + engr;
                 if (totalSkill > 16) {
                     Toast.makeText(MainActivity.this, "Must have less than 16 skill points", Toast.LENGTH_SHORT).show();
