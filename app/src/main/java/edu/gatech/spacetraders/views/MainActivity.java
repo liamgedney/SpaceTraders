@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     EditText engrSkill;
 
     Button createButton;
+    Button exitButton;
     Spinner diffSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         diffSpinner = (Spinner) findViewById(R.id.difficulty_spinner);
         diffSpinner.setAdapter(new ArrayAdapter<Difficulty>(this, android.R.layout.simple_spinner_item, Difficulty.values()));
         createButton = (Button) findViewById(R.id.create_button);
+        exitButton = (Button) findViewById(R.id.exit_button);
 
         createButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
@@ -82,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
                     Player ourPlayer = new Player(nameStr, pil, fight, trade, engr, diffSpinText);
                     System.out.println(ourPlayer);
                 }
+            }
+        });
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View activity_main) {
+                finish();
+                System.exit(0);
             }
         });
     }
