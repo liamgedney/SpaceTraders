@@ -1,4 +1,5 @@
-package edu.gatech.spacetraders.views;
+-package edu.gatech.spacetraders.views;
+import Universe.java;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -83,6 +84,11 @@ public class MainActivity extends AppCompatActivity {
                     diffSpinText = (Difficulty) diffSpinner.getSelectedItem();
                     Player ourPlayer = new Player(nameStr, pil, fight, trade, engr, diffSpinText);
                     System.out.println(ourPlayer);
+
+                    createSolarSystems();
+                    for (int i = 0; i < solarSystemArr.length ; i++) {
+                        System.out.println(solarSystemArr[i]);
+                    }
                 }
             }
         });
