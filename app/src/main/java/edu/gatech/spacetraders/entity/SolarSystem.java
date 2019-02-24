@@ -10,7 +10,6 @@ public class SolarSystem {
         this.resLvl = reslvl;
     }
 
-    @Override
     public String toString() {
         return "Name: " + this.name + " Tech Level: " + this.techLvl
                 + " Resource Level: " + this.resLvl;

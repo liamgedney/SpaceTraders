@@ -87,9 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Universe myUniverse = new Universe();
                     myUniverse.createSolarSystems();
-                    for (int i = 0; i < myUniverse.getSolarSystemArr().size() ; i++) {
-                        System.out.println(myUniverse.getSolarSystemArr().get(i));
-                    }
+                    System.out.print(myUniverse.toString());
                 }
             }
         });
