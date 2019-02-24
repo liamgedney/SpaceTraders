@@ -1,5 +1,4 @@
--package edu.gatech.spacetraders.views;
-import Universe.java;
+package edu.gatech.spacetraders.views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +13,7 @@ import android.widget.Toast;
 import edu.gatech.spacetraders.R;
 import edu.gatech.spacetraders.entity.Difficulty;
 import edu.gatech.spacetraders.entity.Player;
+import edu.gatech.spacetraders.entity.Universe;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -85,9 +85,10 @@ public class MainActivity extends AppCompatActivity {
                     Player ourPlayer = new Player(nameStr, pil, fight, trade, engr, diffSpinText);
                     System.out.println(ourPlayer);
 
-                    createSolarSystems();
-                    for (int i = 0; i < solarSystemArr.length ; i++) {
-                        System.out.println(solarSystemArr[i]);
+                    Universe myUniverse = new Universe();
+                    myUniverse.createSolarSystems();
+                    for (int i = 0; i < myUniverse.getSolarSystemArr().size() ; i++) {
+                        System.out.println(myUniverse.getSolarSystemArr().get(i));
                     }
                 }
             }
