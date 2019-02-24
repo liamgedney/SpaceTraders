@@ -1,4 +1,5 @@
 package edu.gatech.spacetraders.entity;
+import java.util.Random;
 
 public enum TechLevel {
     PREAGRIGCULTURE ("Pre-Agriculture"),
@@ -14,5 +15,11 @@ public enum TechLevel {
     TechLevel(String name) {
         this.name = name;
     }
+
+    public static TechLevel getRandom() {
+        Random random = new Random();
+        return values()[random.nextInt(values().length)];
+    }
+
     String getName() {return name;}
 }
