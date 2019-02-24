@@ -82,12 +82,11 @@ public class MainActivity extends AppCompatActivity {
                     trade = Integer.valueOf(traderSkill.getText().toString());
                     engr = Integer.valueOf(engrSkill.getText().toString());
                     diffSpinText = (Difficulty) diffSpinner.getSelectedItem();
-                    Player ourPlayer = new Player(nameStr, pil, fight, trade, engr, diffSpinText);
-                    System.out.println(ourPlayer);
+                    Player player = new Player(nameStr, pil, fight, trade, engr, diffSpinText);
+                    System.out.println(player);
 
-                    Universe myUniverse = new Universe();
-                    myUniverse.createSolarSystems();
-                    System.out.print(myUniverse.toString());
+                    Universe universe = new Universe();
+                    System.out.println(universe.toString());
                 }
             }
         });

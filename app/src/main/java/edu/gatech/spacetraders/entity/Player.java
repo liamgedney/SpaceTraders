@@ -89,7 +89,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return String.format("Name: %s, Pilot Points: %d, Fighter Points: %d "
+        return String.format("PLAYER:\nName: %s, Pilot Points: %d, Fighter Points: %d "
                             + "Trader Points: %d, Engineer Points: %d, "
                             + "Difficulty: %s, Credits: %d, Ship Type: %s",
                             playerName, pilotPoints, fighterPoints, traderPoints,
