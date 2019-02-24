@@ -1,10 +1,10 @@
 package edu.gatech.spacetraders.entity;
 public class SolarSystem {
     private String name;
-    private int techLvl;
-    private int resLvl;
+    private String techLvl;
+    private String resLvl;
 
-    SolarSystem(String name, int techLvl, int reslvl) {
+    SolarSystem(String name, String techLvl, String reslvl) {
         this.name = name;
         this.techLvl = techLvl;
         this.resLvl = reslvl;
