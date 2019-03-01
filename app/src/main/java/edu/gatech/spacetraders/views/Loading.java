@@ -1,7 +1,9 @@
-package edu.gatech.spacetraders;
+package edu.gatech.spacetraders.views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import edu.gatech.spacetraders.R;
 
 public class Loading extends AppCompatActivity {
 
