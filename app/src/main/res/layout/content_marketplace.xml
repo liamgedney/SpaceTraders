@@ -43,6 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/mktbuy_button" />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/mktgoods_list"
         android:layout_width="318dp"
         android:layout_height="363dp"
         android:layout_marginStart="8dp"
