@@ -26,6 +26,9 @@ public class Ship {
         this.curCargo = cargoCalc();
     }
 
+    /*
+    helper method calculates total size of cargo hold
+     */
     private int cargoCalc() {
         int ans = 0;
         for (int i = 0; i < NUM_GOODS; i++) {
