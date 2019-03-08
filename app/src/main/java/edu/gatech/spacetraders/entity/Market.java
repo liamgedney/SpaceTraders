@@ -1,14 +1,20 @@
 package edu.gatech.spacetraders.entity;
 
+import java.util.EnumMap;
+
 public class Market {
     private final int NUM_GOODS = 10;
-    private int[] prices = new int[NUM_GOODS];
+    private int techLevel;
+    private EnumMap<Good, Integer> prices = new EnumMap<Good, Integer>(Good.class);
+    private Player player;
+    private Ship ship;
 
-    public Market(int techLevel) {
-        int counter = 0;
+    public Market(int techLevel, Player player, Ship ship) {
+        this.techLevel = techLevel;
+        this.player = player;
+        this.ship = ship;
         for (Good good : Good.values()) {
-            prices[counter] = calculatePrice(techLevel, good);
-            counter++;
+            prices.put(good, calculatePrice(techLevel, good));
         }
     }
 
@@ -17,6 +23,13 @@ public class Market {
     }
 
     public int getPrice(int good) {
-        return prices[good];
+        return prices.get(good);
+    }
+
+    public boolean canBuy(Good good) {
+        if (this.techLevel >= good.mtlu()) {
+            if (player.getCredits() >= prices.get(good));
+        }
+        return false;
     }
 }
