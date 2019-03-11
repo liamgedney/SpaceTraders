@@ -11,14 +11,14 @@ import java.util.List;
 
 import edu.gatech.spacetraders.R;
 
-public class MarketplaceRecyclerViewAdapter extends RecyclerView.Adapter<MarketplaceRecyclerViewAdapter.ViewHolder> {
+public class CargoRecyclerViewAdapter extends RecyclerView.Adapter<CargoRecyclerViewAdapter.ViewHolder> {
 
     private List<String> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MarketplaceRecyclerViewAdapter(Context context, List<String> data) {
+    CargoRecyclerViewAdapter (Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -26,7 +26,7 @@ public class MarketplaceRecyclerViewAdapter extends RecyclerView.Adapter<Marketp
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.recyclerviewmarketplace_row, parent, false);
+        View view = mInflater.inflate(R.layout.recyclerviewcargo_row, parent, false);
         return new ViewHolder(view);
     }
 
@@ -50,7 +50,7 @@ public class MarketplaceRecyclerViewAdapter extends RecyclerView.Adapter<Marketp
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.tvMkt);
+            myTextView = itemView.findViewById(R.id.tvCargo);
             itemView.setOnClickListener(this);
         }
 
