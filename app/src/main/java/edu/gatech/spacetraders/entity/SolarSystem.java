@@ -17,7 +17,9 @@ public class SolarSystem {
         this.techLvl = techLvl;
         this.resLvl = reslvl;
         this.coordinates = new Point(x, y);
+
     }
+
 
     public String toString() {
         return "Name: " + this.name + ", Tech Level: " + this.techLvl

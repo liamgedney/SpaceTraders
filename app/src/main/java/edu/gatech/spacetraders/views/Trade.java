@@ -8,12 +8,15 @@ import android.view.View;
 import android.widget.Button;
 
 import edu.gatech.spacetraders.R;
+import edu.gatech.spacetraders.entity.Market;
+import edu.gatech.spacetraders.entity.MarketplaceRecyclerViewAdapter;
 
 public class Trade extends AppCompatActivity {
 
     Button buyButton;
     Button sellButton;
     Button backButton;
+    Market myMarket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +26,12 @@ public class Trade extends AppCompatActivity {
         buyButton = (Button) findViewById(R.id.mktbuy_button);
         sellButton = (Button) findViewById(R.id.mktsell_button);
         backButton = (Button) findViewById(R.id.mktback_button);
-        RecyclerView recyclerView = findViewById(R.id.mktgoods_list);
+        //myMarket = new Market(0, )
+        //MarketplaceRecyclerViewAdapter recyclerView = new MarketplaceRecyclerViewAdapter(R.id.mktgoods_list, myMarket.getList());
 
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
-                //fanjkfanjkaf
+
             }
         });
 
