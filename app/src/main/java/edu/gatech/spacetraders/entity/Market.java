@@ -28,7 +28,9 @@ public class Market {
 
     public boolean canBuy(Good good) {
         if (this.techLevel >= good.mtlu()) {
-            if (player.getCredits() >= prices.get(good));
+            if (player.getCredits() >= prices.get(good)) {
+                return true;
+            }
         }
         return false;
     }
