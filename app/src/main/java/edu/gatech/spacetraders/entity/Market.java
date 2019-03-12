@@ -14,7 +14,9 @@ public class Market {
         this.player = player;
         this.ship = ship;
         for (Good good : Good.values()) {
-            prices.put(good, calculatePrice(techLevel, good));
+            if (isSoldHere(good)) {
+                prices.put(good, calculatePrice(techLevel, good));
+            }
         }
     }
 
@@ -26,9 +28,17 @@ public class Market {
         return prices.get(good);
     }
 
+    public boolean isSoldHere(Good good) {
+        return this.techLevel >= good.mtlu();
+    }
+
+
+
     public boolean canBuy(Good good) {
         if (this.techLevel >= good.mtlu()) {
-            if (player.getCredits() >= prices.get(good));
+            if (player.getCredits() >= prices.get(good)) {
+                return true;
+            }
         }
         return false;
     }
