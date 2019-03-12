@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     Universe universe = new Universe();
                     System.out.println(universe.toString());
 
-                    openLoadingScreen();
+                    openChoiceScreen();
                 }
             }
         });
@@ -102,6 +102,11 @@ public class MainActivity extends AppCompatActivity {
     }
     public void openLoadingScreen() {
         Intent intent = new Intent(this, Loading.class);
+        startActivity(intent);
+    }
+
+    public void openChoiceScreen() {
+        Intent intent = new Intent(this, ChoiceScreen.class);
         startActivity(intent);
     }
 }
