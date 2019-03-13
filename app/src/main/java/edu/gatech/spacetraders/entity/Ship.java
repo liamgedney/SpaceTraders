@@ -1,5 +1,7 @@
 package edu.gatech.spacetraders.entity;
 
+import java.io.Serializable;
+
 import static edu.gatech.spacetraders.entity.ShipType.*;
 
 public class Ship {

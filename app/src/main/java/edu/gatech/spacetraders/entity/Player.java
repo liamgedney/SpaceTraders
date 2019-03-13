@@ -1,5 +1,7 @@
 package edu.gatech.spacetraders.entity;
 
+import java.io.Serializable;
+
 public class Player {
 
     private String playerName;

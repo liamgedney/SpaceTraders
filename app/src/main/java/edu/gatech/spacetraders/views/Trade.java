@@ -16,6 +16,7 @@ import edu.gatech.spacetraders.entity.MarketplaceRecyclerViewAdapter;
 import edu.gatech.spacetraders.entity.Player;
 import edu.gatech.spacetraders.entity.Ship;
 import edu.gatech.spacetraders.viewmodels.GameData;
+import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
 public class Trade extends AppCompatActivity {
 
@@ -24,7 +25,7 @@ public class Trade extends AppCompatActivity {
     Button backButton;
     MarketplaceRecyclerViewAdapter adapter;
 
-    GameData gameData = (GameData) getIntent().getSerializableExtra("gamedata");
+    GameData gameData = GameDataInstanceGetter.getGameData();
     Player player = gameData.getPlayer();
     int techLevel = gameData.getCurrentSolarSystem().getTechLvl();
     Ship ship = player.getShip();

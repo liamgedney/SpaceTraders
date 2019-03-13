@@ -18,6 +18,7 @@ import edu.gatech.spacetraders.entity.Player;
 import edu.gatech.spacetraders.entity.SolarSystem;
 import edu.gatech.spacetraders.entity.Universe;
 import edu.gatech.spacetraders.viewmodels.GameData;
+import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     int trade;
     int engr;
     GameData gameData;
+    GameDataInstanceGetter gameDataInstanceGetter = new GameDataInstanceGetter();
 
     EditText playerName;
     EditText pilotSkill;
@@ -93,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
                     trade = Integer.valueOf(traderSkill.getText().toString());
                     engr = Integer.valueOf(engrSkill.getText().toString());
                     diffSpinText = (Difficulty) diffSpinner.getSelectedItem();
+
+                    gameData = new GameData();
+
                     Player player = new Player(nameStr, pil, fight, trade, engr, diffSpinText);
                     gameData.setPlayer(player);
                     System.out.println(player);
@@ -101,8 +106,10 @@ public class MainActivity extends AppCompatActivity {
                     gameData.setUniverse(universe);
                     System.out.println(universe.toString());
 
-                    SolarSystem startingSystem = universe.getSystems()[randomWithRange(0, 10)];
+                    SolarSystem startingSystem = universe.getSystems()[randomWithRange(0, 9)];
                     gameData.setCurrentSolarSystem(startingSystem);
+
+                    gameDataInstanceGetter.newGameData(gameData);
 
                     openChoiceScreen(gameData);
                 }
@@ -123,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void openChoiceScreen(GameData gameData) {
         Intent intent = new Intent(this, ChoiceScreen.class);
-        intent.putExtra("gamedata", gameData);
         startActivity(intent);
     }
 }

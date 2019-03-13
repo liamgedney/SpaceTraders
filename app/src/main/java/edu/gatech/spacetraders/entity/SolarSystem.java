@@ -2,6 +2,8 @@ package edu.gatech.spacetraders.entity;
 
 import android.graphics.Point;
 
+import java.io.Serializable;
+
 public class SolarSystem {
     private String name;
     private int techLvl;

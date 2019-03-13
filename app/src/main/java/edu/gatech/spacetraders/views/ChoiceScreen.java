@@ -18,7 +18,6 @@ import edu.gatech.spacetraders.viewmodels.GameData;
 public class ChoiceScreen extends AppCompatActivity {
 
     Button tradeButton;
-    GameData gameData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +33,7 @@ public class ChoiceScreen extends AppCompatActivity {
         });
     }
     public void openTradeScreen() {
-        Serializable gameData = getIntent().getSerializableExtra("gamedata");
         Intent intent = new Intent(this, Trade.class);
-        intent.putExtra("gamedata", gameData);
         startActivity(intent);
     }
 
