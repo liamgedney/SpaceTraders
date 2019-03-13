@@ -7,14 +7,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.Serializable;
+
 import edu.gatech.spacetraders.R;
 import edu.gatech.spacetraders.entity.Difficulty;
 import edu.gatech.spacetraders.entity.Player;
 import edu.gatech.spacetraders.entity.Universe;
+import edu.gatech.spacetraders.viewmodels.GameData;
 
 public class ChoiceScreen extends AppCompatActivity {
 
     Button tradeButton;
+    GameData gameData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +34,9 @@ public class ChoiceScreen extends AppCompatActivity {
         });
     }
     public void openTradeScreen() {
+        Serializable gameData = getIntent().getSerializableExtra("gamedata");
         Intent intent = new Intent(this, Trade.class);
+        intent.putExtra("gamedata", gameData);
         startActivity(intent);
     }
 

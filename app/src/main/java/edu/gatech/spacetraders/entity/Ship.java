@@ -15,7 +15,7 @@ public class Ship {
     }
 
     public Ship(ShipType type) {
-        this(type, null);
+        this(type, new int[10]);
     }
 
     public Ship(ShipType type, int[] cargoHold) {

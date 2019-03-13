@@ -9,7 +9,7 @@ public class Player {
     private int engineerPoints;
     private Difficulty difficulty;
     private int credits;
-    private ShipType shipType;
+    private Ship ship;
 
     public Player(String playerName, int pilotPoints, int fighterPoints,
                   int traderPoints, int engineerPoints, Difficulty difficulty) {
@@ -20,7 +20,7 @@ public class Player {
         this.engineerPoints = engineerPoints;
         this.difficulty = difficulty;
         this.credits = 1000;
-        this.shipType = ShipType.GNAT;
+        this.ship = new Ship(ShipType.GNAT);
     }
 
     String getPlayerName() {
@@ -51,8 +51,8 @@ public class Player {
         return credits;
     }
 
-    public ShipType getShipType() {
-        return shipType;
+    public Ship getShip() {
+        return ship;
     }
 
     public void setPlayerName(String playerName) {
@@ -83,8 +83,8 @@ public class Player {
         this.credits = credits;
     }
 
-    public void setShipType(ShipType shipType) {
-        this.shipType = shipType;
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 
     @Override
@@ -93,6 +93,6 @@ public class Player {
                             + "Trader Points: %d, Engineer Points: %d, "
                             + "Difficulty: %s, Credits: %d, Ship Type: %s",
                             playerName, pilotPoints, fighterPoints, traderPoints,
-                            engineerPoints, difficulty, credits, shipType);
+                            engineerPoints, difficulty, credits, ship);
     }
 }

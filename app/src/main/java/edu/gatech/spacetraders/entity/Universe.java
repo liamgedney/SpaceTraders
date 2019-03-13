@@ -49,6 +49,10 @@ public class Universe {
         return answer.toString();
     }
 
+    public SolarSystem[] getSystems() {
+        return systems;
+    }
+
     // Many of these names are from Star Trek: The Next Generation, or are small changes
     // to names of this series. A few have different origins.
     String[] solarSystemNames =

@@ -18,7 +18,7 @@ public class MarketplaceRecyclerViewAdapter extends RecyclerView.Adapter<Marketp
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MarketplaceRecyclerViewAdapter(Context context, List<String> data) {
+    public MarketplaceRecyclerViewAdapter(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }

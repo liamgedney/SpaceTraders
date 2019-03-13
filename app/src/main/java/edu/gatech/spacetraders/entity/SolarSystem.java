@@ -20,6 +20,9 @@ public class SolarSystem {
 
     }
 
+    public int getTechLvl() {
+        return techLvl;
+    }
 
     public String toString() {
         return "Name: " + this.name + ", Tech Level: " + this.techLvl
