@@ -50,7 +50,7 @@ public class MarketplaceRecyclerViewAdapter extends RecyclerView.Adapter<Marketp
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.tvMkt);
+            myTextView = itemView.findViewById(R.id.waterMkt);
             itemView.setOnClickListener(this);
         }
 
