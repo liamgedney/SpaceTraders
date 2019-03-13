@@ -17,7 +17,9 @@ public class Ship {
     }
 
     public Ship(ShipType type) {
-        this(type, null);
+        for (Good good : Good.values()) {
+            cargoHold.put(good, 0);
+        }
     }
 
     public Ship(ShipType type, EnumMap<Good, Integer> cargoHold) {

@@ -10,7 +10,7 @@ public class Market {
     private EnumMap<Good, Integer> inventory = new EnumMap<>(Good.class);
     private Player player;
     private Ship ship;
-    private List<String> recycleViewList;
+    private List<String> recycleViewList = new ArrayList<>(10);
 
     public Market(int techLevel, Player player, Ship ship) {
         this.techLevel = techLevel;
@@ -20,7 +20,6 @@ public class Market {
             prices.put(good, calculatePrice(techLevel, good));
             inventory.put(good, calculateAmount(techLevel, good));
         }
-        this.recycleViewList = new ArrayList<>(10);
         makeList();
     }
 
@@ -72,7 +71,7 @@ public class Market {
 
     public String toString(Good good) {
         String returnString = "";
-        returnString += good;
+        returnString += good.toString();
         returnString += "   ";
         returnString += getPrice(good);
         returnString += "   ";
