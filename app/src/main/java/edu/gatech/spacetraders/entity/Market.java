@@ -1,23 +1,15 @@
 package edu.gatech.spacetraders.entity;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.EnumMap;
-<<<<<<< HEAD
 import java.util.List;
-=======
-import java.util.Map;
-import java.util.Set;
->>>>>>> clair
+import java.util.ArrayList;
 
 public class Market {
-    private final int NUM_GOODS = 10;
     private int techLevel;
     private EnumMap<Good, Integer> prices = new EnumMap<>(Good.class);
     private EnumMap<Good, Integer> inventory = new EnumMap<>(Good.class);
     private Player player;
     private Ship ship;
-    private int[] inventory;
     private List<String> recycleViewList;
 
     public Market(int techLevel, Player player, Ship ship) {
@@ -28,7 +20,6 @@ public class Market {
             prices.put(good, calculatePrice(techLevel, good));
             inventory.put(good, calculateAmount(techLevel, good));
         }
-        this.inventory = new int[] {10, 10 , 10, 10, 10, 10, 10, 10, 10, 10};
         this.recycleViewList = new ArrayList<>(10);
         makeList();
     }
@@ -41,17 +32,10 @@ public class Market {
         return 10 * ( techLevel - good.mtlp() + 1 );
     }
 
-    public int getPrice(int good) {
+    public int getPrice(Good good) {
         return prices.get(good);
     }
 
-<<<<<<< HEAD
-    public boolean canBuy(Good good) {
-        if (this.techLevel >= good.mtlu()) {
-            if (player.getCredits() >= prices.get(good)) {
-                return true;
-            }
-=======
     public boolean canBuy(Good good, int amount) {
         if (this.techLevel < good.mtlu()) {
             System.out.println("not enough techlevel to produce good");
@@ -76,30 +60,29 @@ public class Market {
     }
     public boolean buy(Good good, int amount) {
         if (canBuy(good, amount)) {
-            inventory.put(good, inventory.get(good) - amount);
+            inventory.put(good, getInventory(good) - amount);
             return true;
         }
         return false;
     }
 
-    public int getInventory(int index) {
-        return inventory[index];
+    public int getInventory(Good good) {
+        return inventory.get(good);
     }
 
-    public String toString(int index) {
+    public String toString(Good good) {
         String returnString = "";
-        Good good = Good.values()[index];
         returnString += good;
         returnString += "   ";
-        returnString += prices.get(good);
+        returnString += getPrice(good);
         returnString += "   ";
-        returnString += getInventory(index);
+        returnString += getInventory(good);
         return returnString;
     }
 
     public void makeList() {
-        for (int i = 0; i < 9; i++) {
-            recycleViewList.add(toString(i));
+        for (Good good: Good.values()) {
+            recycleViewList.add(toString(good));
         }
     }
 
