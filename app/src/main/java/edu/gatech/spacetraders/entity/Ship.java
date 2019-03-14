@@ -1,5 +1,7 @@
 package edu.gatech.spacetraders.entity;
 
+import java.util.EnumMap;
+
 import static edu.gatech.spacetraders.entity.ShipType.*;
 
 public class Ship {
@@ -8,17 +10,19 @@ public class Ship {
     private int curFuel;
     private int maxCargo;
     private int curCargo; //current total cargo space occupied
-    private int[] cargoHold = new int[NUM_GOODS]; //keeps track of # of each item
+    private EnumMap<Good, Integer> cargoHold = new EnumMap<>(Good.class); //keeps track of # of each item
 
     public Ship() {
         this(GNAT);
     }
 
     public Ship(ShipType type) {
-        this(type, null);
+        for (Good good : Good.values()) {
+            cargoHold.put(good, 0);
+        }
     }
 
-    public Ship(ShipType type, int[] cargoHold) {
+    public Ship(ShipType type, EnumMap<Good, Integer> cargoHold) {
         this.cargoHold = cargoHold;
         this.maxFuel = type.fuel();
         this.maxCargo = type.cargo();
@@ -31,9 +35,13 @@ public class Ship {
      */
     private int cargoCalc() {
         int ans = 0;
-        for (int i = 0; i < NUM_GOODS; i++) {
-            ans += cargoHold[i];
+        for (Good good : Good.values()) {
+            ans += cargoHold.get(good);
         }
         return ans;
+    }
+
+    public int getCargoSpace() {
+        return this.maxCargo - this.curCargo;
     }
 }

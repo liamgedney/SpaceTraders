@@ -10,10 +10,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.Serializable;
+
 import edu.gatech.spacetraders.R;
 import edu.gatech.spacetraders.entity.Difficulty;
 import edu.gatech.spacetraders.entity.Player;
+import edu.gatech.spacetraders.entity.SolarSystem;
 import edu.gatech.spacetraders.entity.Universe;
+import edu.gatech.spacetraders.viewmodels.GameData;
+import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,12 +31,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private int randomWithRange(int min, int max)
+    {
+        int range = (max - min) + 1;
+        return (int)(Math.random() * range) + min;
+    }
+
     String nameStr;
     Difficulty diffSpinText;
     int pil;
     int fight;
     int trade;
     int engr;
+    GameData gameData;
+    GameDataInstanceGetter gameDataInstanceGetter = new GameDataInstanceGetter();
 
     EditText playerName;
     EditText pilotSkill;
@@ -82,13 +95,23 @@ public class MainActivity extends AppCompatActivity {
                     trade = Integer.valueOf(traderSkill.getText().toString());
                     engr = Integer.valueOf(engrSkill.getText().toString());
                     diffSpinText = (Difficulty) diffSpinner.getSelectedItem();
+
+                    gameData = new GameData();
+
                     Player player = new Player(nameStr, pil, fight, trade, engr, diffSpinText);
+                    gameData.setPlayer(player);
                     System.out.println(player);
 
                     Universe universe = new Universe();
+                    gameData.setUniverse(universe);
                     System.out.println(universe.toString());
 
-                    openChoiceScreen();
+                    SolarSystem startingSystem = universe.getSystems()[randomWithRange(0, 9)];
+                    gameData.setCurrentSolarSystem(startingSystem);
+
+                    gameDataInstanceGetter.newGameData(gameData);
+
+                    openChoiceScreen(gameData);
                 }
             }
         });
@@ -105,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openChoiceScreen() {
+    public void openChoiceScreen(GameData gameData) {
         Intent intent = new Intent(this, ChoiceScreen.class);
         startActivity(intent);
     }

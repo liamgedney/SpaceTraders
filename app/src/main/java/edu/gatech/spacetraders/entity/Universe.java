@@ -1,5 +1,6 @@
 package edu.gatech.spacetraders.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -47,6 +48,10 @@ public class Universe {
             answer.append("\n");
         }
         return answer.toString();
+    }
+
+    public SolarSystem[] getSystems() {
+        return systems;
     }
 
     // Many of these names are from Star Trek: The Next Generation, or are small changes

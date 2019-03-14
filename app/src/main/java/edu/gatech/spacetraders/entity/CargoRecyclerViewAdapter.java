@@ -50,7 +50,7 @@ public class CargoRecyclerViewAdapter extends RecyclerView.Adapter<CargoRecycler
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.tvCargo);
+            myTextView = itemView.findViewById(R.id.waterCargo);
             itemView.setOnClickListener(this);
         }
 

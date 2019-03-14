@@ -2,6 +2,8 @@ package edu.gatech.spacetraders.entity;
 
 import android.graphics.Point;
 
+import java.io.Serializable;
+
 public class SolarSystem {
     private String name;
     private int techLvl;
@@ -17,6 +19,11 @@ public class SolarSystem {
         this.techLvl = techLvl;
         this.resLvl = reslvl;
         this.coordinates = new Point(x, y);
+
+    }
+
+    public int getTechLvl() {
+        return techLvl;
     }
 
     public String toString() {

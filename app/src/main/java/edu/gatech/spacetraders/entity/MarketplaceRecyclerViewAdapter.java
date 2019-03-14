@@ -18,7 +18,7 @@ public class MarketplaceRecyclerViewAdapter extends RecyclerView.Adapter<Marketp
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MarketplaceRecyclerViewAdapter(Context context, List<String> data) {
+    public MarketplaceRecyclerViewAdapter(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -50,7 +50,7 @@ public class MarketplaceRecyclerViewAdapter extends RecyclerView.Adapter<Marketp
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.tvMkt);
+            myTextView = itemView.findViewById(R.id.waterMkt);
             itemView.setOnClickListener(this);
         }
 

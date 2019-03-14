@@ -3,17 +3,34 @@ package edu.gatech.spacetraders.views;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.Serializable;
+
 import edu.gatech.spacetraders.R;
+import edu.gatech.spacetraders.entity.Market;
+import edu.gatech.spacetraders.entity.MarketplaceRecyclerViewAdapter;
+import edu.gatech.spacetraders.entity.Player;
+import edu.gatech.spacetraders.entity.Ship;
+import edu.gatech.spacetraders.viewmodels.GameData;
+import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
 public class Trade extends AppCompatActivity {
 
     Button buyButton;
     Button sellButton;
     Button backButton;
+    MarketplaceRecyclerViewAdapter adapter;
+
+    GameData gameData = GameDataInstanceGetter.getGameData();
+    Player player = gameData.getPlayer();
+    int techLevel = gameData.getCurrentSolarSystem().getTechLvl();
+    Ship ship = player.getShip();
+
+    Market market = new Market(techLevel, player, ship);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +41,13 @@ public class Trade extends AppCompatActivity {
         sellButton = (Button) findViewById(R.id.mktsell_button);
         backButton = (Button) findViewById(R.id.mktback_button);
         RecyclerView recyclerView = findViewById(R.id.mktgoods_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new MarketplaceRecyclerViewAdapter(this, market.getList());
+        recyclerView.setAdapter(adapter);
 
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
-                //fanjkfanjkaf
+
             }
         });
 
