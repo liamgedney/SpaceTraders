@@ -8,7 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.gatech.spacetraders.R;
+import edu.gatech.spacetraders.entity.Good;
 import edu.gatech.spacetraders.entity.Market;
 import edu.gatech.spacetraders.entity.MarketplaceRecyclerViewAdapter;
 import edu.gatech.spacetraders.entity.Player;
@@ -29,6 +33,12 @@ public class CargoScreen extends AppCompatActivity {
     Ship ship = player.getShip();
 
     Market market = new Market(techLevel, player, ship);
+    List<Good> goodsList = market.getGoods();
+    private List<String> recycleViewList = new ArrayList<>(10);
+    for (Good good: goodsList) {
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

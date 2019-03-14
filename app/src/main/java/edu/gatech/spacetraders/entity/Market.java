@@ -11,6 +11,7 @@ public class Market {
     private Player player;
     private Ship ship;
     private List<String> recycleViewList = new ArrayList<>(10);
+    private List<Good> goods = new ArrayList<>(10);
 
     public Market(int techLevel, Player player, Ship ship) {
         this.techLevel = techLevel;
@@ -19,6 +20,7 @@ public class Market {
         for (Good good : Good.values()) {
             prices.put(good, calculatePrice(techLevel, good));
             inventory.put(good, calculateAmount(techLevel, good));
+            goods.add(good);
         }
         makeList();
     }
@@ -81,6 +83,10 @@ public class Market {
         for (Good good: Good.values()) {
             recycleViewList.add(toString(good));
         }
+    }
+
+    public List<Good> getGoods() {
+        return goods;
     }
 
     public List<String> getList() {
