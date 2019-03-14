@@ -71,11 +71,9 @@ public class Market {
 
     public String toString(Good good) {
         String returnString = "";
-        returnString += good.toString();
-        returnString += "   ";
-        returnString += getPrice(good);
-        returnString += "   ";
-        returnString += getInventory(good);
+        returnString += String.format("%1$5s", good.toString());
+        returnString += String.format("%1$5s", getPrice(good));
+        returnString += String.format("%1$5s", getInventory(good));
         return returnString;
     }
 

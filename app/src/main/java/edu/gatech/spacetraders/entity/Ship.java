@@ -1,6 +1,8 @@
 package edu.gatech.spacetraders.entity;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.List;
 
 import static edu.gatech.spacetraders.entity.ShipType.*;
 
@@ -11,6 +13,7 @@ public class Ship {
     private int maxCargo;
     private int curCargo; //current total cargo space occupied
     private EnumMap<Good, Integer> cargoHold = new EnumMap<>(Good.class); //keeps track of # of each item
+    private List<String> recycleViewList = new ArrayList<>(10);
 
     public Ship() {
         this(GNAT);
