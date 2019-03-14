@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                     gameData.setPlayer(player);
                     System.out.println(player);
 
-                    Universe universe = new Universe();
+                    Universe universe = new Universe(player, player.getShip());
                     gameData.setUniverse(universe);
                     System.out.println(universe.toString());
 

@@ -16,7 +16,7 @@ public class Universe {
         return (int)(Math.random() * range) + min;
     }
 
-    public Universe() {
+    public Universe(Player player, Ship ship) {
         List<String> solarSystemNamesList = Arrays.asList(solarSystemNames);
         Collections.shuffle(solarSystemNamesList);
 
@@ -35,7 +35,7 @@ public class Universe {
             int resourceLevel = randomWithRange(0, 12);
             int x = xCoordinateList.get(i);
             int y = yCoordinateList.get(i);
-            systems[i] = new SolarSystem(name, techLevel, resourceLevel, x, y);
+            systems[i] = new SolarSystem(name, techLevel, resourceLevel, player, ship, x, y);
         }
     }
 

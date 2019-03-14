@@ -31,6 +31,10 @@ public class Market {
         return 10 * ( techLevel - good.mtlp() + 1 );
     }
 
+    private void downAmount(Good good) {
+        inventory.put(good, (inventory.get(good) - 1));
+    }
+
     public int getPrice(Good good) {
         return prices.get(good);
     }
