@@ -15,6 +15,7 @@ import edu.gatech.spacetraders.entity.Market;
 import edu.gatech.spacetraders.entity.MarketplaceRecyclerViewAdapter;
 import edu.gatech.spacetraders.entity.Player;
 import edu.gatech.spacetraders.entity.Ship;
+import edu.gatech.spacetraders.entity.SolarSystem;
 import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
@@ -27,8 +28,10 @@ public class Trade extends AppCompatActivity {
 
     GameData gameData = GameDataInstanceGetter.getGameData();
     Player player = gameData.getPlayer();
-    int techLevel = gameData.getCurrentSolarSystem().getTechLvl();
+    SolarSystem currSS = gameData.getCurrentSolarSystem();
+    int techLevel = currSS.getTechLvl();
     Ship ship = player.getShip();
+
 
     Market market = new Market(techLevel, player, ship);
 
