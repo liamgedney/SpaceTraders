@@ -47,4 +47,8 @@ public class Ship {
     public int getCargoSpace() {
         return this.maxCargo - this.curCargo;
     }
+
+    public EnumMap<Good, Integer> getCargoHold() {
+        return cargoHold;
+    }
 }

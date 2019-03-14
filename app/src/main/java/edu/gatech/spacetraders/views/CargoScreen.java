@@ -35,10 +35,6 @@ public class CargoScreen extends AppCompatActivity {
     Market market = new Market(techLevel, player, ship);
     List<Good> goodsList = market.getGoods();
     private List<String> recycleViewList = new ArrayList<>(10);
-    for (Good good: goodsList) {
-
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +47,16 @@ public class CargoScreen extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.mktgoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MarketplaceRecyclerViewAdapter(this, market.getList());
+
+        for (Good good: goodsList) {
+            String newString = "";
+            newString += String.format("%1$5s", good.toString());
+            newString += String.format("%1$5s", market.getPrice(good));
+            newString += String.format("%1$5s", recycleViewList.add("" + ship.getCargoHold().get(good)));
+            recycleViewList.add(newString);
+        }
+
+        adapter = new MarketplaceRecyclerViewAdapter(this, recycleViewList);
         recyclerView.setAdapter(adapter);
 
         buyButton.setOnClickListener(new View.OnClickListener() {
