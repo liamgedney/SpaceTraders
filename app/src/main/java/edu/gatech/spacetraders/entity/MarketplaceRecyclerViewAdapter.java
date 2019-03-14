@@ -33,8 +33,8 @@ public class MarketplaceRecyclerViewAdapter extends RecyclerView.Adapter<Marketp
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        String good = mData.get(position);
+        holder.myTextView.setText(good);
     }
 
     // total number of rows

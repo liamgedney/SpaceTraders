@@ -45,12 +45,14 @@ public class Trade extends AppCompatActivity {
         backButton = (Button) findViewById(R.id.mktback_button);
         RecyclerView recyclerView = findViewById(R.id.mktgoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MarketplaceRecyclerViewAdapter(this, market.getList());
+        adapter = new MarketplaceRecyclerViewAdapter(this, currSS.getMarket().getList());
         recyclerView.setAdapter(adapter);
 
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
-
+                currSS.setMarket(currSS.getMarket().downAmount();
+                adapter = new MarketplaceRecyclerViewAdapter(this, currSS.getMarket().getList());
+                recyclerView.setAdapter(adapter);
             }
         });
 
