@@ -51,9 +51,9 @@ public class Market {
         } else if (player.getCredits() < prices.get(good) * amount) {
             System.out.println("You don't have enough credits to buy this item.");
             return false;
-        } else if (ship.getCargoSpace() < amount) {
-            //System.out.println("You don't have enough cargo space.");
-            //return false;
+        } else if (ship.getCargoSpace() >= amount) {
+            System.out.println("You don't have enough cargo space.");
+            return false;
         } else if (inventory.get(good) < amount) {
             System.out.println("This shop is all out of this good");
             return false;
@@ -73,6 +73,7 @@ public class Market {
         Good good = Good.values()[position];
         if (canBuy(good, amount)) {
             inventory.put(good, getInventory(good) - amount);
+            updatePlayer(position);
         }
     }
 

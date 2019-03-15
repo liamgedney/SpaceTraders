@@ -64,6 +64,9 @@ public class Trade extends AppCompatActivity {
                 gameData.setPlayer(market.updatePlayer(bCode));
                 adapter.setList(market.getList());
                 recyclerView.setAdapter(adapter);
+                for (String s: market.getList()) {
+                    System.out.println(s);
+                }
             }
         });
 
@@ -89,4 +92,5 @@ public class Trade extends AppCompatActivity {
         Intent intent = new Intent(this, CargoScreen.class);
         startActivity(intent);
     }
+
 }
