@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class CargoScreen extends AppCompatActivity {
     Button buyButton;
     Button sellButton;
     Button backButton;
+    EditText buyCode;
     MarketplaceRecyclerViewAdapter adapter;
 
     GameData gameData = GameDataInstanceGetter.getGameData();
@@ -44,6 +46,7 @@ public class CargoScreen extends AppCompatActivity {
         buyButton = (Button) findViewById(R.id.cargobuy_button);
         sellButton = (Button) findViewById(R.id.cargosell_button);
         backButton = (Button) findViewById(R.id.cargoback_button);
+        buyCode = (EditText) findViewById(R.id.mktplace_position);
 
         RecyclerView recyclerView = findViewById(R.id.cargogoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -65,6 +68,8 @@ public class CargoScreen extends AppCompatActivity {
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
                 openTradeScreen();
+                int bCode;
+                bCode = Integer.valueOf(buyCode.getText().toString());
             }
         });
 
