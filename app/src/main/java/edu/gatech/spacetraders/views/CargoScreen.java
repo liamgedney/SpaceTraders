@@ -50,7 +50,7 @@ public class CargoScreen extends AppCompatActivity {
         backButton = (Button) findViewById(R.id.cargoback_button);
         buyCode = (EditText) findViewById(R.id.mktplace_position);
 
-        RecyclerView recyclerView = findViewById(R.id.cargogoods_list);
+        final RecyclerView recyclerView = findViewById(R.id.cargogoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         int count = 0;
@@ -88,7 +88,8 @@ public class CargoScreen extends AppCompatActivity {
                 gameData.setPlayer(player);
                 currSS.setMarket(market);
                 gameData.setCurrentSolarSystem(currSS);
-                updateView(market, player);
+                adapter.setList(updateView(market, player));
+                recyclerView.setAdapter(adapter);
             }
         });
 
@@ -109,7 +110,7 @@ public class CargoScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void updateView(Market market, Player player) {
+    public List<String> updateView(Market market, Player player) {
         int count = 0;
         List<String> list = new ArrayList<>(10);
         ship = player.getShip();
@@ -121,5 +122,6 @@ public class CargoScreen extends AppCompatActivity {
             list.add(newString);
             count++;
         }
+        return list;
     }
 }
