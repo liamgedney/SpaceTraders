@@ -51,4 +51,6 @@ public class Ship {
     public EnumMap<Good, Integer> getCargoHold() {
         return cargoHold;
     }
+
+    public void setCargoHold(EnumMap<Good, Integer> cargo) {cargoHold = cargo;}
 }

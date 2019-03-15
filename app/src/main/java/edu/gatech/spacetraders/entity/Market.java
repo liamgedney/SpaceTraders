@@ -13,6 +13,7 @@ public class Market {
     private List<String> recycleViewList = new ArrayList<>(10);
     private List<Good> goods = new ArrayList<>(10);
 
+
     public Market(int techLevel, Player player, Ship ship) {
         this.techLevel = techLevel;
         this.player = player;
@@ -40,25 +41,27 @@ public class Market {
 
     public boolean canBuy(Good good, int amount) {
         if (this.techLevel < good.mtlu()) {
-            System.out.println("not enough techlevel to produce good");
+            System.out.println("This planet cannot produce this good.");
             return false;
         } else if (player.getCredits() < prices.get(good) * amount) {
-            System.out.println("not enough credits");
+            System.out.println("You don't have enough credits to buy this item.");
             return false;
         } else if (ship.getCargoSpace() < amount) {
-            System.out.println("not enough cargo space");
+            System.out.println("You don't have enough cargo space.");
             return false;
         } else if (inventory.get(good) < amount) {
-            System.out.println("not enough in shop inventory");
+            System.out.println("This shop is all out of this good");
             return false;
-        } else {
-            System.out.println("success!");
-            return true;
         }
+        return true;
     }
 
     public void buy(int position) {
         buy(position, 1);
+    }
+
+    public int getInventory(Good good) {
+        return inventory.get(good);
     }
 
     public void buy(int position, int amount) {
@@ -68,15 +71,25 @@ public class Market {
         }
     }
 
+    public Player updatePlayer(int position) {
+        return updatePlayer(position, 1);
+    }
+
     public Player updatePlayer(int position, int amount) {
-        player.updateCargo(position, amount);
-        player.updateCredits(prices, position, amount);
+        Good good = Good.values()[position];
+        if (canBuy(good, amount)) {
+            player.upCargo(position, amount);
+            player.downCredits(prices, position, amount);
+        }
         return player;
     }
 
-    public int getInventory(Good good) {
-        return inventory.get(good);
+    public void upInventory(int position, int amount) {
+        Good good = Good.values()[position];
+        inventory.put(good, getInventory(good) + amount);
     }
+
+
 
     public String toString(Good good) {
         String returnString = "";
@@ -99,4 +112,6 @@ public class Market {
     public List<String> getList() {
         return recycleViewList;
     }
+
+    public EnumMap<Good, Integer> getPrices() { return prices; }
 }

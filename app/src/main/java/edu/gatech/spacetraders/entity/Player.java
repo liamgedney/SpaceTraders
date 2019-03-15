@@ -25,9 +25,7 @@ public class Player {
         this.difficulty = difficulty;
         this.credits = 1000;
         this.ship = new Ship(ShipType.GNAT);
-        for (Good good : Good.values()) {
-            cargo.put(good, 0);
-        }
+        cargo = ship.getCargoHold();
     }
 
     String getPlayerName() {
@@ -92,12 +90,13 @@ public class Player {
         this.credits = credits;
     }
 
-    public void updateCargo(int position, int amount) {
+    public void upCargo(int position, int amount) {
         Good good = Good.values()[position];
         cargo.put(good, getCargo(good) + amount);
+        ship.setCargoHold(cargo);
     }
 
-    public void updateCredits(EnumMap<Good, Integer> prices, int position, int amount) {
+    public void downCredits(EnumMap<Good, Integer> prices, int position, int amount) {
         Good good = Good.values()[position];
         int price = prices.get(good);
         int credits = getCredits();
@@ -108,6 +107,47 @@ public class Player {
         this.ship = ship;
     }
 
+    public boolean canSell(Good good, int amount) {
+        if (cargo.get(good) > amount) {
+            System.out.println("Cannot sell more items than currently in inventory.");
+            return false;
+        }
+        return true;
+    }
+
+    public void sell(int position) {
+        sell(position, 1);
+    }
+
+    public void sell(int position, int amount) {
+        Good good = Good.values()[position];
+        if (canSell(good, amount)) {
+            cargo.put(good, getCargo(good) - amount);
+        }
+    }
+
+    public Market updateMarket(Market market, int position, int amount) {
+        Good good = Good.values()[position];
+        if (canSell(good, amount)) {
+            market.upInventory(position, amount);
+        }
+        return market;
+    }
+
+    public void updatePlayer(Market market, int position, int amount) {
+        Good good = Good.values()[position];
+        if (canSell(good, amount)) {
+            EnumMap<Good, Integer> prices = market.getPrices();
+            downCredits(prices, position, amount);
+        }
+    }
+
+    public void upCredits(EnumMap<Good, Integer> prices, int position, int amount) {
+        Good good = Good.values()[position];
+        int price = prices.get(good);
+        int credits = getCredits();
+        setCredits(credits + price * amount);
+    }
 
 
     @Override
