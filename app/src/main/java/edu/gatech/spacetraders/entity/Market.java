@@ -31,7 +31,12 @@ public class Market {
     }
 
     private int calculateAmount(int techLevel, Good good) {
-        return 10 * ( techLevel - good.mtlp() + 1 );
+        int amt = 10 * ( techLevel - good.mtlp() + 1 );
+        if (amt < 0) {
+            return 0;
+        } else {
+            return amt;
+        }
     }
 
 
