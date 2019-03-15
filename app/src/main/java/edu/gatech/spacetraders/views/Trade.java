@@ -58,6 +58,7 @@ public class Trade extends AppCompatActivity {
                 bCode = Integer.valueOf(buyCode.getText().toString());
                 Market market = currSS.getMarket();
                 market.buy(bCode);
+                market.updateList();
                 currSS.setMarket(market);
                 gameData.setCurrentSolarSystem(currSS);
                 gameData.setPlayer(market.updatePlayer(bCode));
