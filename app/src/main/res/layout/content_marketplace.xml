@@ -90,7 +90,7 @@
         android:layout_marginBottom="56dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="0"
         app:layout_constraintBottom_toTopOf="@+id/mktgoods_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
