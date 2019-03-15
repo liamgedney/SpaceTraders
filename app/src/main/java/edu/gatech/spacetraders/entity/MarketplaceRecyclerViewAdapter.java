@@ -70,6 +70,10 @@ public class MarketplaceRecyclerViewAdapter extends RecyclerView.Adapter<Marketp
         this.mClickListener = itemClickListener;
     }
 
+    public void setList(List<String> data) {
+        mData = data;
+    }
+
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
