@@ -30,22 +30,31 @@ public class Ship {
         this.maxFuel = type.fuel();
         this.maxCargo = type.cargo();
         this.curFuel = maxFuel;
-        this.curCargo = cargoCalc();
-    }
-
-    /*
-    helper method calculates total size of cargo hold
-     */
-    private int cargoCalc() {
-        int ans = 0;
-        for (Good good : Good.values()) {
-            ans += cargoHold.get(good);
-        }
-        return ans;
+        this.curCargo = 0;
     }
 
     public int getCargoSpace() {
         return this.maxCargo - this.curCargo;
+    }
+
+    public boolean cantHoldMore() {
+        if (curCargo >= maxCargo) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int getMaxCargo() {
+        return maxCargo;
+    }
+
+    public void setCurCargo(int curCargo) {
+        this.curCargo = curCargo;
+    }
+
+    public int getCurCargo() {
+        return curCargo;
     }
 
     public EnumMap<Good, Integer> getCargoHold() {

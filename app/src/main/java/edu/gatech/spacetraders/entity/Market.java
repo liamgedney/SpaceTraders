@@ -12,6 +12,7 @@ public class Market {
     private Ship ship;
     private List<String> recycleViewList = new ArrayList<>(10);
     private List<Good> goods = new ArrayList<>(10);
+    private static int count = 10;
 
 
     public Market(int techLevel, Player player, Ship ship) {
@@ -51,7 +52,7 @@ public class Market {
         } else if (player.getCredits() < prices.get(good) * amount) {
             System.out.println("You don't have enough credits to buy this item.");
             return false;
-        } else if (ship.getCargoSpace() >= amount) {
+        } else if (/*ship.getCargoSpace() == 0*/ count <= 0) {
             System.out.println("You don't have enough cargo space.");
             return false;
         } else if (inventory.get(good) < amount) {
@@ -73,8 +74,9 @@ public class Market {
         Good good = Good.values()[position];
         if (canBuy(good, amount)) {
             inventory.put(good, getInventory(good) - amount);
-            updatePlayer(position);
+            ship.setCurCargo(ship.getCurCargo() + 1);
         }
+        count--;
     }
 
     public Player updatePlayer(int position) {
