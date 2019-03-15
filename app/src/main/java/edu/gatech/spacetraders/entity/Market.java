@@ -33,9 +33,6 @@ public class Market {
         return 10 * ( techLevel - good.mtlp() + 1 );
     }
 
-    private void downAmount(Good good) {
-        inventory.put(good, (inventory.get(good) - 1));
-    }
 
     public int getPrice(Good good) {
         return prices.get(good);
@@ -60,15 +57,21 @@ public class Market {
         }
     }
 
-    public boolean buy(Good good) {
-        return buy(good, 1);
+    public void buy(int position) {
+        buy(position, 1);
     }
-    public boolean buy(Good good, int amount) {
+
+    public void buy(int position, int amount) {
+        Good good = Good.values()[position];
         if (canBuy(good, amount)) {
             inventory.put(good, getInventory(good) - amount);
-            return true;
         }
-        return false;
+    }
+
+    public Player updatePlayer(int position, int amount) {
+        player.updateCargo(position, amount);
+        player.updateCredits(prices, position, amount);
+        return player;
     }
 
     public int getInventory(Good good) {

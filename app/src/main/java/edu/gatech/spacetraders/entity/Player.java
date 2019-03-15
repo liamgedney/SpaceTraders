@@ -1,6 +1,7 @@
 package edu.gatech.spacetraders.entity;
 
 import java.io.Serializable;
+import java.util.EnumMap;
 
 public class Player {
 
@@ -12,6 +13,7 @@ public class Player {
     private Difficulty difficulty;
     private int credits;
     private Ship ship;
+    private EnumMap<Good, Integer> cargo = new EnumMap<>(Good.class);
 
     public Player(String playerName, int pilotPoints, int fighterPoints,
                   int traderPoints, int engineerPoints, Difficulty difficulty) {
@@ -23,6 +25,9 @@ public class Player {
         this.difficulty = difficulty;
         this.credits = 1000;
         this.ship = new Ship(ShipType.GNAT);
+        for (Good good : Good.values()) {
+            cargo.put(good, 0);
+        }
     }
 
     String getPlayerName() {
@@ -52,6 +57,8 @@ public class Player {
     public int getCredits() {
         return credits;
     }
+
+    public int getCargo(Good good) { return cargo.get(good); }
 
     public Ship getShip() {
         return ship;
@@ -85,9 +92,23 @@ public class Player {
         this.credits = credits;
     }
 
+    public void updateCargo(int position, int amount) {
+        Good good = Good.values()[position];
+        cargo.put(good, getCargo(good) + amount);
+    }
+
+    public void updateCredits(EnumMap<Good, Integer> prices, int position, int amount) {
+        Good good = Good.values()[position];
+        int price = prices.get(good);
+        int credits = getCredits();
+        setCredits(credits - price * amount);
+    }
+
     public void setShip(Ship ship) {
         this.ship = ship;
     }
+
+
 
     @Override
     public String toString() {
