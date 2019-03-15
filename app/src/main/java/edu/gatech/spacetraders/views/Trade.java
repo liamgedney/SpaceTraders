@@ -50,9 +50,9 @@ public class Trade extends AppCompatActivity {
 
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
-                currSS.setMarket(currSS.getMarket().downAmount();
-                adapter = new MarketplaceRecyclerViewAdapter(this, currSS.getMarket().getList());
-                recyclerView.setAdapter(adapter);
+//                currSS.setMarket(currSS.getMarket().downAmount());
+//                adapter = new MarketplaceRecyclerViewAdapter(this, currSS.getMarket().getList());
+//                recyclerView.setAdapter(adapter);
             }
         });
 
