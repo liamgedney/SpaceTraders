@@ -112,6 +112,16 @@ public class Market {
         }
     }
 
+    public void updateList() {
+        List<String> list =  new ArrayList<>(10);
+        int count = 0;
+        for (Good good: Good.values()) {
+            list.add(count + " " + toString(good));
+            count++;
+        }
+        recycleViewList = list;
+    }
+
     public List<Good> getGoods() {
         return goods;
     }
