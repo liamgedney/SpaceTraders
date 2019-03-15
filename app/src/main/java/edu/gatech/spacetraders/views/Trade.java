@@ -47,7 +47,7 @@ public class Trade extends AppCompatActivity {
         sellButton = (Button) findViewById(R.id.mktsell_button);
         backButton = (Button) findViewById(R.id.mktback_button);
         buyCode = (EditText) findViewById(R.id.mktplace_position);
-        RecyclerView recyclerView = findViewById(R.id.mktgoods_list);
+        final RecyclerView recyclerView = findViewById(R.id.mktgoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MarketplaceRecyclerViewAdapter(this, currSS.getMarket().getList());
         recyclerView.setAdapter(adapter);
@@ -56,6 +56,13 @@ public class Trade extends AppCompatActivity {
             public void onClick(View activity_main) {
                 int bCode;
                 bCode = Integer.valueOf(buyCode.getText().toString());
+                Market market = currSS.getMarket();
+                market.buy(bCode);
+                currSS.setMarket(market);
+                gameData.setCurrentSolarSystem(currSS);
+                gameData.setPlayer(market.updatePlayer(bCode));
+                adapter.setList(market.getList());
+                recyclerView.setAdapter(adapter);
             }
         });
 
