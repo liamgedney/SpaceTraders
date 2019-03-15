@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 
 import edu.gatech.spacetraders.R;
@@ -18,6 +19,7 @@ import edu.gatech.spacetraders.entity.Market;
 import edu.gatech.spacetraders.entity.MarketplaceRecyclerViewAdapter;
 import edu.gatech.spacetraders.entity.Player;
 import edu.gatech.spacetraders.entity.Ship;
+import edu.gatech.spacetraders.entity.SolarSystem;
 import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
@@ -75,6 +77,18 @@ public class CargoScreen extends AppCompatActivity {
 
         sellButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
+                int bCode = Integer.valueOf(buyCode.getText().toString());
+                Player player = gameData.getPlayer();
+                SolarSystem currSS = gameData.getCurrentSolarSystem();
+                Market market = currSS.getMarket();
+                EnumMap<Good, Integer> prices = market.getPrices();
+                player.sell(bCode);
+                player.upCredits(prices, bCode);
+                market = player.updateMarket(market, bCode);
+                gameData.setPlayer(player);
+                currSS.setMarket(market);
+                gameData.setCurrentSolarSystem(currSS);
+                updateView(market, player);
             }
         });
 
@@ -93,5 +107,19 @@ public class CargoScreen extends AppCompatActivity {
     public void openTradeScreen() {
         Intent intent = new Intent(this, Trade.class);
         startActivity(intent);
+    }
+
+    public void updateView(Market market, Player player) {
+        int count = 0;
+        List<String> list = new ArrayList<>(10);
+        ship = player.getShip();
+        for (Good good: Good.values()) {
+            String newString = count + " ";
+            newString += String.format("%1$11s", good.toString());
+            newString += String.format("%1$5s", "$" + market.getPrice(good));
+            newString += String.format("%1$5s", "" + ship.getCargoHold().get(good).toString());
+            list.add(newString);
+            count++;
+        }
     }
 }

@@ -126,6 +126,10 @@ public class Player {
         }
     }
 
+    public Market updateMarket(Market market, int position) {
+        return updateMarket(market, position, 1);
+    }
+
     public Market updateMarket(Market market, int position, int amount) {
         Good good = Good.values()[position];
         if (canSell(good, amount)) {
@@ -140,6 +144,10 @@ public class Player {
             EnumMap<Good, Integer> prices = market.getPrices();
             downCredits(prices, position, amount);
         }
+    }
+
+    public void upCredits(EnumMap<Good, Integer> prices, int position) {
+        upCredits(prices, position,1 );
     }
 
     public void upCredits(EnumMap<Good, Integer> prices, int position, int amount) {
