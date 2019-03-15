@@ -93,15 +93,17 @@ public class Market {
 
     public String toString(Good good) {
         String returnString = "";
-        returnString += String.format("%1$5s", good.toString());
-        returnString += String.format("%1$5s", getPrice(good));
+        returnString += String.format("%1$11s", good.toString());
+        returnString += String.format("%1$5s", "$" + getPrice(good));
         returnString += String.format("%1$5s", getInventory(good));
         return returnString;
     }
 
     public void makeList() {
+        int count = 0;
         for (Good good: Good.values()) {
-            recycleViewList.add(toString(good));
+            recycleViewList.add(count + " " + toString(good));
+            count++;
         }
     }
 

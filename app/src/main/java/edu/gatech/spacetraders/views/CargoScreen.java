@@ -45,16 +45,19 @@ public class CargoScreen extends AppCompatActivity {
         sellButton = (Button) findViewById(R.id.cargosell_button);
         backButton = (Button) findViewById(R.id.cargoback_button);
 
-        RecyclerView recyclerView = findViewById(R.id.mktgoods_list);
+        RecyclerView recyclerView = findViewById(R.id.cargogoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        int count = 0;
         for (Good good: goodsList) {
-            String newString = "";
-            newString += String.format("%1$5s", good.toString());
-            newString += String.format("%1$5s", market.getPrice(good));
-            newString += String.format("%1$5s", recycleViewList.add("" + ship.getCargoHold().get(good)));
+            String newString = count + " ";
+            newString += String.format("%1$11s", good.toString());
+            newString += String.format("%1$5s", "$" + market.getPrice(good));
+            newString += String.format("%1$5s", "" + ship.getCargoHold().get(good).toString());
             recycleViewList.add(newString);
+            count++;
         }
+
 
         adapter = new MarketplaceRecyclerViewAdapter(this, recycleViewList);
         recyclerView.setAdapter(adapter);

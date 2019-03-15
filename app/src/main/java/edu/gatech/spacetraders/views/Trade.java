@@ -11,6 +11,7 @@ import android.widget.Button;
 import java.io.Serializable;
 
 import edu.gatech.spacetraders.R;
+import edu.gatech.spacetraders.entity.Good;
 import edu.gatech.spacetraders.entity.Market;
 import edu.gatech.spacetraders.entity.MarketplaceRecyclerViewAdapter;
 import edu.gatech.spacetraders.entity.Player;
@@ -50,9 +51,7 @@ public class Trade extends AppCompatActivity {
 
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
-                currSS.setMarket(currSS.getMarket().downAmount();
-                adapter = new MarketplaceRecyclerViewAdapter(this, currSS.getMarket().getList());
-                recyclerView.setAdapter(adapter);
+                //buyGood();
             }
         });
 
@@ -77,5 +76,10 @@ public class Trade extends AppCompatActivity {
     public void openCargoScreen() {
         Intent intent = new Intent(this, CargoScreen.class);
         startActivity(intent);
+    }
+
+    public void buyGood(Good good) {
+        //currSS.getMarket().buy(good);
+        //adapter = new MarketplaceRecyclerViewAdapter(this, currSS.getMarket().getList());
     }
 }
