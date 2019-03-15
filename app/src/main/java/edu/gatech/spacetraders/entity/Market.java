@@ -12,6 +12,9 @@ public class Market {
     private Player player;
     private Ship ship;
     private List<String> recycleViewList = new ArrayList<>(10);
+    private List<Good> goods = new ArrayList<>(10);
+    private static int count = 10;
+
 
     /**
      * constructor. makes a new market with params:
@@ -27,6 +30,7 @@ public class Market {
         for (Good good : Good.values()) {
             prices.put(good, calculatePrice(techLevel, good));
             inventory.put(good, calculateAmount(techLevel, good));
+            goods.add(good);
         }
         makeList();
     }
@@ -50,8 +54,14 @@ public class Market {
      * @return the amount
      */
     private int calculateAmount(int techLevel, Good good) {
-        return 10 * ( techLevel - good.mtlp() + 1 );
+        int amt = 10 * ( techLevel - good.mtlp() + 1 );
+        if (amt < 0) {
+            return 0;
+        } else {
+            return amt;
+        }
     }
+
 
     public int getPrice(Good good) {
         return prices.get(good);
@@ -68,71 +78,89 @@ public class Market {
      */
     public boolean canBuy(Good good, int amount) {
         if (this.techLevel < good.mtlu()) {
-            System.out.println("not enough techlevel to produce good");
+            System.out.println("This planet cannot produce this good.");
             return false;
         } else if (player.getCredits() < prices.get(good) * amount) {
-            System.out.println("not enough credits");
+            System.out.println("You don't have enough credits to buy this item.");
             return false;
-        } else if (ship.getCargoSpace() < amount) {
-            System.out.println("not enough cargo space");
+        } else if (/*ship.getCargoSpace() == 0*/ count <= 0) {
+            System.out.println("You don't have enough cargo space.");
             return false;
         } else if (inventory.get(good) < amount) {
-            System.out.println("not enough in shop inventory");
+            System.out.println("This shop is all out of this good");
             return false;
-        } else {
-            System.out.println("success!");
-            return true;
         }
+        return true;
     }
 
-    public boolean buy(Good good) {
-        return buy(good, 1);
-    }
-
-    /**
-     * buys the given amount of the given good if that's possible
-     * (checked by canBuy method)
-     *
-     * @param good the good to buy
-     * @param amount the amount we want
-     * @return if we bought it or not
-     */
-    public boolean buy(Good good, int amount) {
-        if (canBuy(good, amount)) {
-            inventory.put(good, getInventory(good) - amount);
-            return true;
-        }
-        return false;
+    public void buy(int position) {
+        buy(position, 1);
     }
 
     public int getInventory(Good good) {
         return inventory.get(good);
     }
 
-    /**
-     * outputs a string in the format
-     * GOOD   Price   Stock
-     *
-     * @param good the good to report
-     * @return the string
-     */
+    public void buy(int position, int amount) {
+        Good good = Good.values()[position];
+        if (canBuy(good, amount)) {
+            inventory.put(good, getInventory(good) - amount);
+            ship.setCurCargo(ship.getCurCargo() + 1);
+        }
+        count--;
+    }
+
+    public Player updatePlayer(int position) {
+        return updatePlayer(position, 1);
+    }
+
+    public Player updatePlayer(int position, int amount) {
+        Good good = Good.values()[position];
+        if (canBuy(good, amount)) {
+            player.upCargo(position, amount);
+            player.downCredits(prices, position, amount);
+        }
+        return player;
+    }
+
+    public void upInventory(int position, int amount) {
+        Good good = Good.values()[position];
+        inventory.put(good, getInventory(good) + amount);
+    }
+
     public String toString(Good good) {
         String returnString = "";
-        returnString += good.toString();
-        returnString += "   ";
-        returnString += getPrice(good);
-        returnString += "   ";
-        returnString += getInventory(good);
+        returnString += String.format("%1$11s", good.toString());
+        returnString += String.format("%1$5s", "$" + getPrice(good));
+        returnString += String.format("%1$5s", getInventory(good));
         return returnString;
     }
 
     public void makeList() {
+        int count = 0;
         for (Good good: Good.values()) {
-            recycleViewList.add(toString(good));
+            recycleViewList.add(count + " " + toString(good));
+            count++;
         }
+    }
+
+    public void updateList() {
+        List<String> list =  new ArrayList<>(10);
+        int count = 0;
+        for (Good good: Good.values()) {
+            list.add(count + " " + toString(good));
+            count++;
+        }
+        recycleViewList = list;
+    }
+
+    public List<Good> getGoods() {
+        return goods;
     }
 
     public List<String> getList() {
         return recycleViewList;
     }
+
+    public EnumMap<Good, Integer> getPrices() { return prices; }
 }

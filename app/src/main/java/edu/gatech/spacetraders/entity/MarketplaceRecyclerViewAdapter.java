@@ -33,8 +33,8 @@ public class MarketplaceRecyclerViewAdapter extends RecyclerView.Adapter<Marketp
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        String good = mData.get(position);
+        holder.myTextView.setText(good);
     }
 
     // total number of rows
@@ -61,13 +61,17 @@ public class MarketplaceRecyclerViewAdapter extends RecyclerView.Adapter<Marketp
     }
 
     // convenience method for getting data at click position
-    String getItem(int id) {
+    public String getItem(int id) {
         return mData.get(id);
     }
 
     // allows clicks events to be caught
     void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
+    }
+
+    public void setList(List<String> data) {
+        mData = data;
     }
 
     // parent activity will implement this method to respond to click events

@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                     gameData.setPlayer(player);
                     System.out.println(player);
 
-                    Universe universe = new Universe();
+                    Universe universe = new Universe(player, player.getShip());
                     gameData.setUniverse(universe);
                     System.out.println(universe.toString());
 
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
                     gameDataInstanceGetter.newGameData(gameData);
 
-                    openChoiceScreen(gameData);
+                    openChoiceScreen();
                 }
             }
         });
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openChoiceScreen(GameData gameData) {
+    public void openChoiceScreen() {
         Intent intent = new Intent(this, ChoiceScreen.class);
         startActivity(intent);
     }
