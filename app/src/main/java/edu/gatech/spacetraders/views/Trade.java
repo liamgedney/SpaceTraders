@@ -29,6 +29,7 @@ public class Trade extends AppCompatActivity {
     MarketplaceRecyclerViewAdapter adapter;
 
     GameData gameData = GameDataInstanceGetter.getGameData();
+
     Player player = gameData.getPlayer();
     SolarSystem currSS = gameData.getCurrentSolarSystem();
     int techLevel = currSS.getTechLvl();

@@ -32,7 +32,9 @@ public class CargoScreen extends AppCompatActivity {
     MarketplaceRecyclerViewAdapter adapter;
 
     GameData gameData = GameDataInstanceGetter.getGameData();
+
     Player player = gameData.getPlayer();
+    SolarSystem currSS = gameData.getCurrentSolarSystem();
     int techLevel = gameData.getCurrentSolarSystem().getTechLvl();
     Ship ship = player.getShip();
 
@@ -44,11 +46,12 @@ public class CargoScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cargo);
+        System.out.println(gameData.getPlayer().getShip().getCargoHold().get(Good.WATER));
 
         buyButton = (Button) findViewById(R.id.cargobuy_button);
         sellButton = (Button) findViewById(R.id.cargosell_button);
         backButton = (Button) findViewById(R.id.cargoback_button);
-        buyCode = (EditText) findViewById(R.id.mktplace_position);
+        buyCode = (EditText) findViewById(R.id.cargo_position);
 
         final RecyclerView recyclerView = findViewById(R.id.cargogoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -70,8 +73,6 @@ public class CargoScreen extends AppCompatActivity {
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
                 openTradeScreen();
-                int bCode;
-                bCode = Integer.valueOf(buyCode.getText().toString());
             }
         });
 
@@ -90,6 +91,13 @@ public class CargoScreen extends AppCompatActivity {
                 gameData.setCurrentSolarSystem(currSS);
                 adapter.setList(updateView(market, player));
                 recyclerView.setAdapter(adapter);
+                System.out.println("CURCARGO: " + gameData.getPlayer().getShip().getCurCargo());
+                System.out.println("MAXCARGO: " + gameData.getPlayer().getShip().getMaxCargo());
+                System.out.println("CURRENT CREDITS: " + gameData.getPlayer().getCredits());
+                for (String s: market.getList()) {
+                    System.out.println(s);
+                }
+
             }
         });
 

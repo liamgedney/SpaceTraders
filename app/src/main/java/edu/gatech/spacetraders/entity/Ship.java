@@ -20,13 +20,15 @@ public class Ship {
     }
 
     public Ship(ShipType type) {
-        for (Good good : Good.values()) {
-            cargoHold.put(good, 0);
-        }
+        this(GNAT, null);
     }
 
     public Ship(ShipType type, EnumMap<Good, Integer> cargoHold) {
-        this.cargoHold = cargoHold;
+        if (cargoHold == null) {
+            populateCargoSpace();
+        } else {
+            this.cargoHold = cargoHold;
+        }
         this.maxFuel = type.fuel();
         this.maxCargo = type.cargo();
         this.curFuel = maxFuel;
@@ -42,6 +44,12 @@ public class Ship {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public void populateCargoSpace() {
+        for (Good good : Good.values()) {
+            cargoHold.put(good, 0);
         }
     }
 
