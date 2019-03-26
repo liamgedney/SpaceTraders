@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.CargoScreen"></activity>
+        <activity
+            android:name=".views.TravelScreen"
+            android:label="@string/title_activity_travel_screen"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".views.CargoScreen" />
         <activity android:name=".views.Trade" />
         <activity android:name=".views.ChoiceScreen" />
         <activity android:name=".views.Loading" />

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SpaceTraders</string>
+    <string name="title_activity_travel_screen">TravelScreen</string>
 </resources>
