@@ -110,7 +110,12 @@ public class Player {
         this.ship = ship;
     }
 
-    public boolean canSell(Good good, int amount) {
+    public boolean canSell(int position) {
+        return canSell(position, 1);
+    }
+
+    public boolean canSell(int position, int amount) {
+        Good good = Good.values()[position];
         if (cargo.get(good) > amount) {
             System.out.println("Cannot sell more items than currently in inventory.");
             return false;
@@ -124,10 +129,8 @@ public class Player {
 
     public void sell(int position, int amount) {
         Good good = Good.values()[position];
-        if (canSell(good, amount)) {
-            cargo.put(good, getCargo(good) - amount);
-            ship.setCargoHold(cargo);
-        }
+        cargo.put(good, getCargo(good) - amount);
+        ship.setCargoHold(cargo);
     }
 
     public Market updateMarket(Market market, int position) {
@@ -136,18 +139,14 @@ public class Player {
 
     public Market updateMarket(Market market, int position, int amount) {
         Good good = Good.values()[position];
-        if (canSell(good, amount)) {
-            market.upInventory(position, amount);
-        }
+        market.upInventory(position, amount);
         return market;
     }
 
     public void updatePlayer(Market market, int position, int amount) {
         Good good = Good.values()[position];
-        if (canSell(good, amount)) {
-            EnumMap<Good, Integer> prices = market.getPrices();
-            downCredits(prices, position, amount);
-        }
+        EnumMap<Good, Integer> prices = market.getPrices();
+        downCredits(prices, position, amount);
     }
 
     public void upCredits(EnumMap<Good, Integer> prices, int position) {
