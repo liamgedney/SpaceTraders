@@ -70,4 +70,8 @@ public class Ship {
     }
 
     public void setCargoHold(EnumMap<Good, Integer> cargo) {cargoHold = cargo;}
+
+    public int getCurFuel() {
+        return curFuel;
+    }
 }

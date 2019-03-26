@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -30,6 +31,8 @@ public class TravelScreen extends AppCompatActivity {
     Button backButton;
     EditText planetCode;
     MarketplaceRecyclerViewAdapter adapter;
+    TextView currentPlanet;
+    TextView currentFuel;
 
     GameData gameData = GameDataInstanceGetter.getGameData();
 
@@ -48,6 +51,11 @@ public class TravelScreen extends AppCompatActivity {
         travelButton = (Button) findViewById(R.id.travel_button);
         backButton = (Button) findViewById(R.id.travelback_button);
         planetCode = (EditText) findViewById(R.id.travel_position);
+        currentPlanet = (TextView) findViewById(R.id.currentplanetstats);
+        currentFuel = (TextView) findViewById(R.id.current_fuellevel);
+        currentPlanet.setText(currSS.toString());
+        String fuel = "Current Fuel: " + ship.getCurFuel();
+        currentFuel.setText(fuel);
 
         final RecyclerView recyclerView = findViewById(R.id.planets_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
