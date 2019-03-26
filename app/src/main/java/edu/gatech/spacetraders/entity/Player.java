@@ -123,6 +123,7 @@ public class Player {
         Good good = Good.values()[position];
         if (canSell(good, amount)) {
             cargo.put(good, getCargo(good) - amount);
+            ship.setCargoHold(cargo);
         }
     }
 

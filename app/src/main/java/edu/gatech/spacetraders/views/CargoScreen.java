@@ -85,9 +85,8 @@ public class CargoScreen extends AppCompatActivity {
                 EnumMap<Good, Integer> prices = market.getPrices();
                 player.sell(bCode);
                 player.upCredits(prices, bCode);
-                market = player.updateMarket(market, bCode);
+                currSS.setMarket(player.updateMarket(market, bCode));
                 gameData.setPlayer(player);
-                currSS.setMarket(market);
                 gameData.setCurrentSolarSystem(currSS);
                 adapter.setList(updateView(market, player));
                 recyclerView.setAdapter(adapter);
