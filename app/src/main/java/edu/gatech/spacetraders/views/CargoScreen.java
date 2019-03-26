@@ -35,11 +35,8 @@ public class CargoScreen extends AppCompatActivity {
 
     Player player = gameData.getPlayer();
     SolarSystem currSS = gameData.getCurrentSolarSystem();
-    int techLevel = gameData.getCurrentSolarSystem().getTechLvl();
     Ship ship = player.getShip();
 
-    Market market = new Market(techLevel, player, ship);
-    List<Good> goodsList = market.getGoods();
     private List<String> recycleViewList = new ArrayList<>(10);
 
     @Override
@@ -52,19 +49,9 @@ public class CargoScreen extends AppCompatActivity {
         sellButton = (Button) findViewById(R.id.cargosell_button);
         backButton = (Button) findViewById(R.id.cargoback_button);
         buyCode = (EditText) findViewById(R.id.cargo_position);
-
         final RecyclerView recyclerView = findViewById(R.id.cargogoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        int count = 0;
-        for (Good good: goodsList) {
-            String newString = count + " ";
-            newString += String.format("%1$11s", good.toString());
-            newString += String.format("%1$5s", "$" + market.getPrice(good));
-            newString += String.format("%1$5s", "" + ship.getCargoHold().get(good).toString());
-            recycleViewList.add(newString);
-            count++;
-        }
 
 
         adapter = new MarketplaceRecyclerViewAdapter(this, recycleViewList);
@@ -79,16 +66,14 @@ public class CargoScreen extends AppCompatActivity {
         sellButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
                 int bCode = Integer.valueOf(buyCode.getText().toString());
-                Player player = gameData.getPlayer();
-                SolarSystem currSS = gameData.getCurrentSolarSystem();
                 Market market = currSS.getMarket();
                 EnumMap<Good, Integer> prices = market.getPrices();
-                player.sell(bCode);
                 player.upCredits(prices, bCode);
                 currSS.setMarket(player.updateMarket(market, bCode));
                 gameData.setPlayer(player);
                 gameData.setCurrentSolarSystem(currSS);
-                adapter.setList(updateView(market, player));
+                player.updateList(market);
+                adapter.setList(player.makeList(market));
                 recyclerView.setAdapter(adapter);
                 System.out.println("CURCARGO: " + gameData.getPlayer().getShip().getCurCargo());
                 System.out.println("MAXCARGO: " + gameData.getPlayer().getShip().getMaxCargo());
@@ -117,18 +102,4 @@ public class CargoScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public List<String> updateView(Market market, Player player) {
-        int count = 0;
-        List<String> list = new ArrayList<>(10);
-        ship = player.getShip();
-        for (Good good: Good.values()) {
-            String newString = count + " ";
-            newString += String.format("%1$11s", good.toString());
-            newString += String.format("%1$5s", "$" + market.getPrice(good));
-            newString += String.format("%1$5s", "" + ship.getCargoHold().get(good).toString());
-            list.add(newString);
-            count++;
-        }
-        return list;
-    }
 }

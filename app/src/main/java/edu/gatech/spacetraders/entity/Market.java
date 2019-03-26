@@ -83,7 +83,7 @@ public class Market {
         } else if (player.getCredits() < prices.get(good) * amount) {
             System.out.println("You don't have enough credits to buy this item.");
             return false;
-        } else if (ship.getCargoSpace() == 0) {
+        } else if (ship.getCargoSpace() < 0) {
             System.out.println("You don't have enough cargo space.");
             return false;
         } else if (inventory.get(good) < amount) {

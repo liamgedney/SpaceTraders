@@ -32,12 +32,8 @@ public class Trade extends AppCompatActivity {
 
     Player player = gameData.getPlayer();
     SolarSystem currSS = gameData.getCurrentSolarSystem();
-    int techLevel = currSS.getTechLvl();
     Ship ship = player.getShip();
 
-
-
-    Market market = new Market(techLevel, player, ship);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

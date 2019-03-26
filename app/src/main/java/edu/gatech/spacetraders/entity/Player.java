@@ -1,7 +1,9 @@
 package edu.gatech.spacetraders.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.List;
 
 public class Player {
 
@@ -13,6 +15,7 @@ public class Player {
     private Difficulty difficulty;
     private int credits;
     private Ship ship;
+    private List<String> recycleViewList = new ArrayList<>(10);
     private EnumMap<Good, Integer> cargo = new EnumMap<>(Good.class);
 
     public Player(String playerName, int pilotPoints, int fighterPoints,
@@ -156,6 +159,37 @@ public class Player {
         int price = prices.get(good);
         int credits = getCredits();
         setCredits(credits + price * amount);
+    }
+
+    public List<String> makeList(Market market) {
+        int count = 0;
+        for (Good good: Good.values()) {
+            String newString = count + " ";
+            newString += String.format("%1$11s", good.toString());
+            newString += String.format("%1$5s", "$" + market.getPrice(good));
+            newString += String.format("%1$5s", "" + ship.getCargoHold().get(good).toString());
+            recycleViewList.add(newString);
+            count++;
+        }
+        return recycleViewList;
+    }
+
+    public void updateList(Market market) {
+        List<String> list =  new ArrayList<>(10);
+        int count = 0;
+        for (Good good: Good.values()) {
+            String newString = count + " ";
+            newString += String.format("%1$11s", good.toString());
+            newString += String.format("%1$5s", "$" + market.getPrice(good));
+            newString += String.format("%1$5s", "" + ship.getCargoHold().get(good).toString());
+            list.add(newString);
+            count++;
+        }
+        recycleViewList = list;
+    }
+
+    public List<String> getList() {
+        return recycleViewList;
     }
 
 
