@@ -42,6 +42,7 @@ public class SolarSystem {
                 + coordinates;
     }
 
-
-
+    public Point getCoordinates() {
+        return coordinates;
+    }
 }
