@@ -68,20 +68,22 @@ public class CargoScreen extends AppCompatActivity {
                 int bCode = Integer.valueOf(buyCode.getText().toString());
                 Market market = currSS.getMarket();
                 EnumMap<Good, Integer> prices = market.getPrices();
-                player.upCredits(prices, bCode);
-                currSS.setMarket(player.updateMarket(market, bCode));
-                gameData.setPlayer(player);
-                gameData.setCurrentSolarSystem(currSS);
-                player.updateList(market);
-                adapter.setList(player.makeList(market));
-                recyclerView.setAdapter(adapter);
+                if (player.canSell(bCode)) {
+                    player.sell(bCode);
+                    player.upCredits(prices, bCode);
+                    currSS.setMarket(player.updateMarket(market, bCode));
+                    gameData.setPlayer(player);
+                    gameData.setCurrentSolarSystem(currSS);
+                    player.updateList(market);
+                    adapter.setList(player.makeList(market));
+                    recyclerView.setAdapter(adapter);
+                }
                 System.out.println("CURCARGO: " + gameData.getPlayer().getShip().getCurCargo());
                 System.out.println("MAXCARGO: " + gameData.getPlayer().getShip().getMaxCargo());
                 System.out.println("CURRENT CREDITS: " + gameData.getPlayer().getCredits());
                 for (String s: market.getList()) {
                     System.out.println(s);
                 }
-
             }
         });
 

@@ -1,0 +1,189 @@
+Index: app/src/main/java/edu/gatech/spacetraders/views/CargoScreen.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/edu/gatech/spacetraders/views/CargoScreen.java	(revision 1eaff612949b15db376c1ba9da63be31cdd69606)
++++ app/src/main/java/edu/gatech/spacetraders/views/CargoScreen.java	(date 1553632357000)
+@@ -68,20 +68,22 @@
+                 int bCode = Integer.valueOf(buyCode.getText().toString());
+                 Market market = currSS.getMarket();
+                 EnumMap<Good, Integer> prices = market.getPrices();
+-                player.upCredits(prices, bCode);
+-                currSS.setMarket(player.updateMarket(market, bCode));
+-                gameData.setPlayer(player);
+-                gameData.setCurrentSolarSystem(currSS);
+-                player.updateList(market);
+-                adapter.setList(player.makeList(market));
+-                recyclerView.setAdapter(adapter);
++                if (player.canSell(bCode)) {
++                    player.sell(bCode);
++                    player.upCredits(prices, bCode);
++                    currSS.setMarket(player.updateMarket(market, bCode));
++                    gameData.setPlayer(player);
++                    gameData.setCurrentSolarSystem(currSS);
++                    player.updateList(market);
++                    adapter.setList(player.makeList(market));
++                    recyclerView.setAdapter(adapter);
++                }
+                 System.out.println("CURCARGO: " + gameData.getPlayer().getShip().getCurCargo());
+                 System.out.println("MAXCARGO: " + gameData.getPlayer().getShip().getMaxCargo());
+                 System.out.println("CURRENT CREDITS: " + gameData.getPlayer().getCredits());
+                 for (String s: market.getList()) {
+                     System.out.println(s);
+                 }
+-
+             }
+         });
+ 
+Index: app/src/main/java/edu/gatech/spacetraders/views/Trade.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/edu/gatech/spacetraders/views/Trade.java	(revision 1eaff612949b15db376c1ba9da63be31cdd69606)
++++ app/src/main/java/edu/gatech/spacetraders/views/Trade.java	(date 1553632357000)
+@@ -54,13 +54,15 @@
+                 int bCode;
+                 bCode = Integer.valueOf(buyCode.getText().toString());
+                 Market market = currSS.getMarket();
+-                market.buy(bCode);
+-                market.updateList();
+-                currSS.setMarket(market);
+-                gameData.setCurrentSolarSystem(currSS);
+-                gameData.setPlayer(market.updatePlayer(bCode));
+-                adapter.setList(market.getList());
+-                recyclerView.setAdapter(adapter);
++                if (market.canBuy(bCode)) {
++                    market.buy(bCode);
++                    market.updateList();
++                    currSS.setMarket(market);
++                    gameData.setCurrentSolarSystem(currSS);
++                    gameData.setPlayer(market.updatePlayer(bCode));
++                    adapter.setList(market.getList());
++                    recyclerView.setAdapter(adapter);
++                }
+                 System.out.println("CURCARGO: " + gameData.getPlayer().getShip().getCurCargo());
+                 System.out.println("MAXCARGO: " + gameData.getPlayer().getShip().getMaxCargo());
+                 System.out.println("CURRENT CREDITS: " + gameData.getPlayer().getCredits());
+Index: app/src/main/java/edu/gatech/spacetraders/entity/Player.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/edu/gatech/spacetraders/entity/Player.java	(revision 1eaff612949b15db376c1ba9da63be31cdd69606)
++++ app/src/main/java/edu/gatech/spacetraders/entity/Player.java	(date 1553632357000)
+@@ -110,7 +110,12 @@
+         this.ship = ship;
+     }
+ 
+-    public boolean canSell(Good good, int amount) {
++    public boolean canSell(int position) {
++        return canSell(position, 1);
++    }
++
++    public boolean canSell(int position, int amount) {
++        Good good = Good.values()[position];
+         if (cargo.get(good) > amount) {
+             System.out.println("Cannot sell more items than currently in inventory.");
+             return false;
+@@ -124,10 +129,8 @@
+ 
+     public void sell(int position, int amount) {
+         Good good = Good.values()[position];
+-        if (canSell(good, amount)) {
+-            cargo.put(good, getCargo(good) - amount);
+-            ship.setCargoHold(cargo);
+-        }
++        cargo.put(good, getCargo(good) - amount);
++        ship.setCargoHold(cargo);
+     }
+ 
+     public Market updateMarket(Market market, int position) {
+@@ -136,18 +139,14 @@
+ 
+     public Market updateMarket(Market market, int position, int amount) {
+         Good good = Good.values()[position];
+-        if (canSell(good, amount)) {
+-            market.upInventory(position, amount);
+-        }
++        market.upInventory(position, amount);
+         return market;
+     }
+ 
+     public void updatePlayer(Market market, int position, int amount) {
+         Good good = Good.values()[position];
+-        if (canSell(good, amount)) {
+-            EnumMap<Good, Integer> prices = market.getPrices();
+-            downCredits(prices, position, amount);
+-        }
++        EnumMap<Good, Integer> prices = market.getPrices();
++        downCredits(prices, position, amount);
+     }
+ 
+     public void upCredits(EnumMap<Good, Integer> prices, int position) {
+Index: app/src/main/java/edu/gatech/spacetraders/entity/Market.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/edu/gatech/spacetraders/entity/Market.java	(revision 1eaff612949b15db376c1ba9da63be31cdd69606)
++++ app/src/main/java/edu/gatech/spacetraders/entity/Market.java	(date 1553632897000)
+@@ -67,23 +67,28 @@
+         return prices.get(good);
+     }
+ 
++    public boolean canBuy(int position) {
++        return canBuy(position, 1);
++    }
++
+     /**
+      * helper method determines if the player has enough money and space to
+      * buy, and the system market has enough of the good to sell, the given
+      * amount of the given good.
+      *
+-     * @param good the good to check
++     * @param position the good to check
+      * @param amount the amount of the good we want to buy
+      * @return if we can buy it or not
+      */
+-    public boolean canBuy(Good good, int amount) {
++    public boolean canBuy(int position, int amount) {
++        Good good = Good.values()[position];
+         if (this.techLevel < good.mtlu()) {
+             System.out.println("This planet cannot produce this good.");
+             return false;
+         } else if (player.getCredits() < prices.get(good) * amount) {
+             System.out.println("You don't have enough credits to buy this item.");
+             return false;
+-        } else if (ship.getCargoSpace() == -1) {
++        } else if (ship.getCargoSpace() < 0) {
+             System.out.println("You don't have enough cargo space.");
+             return false;
+         } else if (inventory.get(good) < amount) {
+@@ -103,10 +108,8 @@
+ 
+     public void buy(int position, int amount) {
+         Good good = Good.values()[position];
+-        if (canBuy(good, amount)) {
+-            inventory.put(good, getInventory(good) - amount);
+-            ship.setCurCargo(ship.getCurCargo() + 1);
+-        }
++        inventory.put(good, getInventory(good) - amount);
++        ship.setCurCargo(ship.getCurCargo() + 1);
+         count--;
+     }
+ 
+@@ -116,10 +119,8 @@
+ 
+     public Player updatePlayer(int position, int amount) {
+         Good good = Good.values()[position];
+-        if (canBuy(good, amount)) {
+-            player.upCargo(position, amount);
+-            player.downCredits(prices, position, amount);
+-        }
++        player.upCargo(position, amount);
++        player.downCredits(prices, position, amount);
+         return player;
+     }
+ 

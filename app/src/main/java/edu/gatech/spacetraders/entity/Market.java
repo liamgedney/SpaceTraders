@@ -67,23 +67,28 @@ public class Market {
         return prices.get(good);
     }
 
+    public boolean canBuy(int position) {
+        return canBuy(position, 1);
+    }
+
     /**
      * helper method determines if the player has enough money and space to
      * buy, and the system market has enough of the good to sell, the given
      * amount of the given good.
      *
-     * @param good the good to check
+     * @param position the good to check
      * @param amount the amount of the good we want to buy
      * @return if we can buy it or not
      */
-    public boolean canBuy(Good good, int amount) {
+    public boolean canBuy(int position, int amount) {
+        Good good = Good.values()[position];
         if (this.techLevel < good.mtlu()) {
             System.out.println("This planet cannot produce this good.");
             return false;
         } else if (player.getCredits() < prices.get(good) * amount) {
             System.out.println("You don't have enough credits to buy this item.");
             return false;
-        } else if (ship.getCargoSpace() == -1) {
+        } else if (ship.getCargoSpace() < 0) {
             System.out.println("You don't have enough cargo space.");
             return false;
         } else if (inventory.get(good) < amount) {
@@ -103,10 +108,8 @@ public class Market {
 
     public void buy(int position, int amount) {
         Good good = Good.values()[position];
-        if (canBuy(good, amount)) {
-            inventory.put(good, getInventory(good) - amount);
-            ship.setCurCargo(ship.getCurCargo() + 1);
-        }
+        inventory.put(good, getInventory(good) - amount);
+        ship.setCurCargo(ship.getCurCargo() + 1);
         count--;
     }
 
@@ -116,10 +119,8 @@ public class Market {
 
     public Player updatePlayer(int position, int amount) {
         Good good = Good.values()[position];
-        if (canBuy(good, amount)) {
-            player.upCargo(position, amount);
-            player.downCredits(prices, position, amount);
-        }
+        player.upCargo(position, amount);
+        player.downCredits(prices, position, amount);
         return player;
     }
 

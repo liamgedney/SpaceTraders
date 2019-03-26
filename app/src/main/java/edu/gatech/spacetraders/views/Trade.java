@@ -54,13 +54,15 @@ public class Trade extends AppCompatActivity {
                 int bCode;
                 bCode = Integer.valueOf(buyCode.getText().toString());
                 Market market = currSS.getMarket();
-                market.buy(bCode);
-                market.updateList();
-                currSS.setMarket(market);
-                gameData.setCurrentSolarSystem(currSS);
-                gameData.setPlayer(market.updatePlayer(bCode));
-                adapter.setList(market.getList());
-                recyclerView.setAdapter(adapter);
+                if (market.canBuy(bCode)) {
+                    market.buy(bCode);
+                    market.updateList();
+                    currSS.setMarket(market);
+                    gameData.setCurrentSolarSystem(currSS);
+                    gameData.setPlayer(market.updatePlayer(bCode));
+                    adapter.setList(market.getList());
+                    recyclerView.setAdapter(adapter);
+                }
                 System.out.println("CURCARGO: " + gameData.getPlayer().getShip().getCurCargo());
                 System.out.println("MAXCARGO: " + gameData.getPlayer().getShip().getMaxCargo());
                 System.out.println("CURRENT CREDITS: " + gameData.getPlayer().getCredits());
