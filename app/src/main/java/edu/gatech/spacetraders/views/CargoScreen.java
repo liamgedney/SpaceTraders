@@ -14,6 +14,7 @@ import java.util.EnumMap;
 import java.util.List;
 
 import edu.gatech.spacetraders.R;
+import edu.gatech.spacetraders.entity.CargoRecyclerViewAdapter;
 import edu.gatech.spacetraders.entity.Good;
 import edu.gatech.spacetraders.entity.Market;
 import edu.gatech.spacetraders.entity.MarketplaceRecyclerViewAdapter;
@@ -29,7 +30,7 @@ public class CargoScreen extends AppCompatActivity {
     Button sellButton;
     Button backButton;
     EditText buyCode;
-    MarketplaceRecyclerViewAdapter adapter;
+    CargoRecyclerViewAdapter adapter;
 
     GameData gameData = GameDataInstanceGetter.getGameData();
 
@@ -54,7 +55,7 @@ public class CargoScreen extends AppCompatActivity {
 
 
 
-        adapter = new MarketplaceRecyclerViewAdapter(this, recycleViewList);
+        adapter = new CargoRecyclerViewAdapter(this, recycleViewList);
         recyclerView.setAdapter(adapter);
 
         buyButton.setOnClickListener(new View.OnClickListener() {

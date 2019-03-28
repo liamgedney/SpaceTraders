@@ -18,7 +18,7 @@ public class CargoRecyclerViewAdapter extends RecyclerView.Adapter<CargoRecycler
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    CargoRecyclerViewAdapter (Context context, List<String> data) {
+    public CargoRecyclerViewAdapter(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -73,5 +73,9 @@ public class CargoRecyclerViewAdapter extends RecyclerView.Adapter<CargoRecycler
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
+    }
+
+    public void setList(List<String> data) {
+        mData = data;
     }
 }
