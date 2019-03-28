@@ -16,7 +16,7 @@ public class Player {
     private int credits;
     private Ship ship;
     private List<String> recycleViewList = new ArrayList<>(10);
-    private EnumMap<Good, Integer> cargo = new EnumMap<>(Good.class);
+    private EnumMap<Good, Integer> cargo;
 
     public Player(String playerName, int pilotPoints, int fighterPoints,
                   int traderPoints, int engineerPoints, Difficulty difficulty) {
@@ -143,12 +143,6 @@ public class Player {
         return market;
     }
 
-    public void updatePlayer(Market market, int position, int amount) {
-        Good good = Good.values()[position];
-        EnumMap<Good, Integer> prices = market.getPrices();
-        downCredits(prices, position, amount);
-    }
-
     public void upCredits(EnumMap<Good, Integer> prices, int position) {
         upCredits(prices, position,1 );
     }
@@ -180,7 +174,7 @@ public class Player {
             String newString = count + " ";
             newString += String.format("%1$11s", good.toString());
             newString += String.format("%1$5s", "$" + market.getPrice(good));
-            newString += String.format("%1$5s", "" + ship.getCargoHold().get(good).toString());
+            newString += String.format("%1$5s", "" + cargo.get(good));
             list.add(newString);
             count++;
         }
