@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -81,7 +83,18 @@ public class TravelScreen extends AppCompatActivity {
         //needs to update current planet and replace recyclerview index with the planet left
         travelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
-                openTravelScreen();
+                int tcode = Integer.valueOf(planetCode.getText().toString());
+                gameData = travel.travel(tcode);
+                travel = new Travel(gameData);
+                recycleViewList = travel.getInRangeList();
+                adapter.setList(recycleViewList);
+                recyclerView.setAdapter(adapter);
+                System.out.println(gameData.getCurrentSolarSystem().toString());
+                System.out.println(gameData.getPlayer().getShip().getCurFuel());
+                //TextView currentFuel = (TextView) findViewById(R.id.current_fuellevel);
+                //TextView currentPlanet = (TextView) findViewById(R.id.currentplanetstats);
+                //currentPlanet.setText(gameData.getCurrentSolarSystem().toString());
+                //currentFuel.setText(gameData.getPlayer().getShip().getCurFuel());
             }
         });
 
