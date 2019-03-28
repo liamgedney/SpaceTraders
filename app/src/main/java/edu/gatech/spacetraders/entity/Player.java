@@ -116,7 +116,7 @@ public class Player {
 
     public boolean canSell(int position, int amount) {
         Good good = Good.values()[position];
-        if (cargo.get(good) > amount) {
+        if (cargo.get(good) < amount) {
             System.out.println("Cannot sell more items than currently in inventory.");
             return false;
         }
@@ -131,6 +131,7 @@ public class Player {
         Good good = Good.values()[position];
         cargo.put(good, getCargo(good) - amount);
         ship.setCargoHold(cargo);
+        ship.setCurCargo(ship.getCurCargo() - amount);
     }
 
     public Market updateMarket(Market market, int position) {
