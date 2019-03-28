@@ -30,7 +30,7 @@ public class TravelScreen extends AppCompatActivity {
     Button travelButton;
     Button backButton;
     EditText planetCode;
-    MarketplaceRecyclerViewAdapter adapter;
+    TravelRecyclerViewAdapter adapter;
     TextView currentPlanet;
     TextView currentFuel;
 
@@ -71,7 +71,7 @@ public class TravelScreen extends AppCompatActivity {
 ////        }
 
 
-        adapter = new MarketplaceRecyclerViewAdapter(this, recycleViewList);
+        adapter = new TravelRecyclerViewAdapter(this, recycleViewList);
         recyclerView.setAdapter(adapter);
         //needs to update current planet and replace recyclerview index with the planet left
         travelButton.setOnClickListener(new View.OnClickListener() {
