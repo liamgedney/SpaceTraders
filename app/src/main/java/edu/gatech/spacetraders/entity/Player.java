@@ -116,7 +116,7 @@ public class Player {
 
     public boolean canSell(int position, int amount) {
         Good good = Good.values()[position];
-        if (cargo.get(good) > amount) {
+        if (cargo.get(good) < amount) {
             System.out.println("Cannot sell more items than currently in inventory.");
             return false;
         }
