@@ -38,7 +38,7 @@ public class CargoScreen extends AppCompatActivity {
     SolarSystem currSS = gameData.getCurrentSolarSystem();
     Ship ship = player.getShip();
 
-    private List<String> recycleViewList = new ArrayList<>(10);
+    private List<String> recycleViewList = player.makeList(currSS.getMarket());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class CargoScreen extends AppCompatActivity {
 
 
 
-        adapter = new CargoRecyclerViewAdapter(this, player.makeList(currSS.getMarket()));
+        adapter = new CargoRecyclerViewAdapter(this, recycleViewList);
         recyclerView.setAdapter(adapter);
 
         buyButton.setOnClickListener(new View.OnClickListener() {
