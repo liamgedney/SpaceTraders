@@ -55,7 +55,7 @@ public class CargoScreen extends AppCompatActivity {
 
 
 
-        adapter = new CargoRecyclerViewAdapter(this, recycleViewList);
+        adapter = new CargoRecyclerViewAdapter(this, player.makeList(currSS.getMarket()));
         recyclerView.setAdapter(adapter);
 
         buyButton.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +76,7 @@ public class CargoScreen extends AppCompatActivity {
                     gameData.setPlayer(player);
                     gameData.setCurrentSolarSystem(currSS);
                     player.updateList(market);
-                    adapter.setList(player.makeList(market));
+                    adapter.setList(player.getList());
                     recyclerView.setAdapter(adapter);
                 }
                 System.out.println("CURCARGO: " + gameData.getPlayer().getShip().getCurCargo());
