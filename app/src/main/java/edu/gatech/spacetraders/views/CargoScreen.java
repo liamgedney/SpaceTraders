@@ -72,10 +72,11 @@ public class CargoScreen extends AppCompatActivity {
                 if (player.canSell(bCode)) {
                     player.sell(bCode);
                     player.upCredits(prices, bCode);
-                    currSS.setMarket(player.updateMarket(market, bCode));
+                    market.upInventory(bCode, 1);
+                    currSS.setMarket(market);
+                    player.updateList(market);
                     gameData.setPlayer(player);
                     gameData.setCurrentSolarSystem(currSS);
-                    player.updateList(market);
                     adapter.setList(player.getList());
                     recyclerView.setAdapter(adapter);
                 }

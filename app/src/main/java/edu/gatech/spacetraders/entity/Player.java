@@ -133,16 +133,6 @@ public class Player {
         ship.setCargoHold(cargo);
     }
 
-    public Market updateMarket(Market market, int position) {
-        return updateMarket(market, position, 1);
-    }
-
-    public Market updateMarket(Market market, int position, int amount) {
-        Good good = Good.values()[position];
-        market.upInventory(position, amount);
-        return market;
-    }
-
     public void upCredits(EnumMap<Good, Integer> prices, int position) {
         upCredits(prices, position,1 );
     }
@@ -160,7 +150,7 @@ public class Player {
             String newString = count + " ";
             newString += String.format("%1$11s", good.toString());
             newString += String.format("%1$5s", "$" + market.getPrice(good));
-            newString += String.format("%1$5s", "" + ship.getCargoHold().get(good).toString());
+            newString += String.format("%1$5s", "" + cargo.get(good));
             recycleViewList.add(newString);
             count++;
         }
