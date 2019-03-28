@@ -21,6 +21,7 @@ import edu.gatech.spacetraders.entity.MarketplaceRecyclerViewAdapter;
 import edu.gatech.spacetraders.entity.Player;
 import edu.gatech.spacetraders.entity.Ship;
 import edu.gatech.spacetraders.entity.SolarSystem;
+import edu.gatech.spacetraders.entity.Travel;
 import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
@@ -40,11 +41,15 @@ public class TravelScreen extends AppCompatActivity {
     SolarSystem currSS = gameData.getCurrentSolarSystem();
     int techLevel = gameData.getCurrentSolarSystem().getTechLvl();
     Ship ship = player.getShip();
-    private List<String> recycleViewList = new ArrayList<>(10);
+    Travel travel = new Travel(gameData);
+    private List<String> recycleViewList = travel.getInRangeList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        for (String s: travel.getInRangeList()) {
+            System.out.println(s);
+        }
         setContentView(R.layout.activity_travel);
         System.out.println(gameData.getPlayer().getShip().getCargoHold().get(Good.WATER));
 

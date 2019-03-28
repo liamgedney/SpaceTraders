@@ -16,23 +16,47 @@ import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 //method to  update current planet info(stringbuilder)
 //method for random encounters(two types: affect cargo and affect credits(maybe change ship))
 public class Travel {
-    GameData gameData = GameDataInstanceGetter.getGameData();
-    SolarSystem[] systemsArray = gameData.getUniverse().getSystems();
-    Point currCoord = gameData.getCurrentSolarSystem().getCoordinates();
-    Ship myShip = gameData.getPlayer().getShip();
+    GameData gameData;
+    SolarSystem currSS;
+    SolarSystem[] systemsArray;
+    Point currCoord;
+    Ship myShip;
+
+    public Travel(GameData gameData) {
+        this.gameData = gameData;
+        currSS = gameData.getCurrentSolarSystem();
+        systemsArray = gameData.getUniverse().getSystems();
+        currCoord = gameData.getCurrentSolarSystem().getCoordinates();
+        myShip = gameData.getPlayer().getShip();
+    }
 
     public ArrayList<String> getInRangeList() {
         ArrayList<String> stringList = new ArrayList<>(systemsArray.length);
         SolarSystem[] inRange = calculatePlanetsInRange();
+        double range = Math.sqrt((Math.pow(currSS.getCoordinates().x - currCoord.x, 2)
+                + Math.pow(currSS.getCoordinates().y - currCoord.y, 2)));
         for (int i = 0; i < inRange.length; i++) {
-            stringList.add(inRange[i].toString());
+            stringList.add("Travel Code: " + i + " --> " + inRange[i].toString());
         }
         return stringList;
     }
 
+    public void travel(int i) {
+        SolarSystem newSS = calculatePlanetsInRange()[i];
+        double range = Math.sqrt((Math.pow(newSS.getCoordinates().x - currCoord.x, 2)
+                + Math.pow(newSS.getCoordinates().y - currCoord.y, 2)));
+        gameData.setCurrentSolarSystem(newSS);
+        myShip.setCurFuel((int) (myShip.getCurFuel() - range / 10));
+    }
 
     private SolarSystem[] calculatePlanetsInRange() {
-        SolarSystem[] toReturn = new SolarSystem[systemsArray.length];
+        int numInRange = 0;
+        for (SolarSystem system: systemsArray) {
+            if (isInRange(system)) {
+                numInRange++;
+            }
+        }
+        SolarSystem[] toReturn = new SolarSystem[numInRange];
         int count = 0;
         for (SolarSystem system : systemsArray) {
             if (isInRange(system)) {
@@ -44,10 +68,10 @@ public class Travel {
 
 
 
-
     private boolean isInRange(SolarSystem system) {
-        if (Math.sqrt((Math.pow(system.getCoordinates().x - currCoord.x, 2)
-                + Math.pow(system.getCoordinates().y - currCoord.y, 2))) <= myShip.getCurFuel()) {
+        double range = Math.sqrt((Math.pow(system.getCoordinates().x - currCoord.x, 2)
+                + Math.pow(system.getCoordinates().y - currCoord.y, 2)));
+        if (range <= 10 * myShip.getCurFuel() && range > 0) {
             return true;
         }
         return false;

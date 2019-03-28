@@ -74,4 +74,8 @@ public class Ship {
     public int getCurFuel() {
         return curFuel;
     }
+
+    public void setCurFuel(int curFuel) {
+        this.curFuel = curFuel;
+    }
 }
