@@ -21,6 +21,7 @@ public class Travel {
     SolarSystem[] systemsArray;
     Point currCoord;
     Ship myShip;
+    Player player;
 
     public Travel(GameData gameData) {
         this.gameData = gameData;
@@ -28,6 +29,8 @@ public class Travel {
         systemsArray = gameData.getUniverse().getSystems();
         currCoord = gameData.getCurrentSolarSystem().getCoordinates();
         myShip = gameData.getPlayer().getShip();
+        player = gameData.getPlayer();
+
     }
 
     public ArrayList<String> getInRangeList() {
@@ -41,12 +44,15 @@ public class Travel {
         return stringList;
     }
 
-    public void travel(int i) {
+    public GameData travel(int i) {
         SolarSystem newSS = calculatePlanetsInRange()[i];
         double range = Math.sqrt((Math.pow(newSS.getCoordinates().x - currCoord.x, 2)
                 + Math.pow(newSS.getCoordinates().y - currCoord.y, 2)));
         gameData.setCurrentSolarSystem(newSS);
         myShip.setCurFuel((int) (myShip.getCurFuel() - range / 10));
+        player.setShip(myShip);
+        gameData.setPlayer(player);
+        return gameData;
     }
 
     private SolarSystem[] calculatePlanetsInRange() {
