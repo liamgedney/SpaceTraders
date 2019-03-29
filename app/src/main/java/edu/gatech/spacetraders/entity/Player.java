@@ -131,6 +131,7 @@ public class Player {
         Good good = Good.values()[position];
         cargo.put(good, getCargo(good) - amount);
         ship.setCargoHold(cargo);
+        ship.setCurCargo(ship.getCurCargo() - amount);
     }
 
     public void upCredits(EnumMap<Good, Integer> prices, int position) {

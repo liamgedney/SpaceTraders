@@ -93,8 +93,8 @@ public class TravelScreen extends AppCompatActivity {
                 System.out.println(gameData.getPlayer().getShip().getCurFuel());
                 //TextView currentFuel = (TextView) findViewById(R.id.current_fuellevel);
                 //TextView currentPlanet = (TextView) findViewById(R.id.currentplanetstats);
-                //currentPlanet.setText(gameData.getCurrentSolarSystem().toString());
-                //currentFuel.setText(gameData.getPlayer().getShip().getCurFuel());
+                currentPlanet.setText(gameData.getCurrentSolarSystem().toString());
+                currentFuel.setText("Current Fuel: " + gameData.getPlayer().getShip().getCurFuel());
             }
         });
 

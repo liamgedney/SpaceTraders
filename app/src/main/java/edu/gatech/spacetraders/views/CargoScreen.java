@@ -102,6 +102,7 @@ public class CargoScreen extends AppCompatActivity {
     }
 
     public void openTradeScreen() {
+        adapter.notifyDataSetChanged();
         Intent intent = new Intent(this, Trade.class);
         startActivity(intent);
     }

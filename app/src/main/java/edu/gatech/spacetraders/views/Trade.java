@@ -91,6 +91,7 @@ public class Trade extends AppCompatActivity {
     }
 
     public void openCargoScreen() {
+        adapter.notifyDataSetChanged();
         Intent intent = new Intent(this, CargoScreen.class);
         startActivity(intent);
     }
