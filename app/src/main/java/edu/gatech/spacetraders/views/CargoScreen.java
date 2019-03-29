@@ -38,11 +38,12 @@ public class CargoScreen extends AppCompatActivity {
     SolarSystem currSS = gameData.getCurrentSolarSystem();
     Ship ship = player.getShip();
 
-    private List<String> recycleViewList = player.makeList(currSS.getMarket());
+    private List<String> recycleViewList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        recycleViewList = player.makeList(currSS.getMarket());
         setContentView(R.layout.activity_cargo);
         System.out.println(gameData.getPlayer().getShip().getCargoHold().get(Good.WATER));
 
@@ -53,14 +54,23 @@ public class CargoScreen extends AppCompatActivity {
         final RecyclerView recyclerView = findViewById(R.id.cargogoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
+        Market market = currSS.getMarket();
+        currSS.setMarket(market);
+        player.updateList(market);
+        gameData.setPlayer(player);
+        gameData.setCurrentSolarSystem(currSS);
 
         adapter = new CargoRecyclerViewAdapter(this, recycleViewList);
+        adapter.setList(player.getList());
+        adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
+
 
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
+                adapter.notifyDataSetChanged();
                 openTradeScreen();
+                adapter.notifyDataSetChanged();
             }
         });
 

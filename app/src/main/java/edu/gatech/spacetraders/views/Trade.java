@@ -46,7 +46,10 @@ public class Trade extends AppCompatActivity {
         buyCode = (EditText) findViewById(R.id.mktplace_position);
         final RecyclerView recyclerView = findViewById(R.id.mktgoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        currSS.getMarket().updateList();
         adapter = new MarketplaceRecyclerViewAdapter(this, currSS.getMarket().getList());
+        adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
 
         buyButton.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +78,7 @@ public class Trade extends AppCompatActivity {
         sellButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
                 openCargoScreen();
+                adapter.notifyDataSetChanged();
             }
         });
 

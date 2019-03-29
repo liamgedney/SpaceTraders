@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -84,17 +85,21 @@ public class TravelScreen extends AppCompatActivity {
         travelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
                 int tcode = Integer.valueOf(planetCode.getText().toString());
-                gameData = travel.travel(tcode);
-                travel = new Travel(gameData);
-                recycleViewList = travel.getInRangeList();
-                adapter.setList(recycleViewList);
-                recyclerView.setAdapter(adapter);
-                System.out.println(gameData.getCurrentSolarSystem().toString());
-                System.out.println(gameData.getPlayer().getShip().getCurFuel());
-                //TextView currentFuel = (TextView) findViewById(R.id.current_fuellevel);
-                //TextView currentPlanet = (TextView) findViewById(R.id.currentplanetstats);
-                currentPlanet.setText(gameData.getCurrentSolarSystem().toString());
-                currentFuel.setText("Current Fuel: " + gameData.getPlayer().getShip().getCurFuel());
+                if (tcode >= 0 && tcode < travel.getInRangeList().size()) {
+                    gameData = travel.travel(tcode);
+                    travel = new Travel(gameData);
+                    recycleViewList = travel.getInRangeList();
+                    adapter.setList(recycleViewList);
+                    recyclerView.setAdapter(adapter);
+                    System.out.println(gameData.getCurrentSolarSystem().toString());
+                    System.out.println(gameData.getPlayer().getShip().getCurFuel());
+                    //TextView currentFuel = (TextView) findViewById(R.id.current_fuellevel);
+                    //TextView currentPlanet = (TextView) findViewById(R.id.currentplanetstats);
+                    currentPlanet.setText(gameData.getCurrentSolarSystem().toString());
+                    currentFuel.setText("Current Fuel: " + gameData.getPlayer().getShip().getCurFuel());
+                } else {
+                    Toast.makeText(TravelScreen.this, "Please select a valid planet.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
