@@ -40,6 +40,8 @@ public class Trade extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_marketplace);
 
+        gameData = GameDataInstanceGetter.getGameData();
+
         buyButton = (Button) findViewById(R.id.mktbuy_button);
         sellButton = (Button) findViewById(R.id.mktsell_button);
         backButton = (Button) findViewById(R.id.mktback_button);

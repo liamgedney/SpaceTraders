@@ -49,7 +49,7 @@ public class Travel {
         double range = Math.sqrt((Math.pow(newSS.getCoordinates().x - currCoord.x, 2)
                 + Math.pow(newSS.getCoordinates().y - currCoord.y, 2)));
         gameData.setCurrentSolarSystem(newSS);
-        myShip.setCurFuel((int) (myShip.getCurFuel() - range / 10));
+        myShip.setCurFuel((int) (myShip.getCurFuel() - range / 13));
         player.setShip(myShip);
         gameData.setPlayer(player);
         return gameData;
@@ -77,7 +77,7 @@ public class Travel {
     private boolean isInRange(SolarSystem system) {
         double range = Math.sqrt((Math.pow(system.getCoordinates().x - currCoord.x, 2)
                 + Math.pow(system.getCoordinates().y - currCoord.y, 2)));
-        if (range <= 10 * myShip.getCurFuel() && range > 0) {
+        if (range <= 13 * myShip.getCurFuel() && range > 0) {
             return true;
         }
         return false;

@@ -53,6 +53,7 @@ public class TravelScreen extends AppCompatActivity {
         for (String s: travel.getInRangeList()) {
             System.out.println(s);
         }
+        travel = new Travel(gameData);
         setContentView(R.layout.activity_travel);
         System.out.println(gameData.getPlayer().getShip().getCargoHold().get(Good.WATER));
 
@@ -84,6 +85,8 @@ public class TravelScreen extends AppCompatActivity {
         //needs to update current planet and replace recyclerview index with the planet left
         travelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
+                System.out.println(gameData.getCurrentSolarSystem());
+                System.out.println(gameData.getCurrentSolarSystem().getMarket());
                 int tcode = Integer.valueOf(planetCode.getText().toString());
                 if (tcode >= 0 && tcode < travel.getInRangeList().size()) {
                     gameData = travel.travel(tcode);
@@ -97,6 +100,9 @@ public class TravelScreen extends AppCompatActivity {
                     //TextView currentPlanet = (TextView) findViewById(R.id.currentplanetstats);
                     currentPlanet.setText(gameData.getCurrentSolarSystem().toString());
                     currentFuel.setText("Current Fuel: " + gameData.getPlayer().getShip().getCurFuel());
+                    int currTechLvl = currSS.getTechLvl();
+                    currSS.setMarket(new Market(currTechLvl, player, player.getShip()));
+                    gameData.setCurrentSolarSystem(currSS);
                 } else {
                     Toast.makeText(TravelScreen.this, "Please select a valid planet.", Toast.LENGTH_SHORT).show();
                 }
