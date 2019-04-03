@@ -1,6 +1,7 @@
 package edu.gatech.spacetraders.entity;
 
 import android.graphics.Point;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 import java.io.Serializable;
+import java.util.Random;
 
 //this class takes in list of planets already created from universe,
 // takes in ship for fuel and location
@@ -49,11 +51,22 @@ public class Travel implements Serializable{
         SolarSystem newSS = calculatePlanetsInRange()[i];
         double range = Math.sqrt((Math.pow(newSS.getCoordinates().x - currCoord.x, 2)
                 + Math.pow(newSS.getCoordinates().y - currCoord.y, 2)));
+        randomEvent();
         gameData.setCurrentSolarSystem(newSS);
         myShip.setCurFuel((int) (myShip.getCurFuel() - range / 13));
         player.setShip(myShip);
         gameData.setPlayer(player);
         return gameData;
+    }
+
+    public void randomEvent() {
+        Random random = new Random();
+        int encounter = random.nextInt(5);
+        if (encounter == 1) {
+            int encounterNum = random.nextInt(CreditEncounter.values().length);
+            int creditDifference = random.nextInt(player.getCredits() * 2 + 1);
+
+        }
     }
 
     private SolarSystem[] calculatePlanetsInRange() {
