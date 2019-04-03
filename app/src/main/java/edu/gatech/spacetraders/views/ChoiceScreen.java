@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 import edu.gatech.spacetraders.R;
@@ -19,6 +21,11 @@ public class ChoiceScreen extends AppCompatActivity {
 
     Button tradeButton;
     Button travelButton;
+    Button save;
+
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,7 @@ public class ChoiceScreen extends AppCompatActivity {
 
         tradeButton = (Button) findViewById(R.id.trade_button);
         travelButton = (Button) findViewById(R.id.travel_button);
+        save = findViewById(R.id.save);
 
         tradeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
@@ -38,6 +46,11 @@ public class ChoiceScreen extends AppCompatActivity {
                 openTravelScreen();
             }
         });
+        save.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View activity_main) {
+
+            }
+        });
     }
     public void openTradeScreen() {
         Intent intent = new Intent(this, Trade.class);
@@ -46,6 +59,15 @@ public class ChoiceScreen extends AppCompatActivity {
     public void openTravelScreen() {
         Intent intent = new Intent(this, TravelScreen.class);
         startActivity(intent);
+    }
+
+    public boolean saveBinary(File file) {
+        boolean success = true;
+        try {
+            //ObjectOutputStream out = new ObjectOutputStream();
+        } finally {
+
+        }
     }
 
 }
