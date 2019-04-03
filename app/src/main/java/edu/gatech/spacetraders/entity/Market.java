@@ -1,10 +1,11 @@
 package edu.gatech.spacetraders.entity;
 
+import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Market {
+public class Market implements Serializable {
     private int techLevel;
     //use an enum map to track prices and amount in stock of each good
     private EnumMap<Good, Integer> prices = new EnumMap<>(Good.class);

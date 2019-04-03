@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Universe {
+public class Universe implements Serializable{
     private static int NUM_SYSTEMS = 10;
     private SolarSystem[] systems = new SolarSystem[NUM_SYSTEMS];
 

@@ -1,12 +1,13 @@
 package edu.gatech.spacetraders.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
 import static edu.gatech.spacetraders.entity.ShipType.*;
 
-public class Ship {
+public class Ship implements Serializable {
     private final int NUM_GOODS = 10;
     private int maxFuel;
     private int curFuel;

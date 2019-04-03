@@ -101,6 +101,7 @@ public class CargoScreen extends AppCompatActivity {
 
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
+
                 openChoiceScreen();
             }
         });

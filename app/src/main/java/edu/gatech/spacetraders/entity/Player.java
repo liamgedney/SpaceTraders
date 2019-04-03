@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
-public class Player {
+public class Player implements Serializable{
 
     private String playerName;
     private int pilotPoints;

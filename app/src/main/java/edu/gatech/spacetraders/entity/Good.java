@@ -3,7 +3,7 @@ package edu.gatech.spacetraders.entity;
 import java.io.Serializable;
 import java.util.Random;
 
-public enum Good {
+public enum Good implements Serializable{
     //good      base    var     ipl     mtlp    mtlu
     WATER       (30,    4,      3,      0,      0),
     FURS        (250,   10,     10,     0,      0),

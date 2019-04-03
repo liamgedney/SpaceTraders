@@ -4,7 +4,7 @@ import android.graphics.Point;
 
 import java.io.Serializable;
 
-public class SolarSystem {
+public class SolarSystem implements Serializable {
     private String name;
     private int techLvl;
     private int resLvl;

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
+import java.io.Serializable;
 
 //this class takes in list of planets already created from universe,
 // takes in ship for fuel and location
@@ -15,7 +16,7 @@ import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 //method to decrement fuel and update location
 //method to  update current planet info(stringbuilder)
 //method for random encounters(two types: affect cargo and affect credits(maybe change ship))
-public class Travel {
+public class Travel implements Serializable{
     GameData gameData;
     SolarSystem currSS;
     SolarSystem[] systemsArray;
