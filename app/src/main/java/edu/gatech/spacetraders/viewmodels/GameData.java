@@ -6,7 +6,7 @@ import edu.gatech.spacetraders.entity.Player;
 import edu.gatech.spacetraders.entity.SolarSystem;
 import edu.gatech.spacetraders.entity.Universe;
 
-public class GameData {
+public class GameData implements Serializable {
     private Player player;
     private SolarSystem currentSolarSystem;
     private Universe universe;
