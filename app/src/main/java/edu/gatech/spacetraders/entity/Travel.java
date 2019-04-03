@@ -61,10 +61,17 @@ public class Travel implements Serializable{
 
     public void randomEvent() {
         Random random = new Random();
-        int encounter = random.nextInt(5);
+        int encounter = random.nextInt(2);
         if (encounter == 1) {
             int encounterNum = random.nextInt(CreditEncounter.values().length);
-            int creditDifference = random.nextInt(player.getCredits() * 2 + 1);
+            int creditDifference = random.nextInt(player.getCredits() + 1);
+            int addSub = random.nextInt(2);
+            if (addSub == 0) {
+                player.setCredits(player.getCredits() + creditDifference);
+            } else {
+                player.setCredits(player.getCredits() - creditDifference);
+            }
+            //Toast.makeText(this, CreditEncounter.values()[encounterNum], Toast.LENGTH_SHORT);
 
         }
     }
