@@ -51,7 +51,7 @@ public class Travel implements Serializable{
         SolarSystem newSS = calculatePlanetsInRange()[i];
         double range = Math.sqrt((Math.pow(newSS.getCoordinates().x - currCoord.x, 2)
                 + Math.pow(newSS.getCoordinates().y - currCoord.y, 2)));
-        randomEvent();
+        //randomEvent();
         gameData.setCurrentSolarSystem(newSS);
         myShip.setCurFuel((int) (myShip.getCurFuel() - range / 13));
         player.setShip(myShip);
