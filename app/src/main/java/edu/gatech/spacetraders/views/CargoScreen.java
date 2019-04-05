@@ -65,7 +65,6 @@ public class CargoScreen extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
 
-
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
                 adapter.notifyDataSetChanged();

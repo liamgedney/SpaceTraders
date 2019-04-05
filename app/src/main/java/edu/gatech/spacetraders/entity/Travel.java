@@ -23,7 +23,7 @@ public class Travel implements Serializable{
     GameData gameData;
     SolarSystem currSS;
     SolarSystem[] systemsArray;
-    Point currCoord;
+    Point2 currCoord;
     Ship myShip;
     Player player;
 

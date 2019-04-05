@@ -8,7 +8,7 @@ public class SolarSystem implements Serializable {
     private String name;
     private int techLvl;
     private int resLvl;
-    private Point coordinates;
+    private Point2 coordinates;
     private static Market market;
     private Player player;
     private Ship ship;
@@ -23,7 +23,7 @@ public class SolarSystem implements Serializable {
         this.resLvl = reslvl;
         this.player = player;
         this.ship = ship;
-        this.coordinates = new Point(x, y);
+        this.coordinates = new Point2(x, y);
         this.market = new Market(techLvl, player, ship);
 
     }
@@ -42,7 +42,7 @@ public class SolarSystem implements Serializable {
                 + coordinates;
     }
 
-    public Point getCoordinates() {
+    public Point2 getCoordinates() {
         return coordinates;
     }
 }

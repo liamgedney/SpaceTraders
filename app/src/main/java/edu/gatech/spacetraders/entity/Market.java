@@ -5,6 +5,9 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.ArrayList;
 
+import edu.gatech.spacetraders.viewmodels.GameData;
+import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
+
 public class Market implements Serializable {
     private int techLevel;
     //use an enum map to track prices and amount in stock of each good
@@ -14,6 +17,7 @@ public class Market implements Serializable {
     private Ship ship;
     private List<String> recycleViewList = new ArrayList<>(10);
     private List<Good> goods = new ArrayList<>(10);
+    GameData gameData = GameDataInstanceGetter.getGameData();
 
 
     /**

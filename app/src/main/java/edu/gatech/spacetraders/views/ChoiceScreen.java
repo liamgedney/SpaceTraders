@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
@@ -16,12 +17,14 @@ import edu.gatech.spacetraders.entity.Difficulty;
 import edu.gatech.spacetraders.entity.Player;
 import edu.gatech.spacetraders.entity.Universe;
 import edu.gatech.spacetraders.viewmodels.GameData;
+import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
 public class ChoiceScreen extends AppCompatActivity {
 
     Button tradeButton;
     Button travelButton;
     Button save;
+    Button newGame;
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
@@ -31,16 +34,22 @@ public class ChoiceScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choicescreen);
+        File file = new File(getFilesDir(), "data2.bin");
+        if(file.exists()) {
+            GameDataInstanceGetter.loadBinary(file);
+        }
 
         tradeButton = (Button) findViewById(R.id.trade_button);
         travelButton = (Button) findViewById(R.id.travel_button);
         save = findViewById(R.id.save);
+        newGame = findViewById(R.id.newGame);
 
         tradeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
                 openTradeScreen();
             }
         });
+
         travelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
                 openTravelScreen();
@@ -48,7 +57,27 @@ public class ChoiceScreen extends AppCompatActivity {
         });
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
-
+                File file = new File(getFilesDir(), "data2.bin");
+                try{
+                    file.createNewFile();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+                GameDataInstanceGetter.saveBinary(file);
+            }
+        });
+        newGame.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View activity_main) {
+//                File file = new File(getFilesDir(), "data3.bin");
+//                try{
+//                    file.createNewFile();
+//                }
+//                catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                GameDataInstanceGetter.newBinary(file);
+                openMainScreen();
             }
         });
     }
@@ -58,6 +87,10 @@ public class ChoiceScreen extends AppCompatActivity {
     }
     public void openTravelScreen() {
         Intent intent = new Intent(this, TravelScreen.class);
+        startActivity(intent);
+    }
+    public void openMainScreen() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
