@@ -1,6 +1,7 @@
 package edu.gatech.spacetraders.views;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     EditText fighterSkill;
     EditText traderSkill;
     EditText engrSkill;
+
+    MediaPlayer space;
 
     Button createButton;
     Button exitButton;
@@ -109,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
                     gameData.setCurrentSolarSystem(startingSystem);
 
                     gameDataInstanceGetter.newGameData(gameData);
-
+                    space = MediaPlayer.create(MainActivity.this, R.raw.space);
+                    space.start();
                     openChoiceScreen();
                 }
             }
