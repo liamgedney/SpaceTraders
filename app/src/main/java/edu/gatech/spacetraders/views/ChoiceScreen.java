@@ -18,6 +18,7 @@ public class ChoiceScreen extends AppCompatActivity {
     Button travelButton;
     Button save;
     Button newGame;
+    Button loadGame;
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
@@ -27,15 +28,13 @@ public class ChoiceScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choicescreen);
-        File file = new File(getFilesDir(), "data2.bin");
-        if(file.exists()) {
-            GameDataInstanceGetter.loadBinary(file);
-        }
+
 
         tradeButton =  findViewById(R.id.trade_button);
         travelButton = findViewById(R.id.travel_button);
         save = findViewById(R.id.save);
         newGame = findViewById(R.id.newGame);
+        loadGame = findViewById(R.id.loadGame);
 
         tradeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {
@@ -58,6 +57,14 @@ public class ChoiceScreen extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 GameDataInstanceGetter.saveBinary(file);
+            }
+        });
+        loadGame.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View activity_main) {
+                File file = new File(getFilesDir(), "data2.bin");
+                if(file.exists()) {
+                    GameDataInstanceGetter.loadBinary(file);
+                }
             }
         });
         newGame.setOnClickListener(new View.OnClickListener() {
