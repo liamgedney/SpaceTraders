@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import edu.gatech.spacetraders.R;
-import edu.gatech.spacetraders.views.TravelRecyclerViewAdapter;
 public class TravelRecyclerViewAdapter extends RecyclerView.Adapter<edu.gatech.spacetraders.views.TravelRecyclerViewAdapter.ViewHolder> {
 
     private List<String> mData;

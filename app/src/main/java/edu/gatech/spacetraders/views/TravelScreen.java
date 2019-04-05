@@ -11,16 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.List;
 
 import edu.gatech.spacetraders.R;
 import edu.gatech.spacetraders.entity.Good;
 import edu.gatech.spacetraders.entity.Market;
-import edu.gatech.spacetraders.entity.MarketplaceRecyclerViewAdapter;
 import edu.gatech.spacetraders.entity.Player;
 import edu.gatech.spacetraders.entity.Ship;
 import edu.gatech.spacetraders.entity.SolarSystem;
@@ -57,11 +52,11 @@ public class TravelScreen extends AppCompatActivity {
         setContentView(R.layout.activity_travel);
         System.out.println(gameData.getPlayer().getShip().getCargoHold().get(Good.WATER));
 
-        travelButton = (Button) findViewById(R.id.travel_button);
-        backButton = (Button) findViewById(R.id.travelback_button);
-        planetCode = (EditText) findViewById(R.id.travel_position);
-        currentPlanet = (TextView) findViewById(R.id.currentplanetstats);
-        currentFuel = (TextView) findViewById(R.id.current_fuellevel);
+        travelButton = findViewById(R.id.travel_button);
+        backButton = findViewById(R.id.travelback_button);
+        planetCode = findViewById(R.id.travel_position);
+        currentPlanet = findViewById(R.id.currentplanetstats);
+        currentFuel = findViewById(R.id.current_fuellevel);
         currentPlanet.setText(currSS.toString());
         String fuel = "Current Fuel: " + ship.getCurFuel();
         currentFuel.setText(fuel);

@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.ArrayList;
+
 import java.util.EnumMap;
 import java.util.List;
 
@@ -17,7 +17,6 @@ import edu.gatech.spacetraders.R;
 import edu.gatech.spacetraders.entity.CargoRecyclerViewAdapter;
 import edu.gatech.spacetraders.entity.Good;
 import edu.gatech.spacetraders.entity.Market;
-import edu.gatech.spacetraders.entity.MarketplaceRecyclerViewAdapter;
 import edu.gatech.spacetraders.entity.Player;
 import edu.gatech.spacetraders.entity.Ship;
 import edu.gatech.spacetraders.entity.SolarSystem;
@@ -47,10 +46,10 @@ public class CargoScreen extends AppCompatActivity {
         setContentView(R.layout.activity_cargo);
         System.out.println(gameData.getPlayer().getShip().getCargoHold().get(Good.WATER));
 
-        buyButton = (Button) findViewById(R.id.cargobuy_button);
-        sellButton = (Button) findViewById(R.id.cargosell_button);
-        backButton = (Button) findViewById(R.id.cargoback_button);
-        buyCode = (EditText) findViewById(R.id.cargo_position);
+        buyButton = findViewById(R.id.cargobuy_button);
+        sellButton = findViewById(R.id.cargosell_button);
+        backButton = findViewById(R.id.cargoback_button);
+        buyCode = findViewById(R.id.cargo_position);
         final RecyclerView recyclerView = findViewById(R.id.cargogoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

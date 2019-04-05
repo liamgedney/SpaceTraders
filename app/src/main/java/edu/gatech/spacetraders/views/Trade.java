@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.io.Serializable;
 
 import edu.gatech.spacetraders.R;
 import edu.gatech.spacetraders.entity.Market;
@@ -42,10 +41,10 @@ public class Trade extends AppCompatActivity {
 
         gameData = GameDataInstanceGetter.getGameData();
 
-        buyButton = (Button) findViewById(R.id.mktbuy_button);
-        sellButton = (Button) findViewById(R.id.mktsell_button);
-        backButton = (Button) findViewById(R.id.mktback_button);
-        buyCode = (EditText) findViewById(R.id.mktplace_position);
+        buyButton = findViewById(R.id.mktbuy_button);
+        sellButton = findViewById(R.id.mktsell_button);
+        backButton = findViewById(R.id.mktback_button);
+        buyCode =  findViewById(R.id.mktplace_position);
         final RecyclerView recyclerView = findViewById(R.id.mktgoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

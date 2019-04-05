@@ -5,18 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 import edu.gatech.spacetraders.R;
-import edu.gatech.spacetraders.entity.Difficulty;
-import edu.gatech.spacetraders.entity.Player;
-import edu.gatech.spacetraders.entity.Universe;
-import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
 public class ChoiceScreen extends AppCompatActivity {
@@ -39,8 +32,8 @@ public class ChoiceScreen extends AppCompatActivity {
             GameDataInstanceGetter.loadBinary(file);
         }
 
-        tradeButton = (Button) findViewById(R.id.trade_button);
-        travelButton = (Button) findViewById(R.id.travel_button);
+        tradeButton =  findViewById(R.id.trade_button);
+        travelButton = findViewById(R.id.travel_button);
         save = findViewById(R.id.save);
         newGame = findViewById(R.id.newGame);
 
@@ -94,14 +87,5 @@ public class ChoiceScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public boolean saveBinary(File file) {
-        boolean success = true;
-        try {
-            //ObjectOutputStream out = new ObjectOutputStream();
-        } finally {
-
-        }
-        return true;
-    }
 
 }

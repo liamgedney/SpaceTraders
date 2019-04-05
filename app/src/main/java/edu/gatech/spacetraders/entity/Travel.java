@@ -1,13 +1,8 @@
 package edu.gatech.spacetraders.entity;
 
-import android.graphics.Point;
-import android.widget.Toast;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import edu.gatech.spacetraders.viewmodels.GameData;
-import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.Random;

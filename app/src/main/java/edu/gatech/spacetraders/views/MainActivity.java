@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.io.Serializable;
 
 import edu.gatech.spacetraders.R;
 import edu.gatech.spacetraders.entity.Difficulty;
@@ -60,16 +59,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        playerName = (EditText) findViewById(R.id.player_name_input);
-        pilotSkill = (EditText) findViewById(R.id.pilot_skill_input);
-        fighterSkill = (EditText) findViewById(R.id.fighter_skill_input);
-        traderSkill = (EditText) findViewById(R.id.trader_skill_input);
-        engrSkill = (EditText) findViewById(R.id.engr_skill_input);
+        playerName =  findViewById(R.id.player_name_input);
+        pilotSkill =  findViewById(R.id.pilot_skill_input);
+        fighterSkill =  findViewById(R.id.fighter_skill_input);
+        traderSkill =  findViewById(R.id.trader_skill_input);
+        engrSkill = findViewById(R.id.engr_skill_input);
 
-        diffSpinner = (Spinner) findViewById(R.id.difficulty_spinner);
-        diffSpinner.setAdapter(new ArrayAdapter<Difficulty>(this, android.R.layout.simple_spinner_item, Difficulty.values()));
-        createButton = (Button) findViewById(R.id.create_button);
-        exitButton = (Button) findViewById(R.id.exit_button);
+        diffSpinner =  findViewById(R.id.difficulty_spinner);
+        diffSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Difficulty.values()));
+        createButton =  findViewById(R.id.create_button);
+        exitButton = findViewById(R.id.exit_button);
 
         createButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View activity_main) {

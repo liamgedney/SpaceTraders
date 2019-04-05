@@ -1,6 +1,5 @@
 package edu.gatech.spacetraders.entity;
 
-import android.graphics.Point;
 
 import java.io.Serializable;
 

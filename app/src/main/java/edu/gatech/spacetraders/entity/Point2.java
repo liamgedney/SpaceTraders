@@ -1,5 +1,4 @@
 package edu.gatech.spacetraders.entity;
-import android.graphics.Point;
 import java.io.Serializable;
 public class Point2 implements Serializable{
     int x;
