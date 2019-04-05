@@ -68,6 +68,7 @@ public class ChoiceScreen extends AppCompatActivity {
         } finally {
 
         }
+        return true;
     }
 
 }

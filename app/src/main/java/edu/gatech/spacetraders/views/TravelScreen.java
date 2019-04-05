@@ -103,6 +103,8 @@ public class TravelScreen extends AppCompatActivity {
                     int currTechLvl = currSS.getTechLvl();
                     currSS.setMarket(new Market(currTechLvl, player, player.getShip()));
                     gameData.setCurrentSolarSystem(currSS);
+                    String display = travel.randomEvent();
+                    Toast.makeText(TravelScreen.this, display, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(TravelScreen.this, "Please select a valid planet.", Toast.LENGTH_SHORT).show();
                 }
