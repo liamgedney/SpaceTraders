@@ -1,7 +1,10 @@
 package edu.gatech.spacetraders.entity;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -16,7 +19,7 @@ public class Player implements Serializable{
     private int credits;
     private Ship ship;
     private List<String> recycleViewList = new ArrayList<>(10);
-    private EnumMap<Good, Integer> cargo;
+    private final EnumMap<Good, Integer> cargo;
 
     public Player(String playerName, int pilotPoints, int fighterPoints,
                   int traderPoints, int engineerPoints, Difficulty difficulty) {
@@ -27,7 +30,7 @@ public class Player implements Serializable{
         this.engineerPoints = engineerPoints;
         this.difficulty = difficulty;
         this.credits = 1000;
-        this.ship = new Ship(ShipType.GNAT);
+        this.ship = new Ship();
         cargo = ship.getCargoHold();
     }
 
@@ -59,7 +62,7 @@ public class Player implements Serializable{
         return credits;
     }
 
-    public int getCargo(Good good) { return cargo.get(good); }
+    private int getCargo(Good good) { return cargo.get(good); }
 
     public Ship getShip() {
         return ship;
@@ -103,7 +106,7 @@ public class Player implements Serializable{
         Good good = Good.values()[position];
         int price = prices.get(good);
         int credits = getCredits();
-        setCredits(credits - price * amount);
+        setCredits(credits - (price * amount));
     }
 
     public void setShip(Ship ship) {
@@ -114,7 +117,7 @@ public class Player implements Serializable{
         return canSell(position, 1);
     }
 
-    public boolean canSell(int position, int amount) {
+    private boolean canSell(int position, int amount) {
         Good good = Good.values()[position];
         if (cargo.get(good) < amount) {
             System.out.println("Cannot sell more items than currently in inventory.");
@@ -127,7 +130,7 @@ public class Player implements Serializable{
         sell(position, 1);
     }
 
-    public void sell(int position, int amount) {
+    private void sell(int position, int amount) {
         Good good = Good.values()[position];
         cargo.put(good, getCargo(good) - amount);
         ship.setCargoHold(cargo);
@@ -138,11 +141,11 @@ public class Player implements Serializable{
         upCredits(prices, position,1 );
     }
 
-    public void upCredits(EnumMap<Good, Integer> prices, int position, int amount) {
+    private void upCredits(EnumMap<Good, Integer> prices, int position, int amount) {
         Good good = Good.values()[position];
         int price = prices.get(good);
         int credits = getCredits();
-        setCredits(credits + price * amount);
+        setCredits(credits + (price * amount));
     }
 
     public List<String> makeList(Market market) {
@@ -155,7 +158,7 @@ public class Player implements Serializable{
             recycleViewList.add(newString);
             count++;
         }
-        return recycleViewList;
+        return Collections.unmodifiableList(recycleViewList);
     }
 
     public void updateList(Market market) {
@@ -173,10 +176,11 @@ public class Player implements Serializable{
     }
 
     public List<String> getList() {
-        return recycleViewList;
+        return Collections.unmodifiableList(recycleViewList);
     }
 
 
+    @NonNull
     @Override
     public String toString() {
         return String.format("PLAYER:\nName: %s, Pilot Points: %d, Fighter Points: %d "

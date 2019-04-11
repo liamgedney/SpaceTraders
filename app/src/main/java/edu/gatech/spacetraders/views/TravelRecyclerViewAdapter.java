@@ -1,6 +1,7 @@
 package edu.gatech.spacetraders.views;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +11,13 @@ import android.widget.TextView;
 import java.util.List;
 
 import edu.gatech.spacetraders.R;
-public class TravelRecyclerViewAdapter extends RecyclerView.Adapter<edu.gatech.spacetraders.views.TravelRecyclerViewAdapter.ViewHolder> {
+public class TravelRecyclerViewAdapter extends RecyclerView.Adapter<edu.gatech.spacetraders.views.
+        TravelRecyclerViewAdapter.ViewHolder> {
 
     private List<String> mData;
-    private LayoutInflater mInflater;
-    private edu.gatech.spacetraders.views.TravelRecyclerViewAdapter.ItemClickListener mClickListener;
+    private final LayoutInflater mInflater;
+    private edu.gatech.spacetraders.views.TravelRecyclerViewAdapter
+            .ItemClickListener mClickListener;
 
     // data is passed into the constructor
     TravelRecyclerViewAdapter (Context context, List<String> data) {
@@ -23,15 +26,18 @@ public class TravelRecyclerViewAdapter extends RecyclerView.Adapter<edu.gatech.s
     }
 
     // inflates the row layout from xml when needed
+    @NonNull
     @Override
-    public edu.gatech.spacetraders.views.TravelRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public edu.gatech.spacetraders.views.TravelRecyclerViewAdapter
+            .ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.recyclerviewtravel_row, parent, false);
         return new edu.gatech.spacetraders.views.TravelRecyclerViewAdapter.ViewHolder(view);
     }
 
     // binds the data to the TextView in each row
     @Override
-    public void onBindViewHolder(edu.gatech.spacetraders.views.TravelRecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull edu.gatech.spacetraders.views.
+            TravelRecyclerViewAdapter.ViewHolder holder, int position) {
         String animal = mData.get(position);
         holder.myTextView.setText(animal);
     }
@@ -45,7 +51,7 @@ public class TravelRecyclerViewAdapter extends RecyclerView.Adapter<edu.gatech.s
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView;
+        final TextView myTextView;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -55,7 +61,9 @@ public class TravelRecyclerViewAdapter extends RecyclerView.Adapter<edu.gatech.s
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            if (mClickListener != null) {
+                mClickListener.onItemClick(view, getAdapterPosition());
+            }
         }
     }
 
@@ -74,7 +82,7 @@ public class TravelRecyclerViewAdapter extends RecyclerView.Adapter<edu.gatech.s
     }
 
     // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
+    interface ItemClickListener {
         void onItemClick(View view, int position);
     }
 

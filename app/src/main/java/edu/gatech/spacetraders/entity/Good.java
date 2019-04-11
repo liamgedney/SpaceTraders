@@ -3,7 +3,7 @@ package edu.gatech.spacetraders.entity;
 import java.io.Serializable;
 import java.util.Random;
 
-public enum Good implements Serializable{
+public enum Good {
     //good      base    var     ipl     mtlp    mtlu
     WATER       (30,    4,      3,      0,      0),
     FURS        (250,   10,     10,     0,      0),
@@ -21,7 +21,7 @@ public enum Good implements Serializable{
     private final int ipl; //increase in price per tech level
     private final int mtlp; //minimum tech level to produce good
     private final int mtlu; //minimum tl to buy/use good
-    Random rand = new Random();
+    final Random rand = new Random();
 
     Good(int base, int var, int ipl, int mtlp, int mtlu) {
         this.base = base;
@@ -32,7 +32,7 @@ public enum Good implements Serializable{
     }
     public int base() { return base; }
     public int var() {
-        int coin = rand.nextInt(2) * 2 - 1;
+        int coin = (rand.nextInt(2) * 2) - 1;
         return rand.nextInt(var) * coin;
     }
     public int ipl() { return ipl; }

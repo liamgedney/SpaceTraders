@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import edu.gatech.spacetraders.viewmodels.GameData;
 import java.io.Serializable;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Random;
 
 //this class takes in list of planets already created from universe,
@@ -15,12 +16,12 @@ import java.util.Random;
 //method to  update current planet info(stringbuilder)
 //method for random encounters(two types: affect cargo and affect credits(maybe change ship))
 public class Travel implements Serializable{
-    GameData gameData;
-    SolarSystem currSS;
-    SolarSystem[] systemsArray;
-    Point2 currCoord;
-    Ship myShip;
-    Player player;
+    private final GameData gameData;
+    private final SolarSystem currSS;
+    private final SolarSystem[] systemsArray;
+    private final Point2 currCoord;
+    private final Ship myShip;
+    private final Player player;
 
     public Travel(GameData gameData) {
         this.gameData = gameData;
@@ -32,7 +33,7 @@ public class Travel implements Serializable{
 
     }
 
-    public ArrayList<String> getInRangeList() {
+    public List<String> getInRangeList() {
         ArrayList<String> stringList = new ArrayList<>(systemsArray.length);
         SolarSystem[] inRange = calculatePlanetsInRange();
         double range = Math.sqrt((Math.pow(currSS.getCoordinates().x - currCoord.x, 2)
@@ -55,8 +56,9 @@ public class Travel implements Serializable{
     }
 
     public String randomEvent() {
+        int RANDOMNUM = 11;
         Random random = new Random();
-        int encounter = random.nextInt(11);
+        int encounter = random.nextInt(RANDOMNUM);
         String display;
         if (encounter == 0) {
             //safe
@@ -69,7 +71,8 @@ public class Travel implements Serializable{
             if (addSub == 0) {
                 encounterNum = random.nextInt(CreditEncounterGood.values().length);
                 player.setCredits(player.getCredits() + creditDifference);
-                display = CreditEncounterGood.values()[encounterNum].getSt() + creditDifference + " credits. UwU";
+                display = CreditEncounterGood.values()[encounterNum].getSt() + creditDifference
+                        + " credits. UwU";
                 gameData.setPlayer(player);
             } else {
                 encounterNum = random.nextInt(CreditEncounterBad.values().length);
@@ -79,7 +82,8 @@ public class Travel implements Serializable{
                     player.setCredits(player.getCredits() - creditDifference);
                 }
                 gameData.setPlayer(player);
-                display = CreditEncounterBad.values()[encounterNum].getSt() + creditDifference + " credits. :'(";
+                display = CreditEncounterBad.values()[encounterNum].getSt() + creditDifference
+                        + " credits. :'(";
             }
         } else if (encounter == 2) {
             //cargo
@@ -88,19 +92,19 @@ public class Travel implements Serializable{
             int addRem = random.nextInt(7);
             if (addRem == 0) {
                 //good outcome
-                EnumMap<Good, Integer> cargoHold = myShip.getCargoHold();
+                EnumMap<Good, Integer> cargoHold = (EnumMap<Good, Integer>) myShip.getCargoHold();
                 int currAmount = cargoHold.get(cargoUpdate);
                 int amount = currAmount + random.nextInt(currAmount + 1) + 10;
-                int total = amount > myShip.getMaxCargo() ? myShip.getMaxCargo() : amount;
+                int total = (amount > myShip.getMaxCargo()) ? myShip.getMaxCargo() : amount;
                 cargoHold.put(cargoUpdate, total);
                 display = "You ran into a nice Pirate, and he tried to steal but had enough emotional intelligence to realize " +
                         "this is not a good decision and gave you: " + total + " "
                         + cargoUpdate + "s <3";
             } else {
-                EnumMap<Good, Integer> cargoHold = myShip.getCargoHold();
+                EnumMap<Good, Integer> cargoHold = (EnumMap<Good, Integer>) myShip.getCargoHold();
                 int currAmount = cargoHold.get(cargoUpdate);
                 int amount = currAmount - random.nextInt(currAmount + 1) - 10;
-                int total = amount < 0 ? 0 : amount;
+                int total = (amount < 0) ? 0 : amount;
                 cargoHold.put(cargoUpdate, total);
                 display = "You ran into a mean Pirate, and he stole: " + total + " "
                         + cargoUpdate + "s </3";
@@ -152,7 +156,8 @@ public class Travel implements Serializable{
         int count = 0;
         for (SolarSystem system : systemsArray) {
             if (isInRange(system)) {
-                toReturn[count++] = system;
+                toReturn[count] = system;
+                count++;
             }
         }
         return toReturn;
@@ -161,12 +166,10 @@ public class Travel implements Serializable{
 
 
     private boolean isInRange(SolarSystem system) {
+        int CURFUELNUM = 13;
         double range = Math.sqrt((Math.pow(system.getCoordinates().x - currCoord.x, 2)
                 + Math.pow(system.getCoordinates().y - currCoord.y, 2)));
-        if (range <= 13 * myShip.getCurFuel() && range > 0) {
-            return true;
-        }
-        return false;
+        return range <= CURFUELNUM * myShip.getCurFuel() && range > 0;
     }
 
 }

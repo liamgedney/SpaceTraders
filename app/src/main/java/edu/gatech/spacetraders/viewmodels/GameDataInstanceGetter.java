@@ -7,25 +7,25 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
 import edu.gatech.spacetraders.entity.Good;
 
 public class GameDataInstanceGetter {
-    static GameData gameData;
+    private static GameData gameData;
     public void newGameData(GameData gameData) {
         this.gameData = gameData;
     }
-    public static GameData setGameData(GameData gameData2){
+    private static void setGameData(GameData gameData2){
         gameData = gameData2;
-        return gameData;
     }
 
     public static GameData getGameData() {
         return gameData;
     }
 
-    public static boolean loadBinary(File file){
+    public static void loadBinary(File file){
         boolean success = true;
         try{
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
@@ -38,9 +38,8 @@ public class GameDataInstanceGetter {
             Log.e("Load", "Error reading an entry from binary file", e);
             success = false;
         }
-        return success;
     }
-    public static boolean saveBinary(File file) {
+    public static void saveBinary(File file) {
         boolean success = true;
         try {
             GameData sm = GameDataInstanceGetter.getGameData();
@@ -48,14 +47,13 @@ public class GameDataInstanceGetter {
             for (Good x : Good.values()) {
                 Log.e("ayylmao", x.toString() + " " + String.valueOf(gameData.getPlayer().getShip().getCargoHold().get(x)));
             }
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
             out.writeObject(sm);
             out.close();
         } catch (IOException e){
             Log.e("Save", "Error writing an entry from binary file", e);
             success = false;
         }
-        return success;
     }
     public static boolean newBinary(File file) {
         boolean success = true;
@@ -66,7 +64,7 @@ public class GameDataInstanceGetter {
             for (Good x : Good.values()) {
                 Log.e("ayylmao", x.toString() + String.valueOf(gameData.getPlayer().getShip().getCargoHold().get(x)));
             }
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
             out.writeObject(sm);
             out.close();
         } catch (IOException e){

@@ -1,5 +1,7 @@
 package edu.gatech.spacetraders.viewmodels;
 
+import android.support.annotation.Nullable;
+
 import java.io.Serializable;
 
 import edu.gatech.spacetraders.entity.Player;
@@ -7,8 +9,11 @@ import edu.gatech.spacetraders.entity.SolarSystem;
 import edu.gatech.spacetraders.entity.Universe;
 
 public class GameData implements Serializable {
+    @Nullable
     private Player player;
+    @Nullable
     private SolarSystem currentSolarSystem;
+    @Nullable
     private Universe universe;
 
     public GameData() {

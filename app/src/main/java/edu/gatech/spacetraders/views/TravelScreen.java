@@ -26,20 +26,18 @@ import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
 public class TravelScreen extends AppCompatActivity {
 
-    Button travelButton;
-    Button backButton;
-    EditText planetCode;
-    TravelRecyclerViewAdapter adapter;
-    TextView currentPlanet;
-    TextView currentFuel;
+    private EditText planetCode;
+    private TravelRecyclerViewAdapter adapter;
+    private TextView currentPlanet;
+    private TextView currentFuel;
 
-    GameData gameData = GameDataInstanceGetter.getGameData();
+    private GameData gameData = GameDataInstanceGetter.getGameData();
 
-    Player player = gameData.getPlayer();
-    SolarSystem currSS = gameData.getCurrentSolarSystem();
+    private final Player player = gameData.getPlayer();
+    private final SolarSystem currSS = gameData.getCurrentSolarSystem();
     int techLevel = gameData.getCurrentSolarSystem().getTechLvl();
-    Ship ship = player.getShip();
-    Travel travel = new Travel(gameData);
+    private final Ship ship = player.getShip();
+    private Travel travel = new Travel(gameData);
     private List<String> recycleViewList = travel.getInRangeList();
 
     @Override
@@ -52,8 +50,8 @@ public class TravelScreen extends AppCompatActivity {
         setContentView(R.layout.activity_travel);
         System.out.println(gameData.getPlayer().getShip().getCargoHold().get(Good.WATER));
 
-        travelButton = findViewById(R.id.travel_button);
-        backButton = findViewById(R.id.travelback_button);
+        Button travelButton = findViewById(R.id.travel_button);
+        Button backButton = findViewById(R.id.travelback_button);
         planetCode = findViewById(R.id.travel_position);
         currentPlanet = findViewById(R.id.currentplanetstats);
         currentFuel = findViewById(R.id.current_fuellevel);
@@ -79,11 +77,12 @@ public class TravelScreen extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         //needs to update current planet and replace recyclerview index with the planet left
         travelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
                 System.out.println(gameData.getCurrentSolarSystem());
                 System.out.println(gameData.getCurrentSolarSystem().getMarket());
                 int tcode = Integer.valueOf(planetCode.getText().toString());
-                if (tcode >= 0 && tcode < travel.getInRangeList().size()) {
+                if ((tcode >= 0) && (tcode < travel.getInRangeList().size())) {
                     gameData = travel.travel(tcode);
                     travel = new Travel(gameData);
                     recycleViewList = travel.getInRangeList();
@@ -94,27 +93,30 @@ public class TravelScreen extends AppCompatActivity {
                     //TextView currentFuel = (TextView) findViewById(R.id.current_fuellevel);
                     //TextView currentPlanet = (TextView) findViewById(R.id.currentplanetstats);
                     currentPlanet.setText(gameData.getCurrentSolarSystem().toString());
-                    currentFuel.setText("Current Fuel: " + gameData.getPlayer().getShip().getCurFuel());
+                    currentFuel.setText("Current Fuel: "
+                            + gameData.getPlayer().getShip().getCurFuel());
                     int currTechLvl = currSS.getTechLvl();
                     currSS.setMarket(new Market(currTechLvl, player, player.getShip()));
                     gameData.setCurrentSolarSystem(currSS);
                     String display = travel.randomEvent();
                     Toast.makeText(TravelScreen.this, display, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(TravelScreen.this, "Please select a valid planet.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TravelScreen.this, "Please select a valid planet.",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
                 openChoiceScreen();
             }
         });
     }
 
-    public void openChoiceScreen() {
+    private void openChoiceScreen() {
         Intent intent = new Intent(this, ChoiceScreen.class);
         startActivity(intent);
     }

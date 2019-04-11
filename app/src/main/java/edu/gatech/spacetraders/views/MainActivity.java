@@ -31,32 +31,30 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private int randomWithRange(int min, int max)
+    private int randomWithRange()
     {
-        int range = (max - min) + 1;
-        return (int)(Math.random() * range) + min;
+        int range = (9 - 0) + 1;
+        return (int)(Math.random() * range) + 0;
     }
 
-    String nameStr;
-    Difficulty diffSpinText;
-    int pil;
-    int fight;
-    int trade;
-    int engr;
-    GameData gameData;
-    GameDataInstanceGetter gameDataInstanceGetter = new GameDataInstanceGetter();
+    private String nameStr;
+    private Difficulty diffSpinText;
+    private int pil;
+    private int fight;
+    private int trade;
+    private int engr;
+    private GameData gameData;
+    private final GameDataInstanceGetter gameDataInstanceGetter = new GameDataInstanceGetter();
 
-    EditText playerName;
-    EditText pilotSkill;
-    EditText fighterSkill;
-    EditText traderSkill;
-    EditText engrSkill;
+    private EditText playerName;
+    private EditText pilotSkill;
+    private EditText fighterSkill;
+    private EditText traderSkill;
+    private EditText engrSkill;
 
-    MediaPlayer space;
+    private MediaPlayer space;
 
-    Button createButton;
-    Button exitButton;
-    Spinner diffSpinner;
+    private Spinner diffSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,25 +68,27 @@ public class MainActivity extends AppCompatActivity {
 
         diffSpinner =  findViewById(R.id.difficulty_spinner);
         diffSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Difficulty.values()));
-        createButton =  findViewById(R.id.create_button);
-        exitButton = findViewById(R.id.exit_button);
+        Button createButton = findViewById(R.id.create_button);
+        Button exitButton = findViewById(R.id.exit_button);
 
         createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
-                if (playerName.getText().toString().equals("")) {
+                int LENGTHOFTHINGS = 16;
+                if ("".equals(playerName.getText().toString())) {
                     Toast.makeText(MainActivity.this, "Please enter a name.", Toast.LENGTH_SHORT).show();
                 } else if (!isAnInteger(pilotSkill.getText().toString())
                             || !isAnInteger(fighterSkill.getText().toString())
                             || !isAnInteger(traderSkill.getText().toString())
                             || !isAnInteger(engrSkill.getText().toString())) {
                     Toast.makeText(MainActivity.this, "Points must be non-negative integers.", Toast.LENGTH_SHORT).show();
-                } else if (Integer.valueOf(pilotSkill.getText().toString()) < 0
-                            || Integer.valueOf(fighterSkill.getText().toString()) < 0
-                            || Integer.valueOf(traderSkill.getText().toString()) < 0
-                            || Integer.valueOf(engrSkill.getText().toString()) < 0) {
+                } else if ((Integer.valueOf(pilotSkill.getText().toString()) < 0)
+                        || (Integer.valueOf(fighterSkill.getText().toString()) < 0)
+                        || (Integer.valueOf(traderSkill.getText().toString()) < 0)
+                        || (Integer.valueOf(engrSkill.getText().toString()) < 0)) {
                     Toast.makeText(MainActivity.this, "Points must be non-negative integers.", Toast.LENGTH_SHORT).show();
                 } else if (Integer.valueOf(pilotSkill.getText().toString()) + Integer.valueOf(fighterSkill.getText().toString())
-                        + Integer.valueOf(traderSkill.getText().toString()) + Integer.valueOf(engrSkill.getText().toString()) != 16) {
+                        + Integer.valueOf(traderSkill.getText().toString()) + Integer.valueOf(engrSkill.getText().toString()) != LENGTHOFTHINGS) {
                     Toast.makeText(MainActivity.this, "You must have a total of 16 skill points.", Toast.LENGTH_SHORT).show();
                 } else {
                     nameStr = playerName.getText().toString();
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                     gameData.setUniverse(universe);
                     System.out.println(universe.toString());
 
-                    SolarSystem startingSystem = universe.getSystems()[randomWithRange(0, 9)];
+                    SolarSystem startingSystem = universe.getSystems()[randomWithRange()];
                     gameData.setCurrentSolarSystem(startingSystem);
 
                     gameDataInstanceGetter.newGameData(gameData);
@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
                 finish();
                 System.exit(0);
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openChoiceScreen() {
+    private void openChoiceScreen() {
         Intent intent = new Intent(this, ChoiceScreen.class);
         startActivity(intent);
     }

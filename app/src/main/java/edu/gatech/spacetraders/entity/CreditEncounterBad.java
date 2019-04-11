@@ -1,12 +1,12 @@
 package edu.gatech.spacetraders.entity;
 
 public enum CreditEncounterBad {
-    PIRATE("A pirate stole your booty, and you lost : ");
+    PIRATE();
 
     private final String st;
 
-    CreditEncounterBad (String str) {
-        this.st = str;
+    CreditEncounterBad() {
+        this.st = "A pirate stole your booty, and you lost : ";
     }
 
     public String getSt() {

@@ -1,22 +1,24 @@
 package edu.gatech.spacetraders.entity;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 
 import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
 public class Market implements Serializable {
-    private int techLevel;
+    private final int techLevel;
     //use an enum map to track prices and amount in stock of each good
-    private EnumMap<Good, Integer> prices = new EnumMap<>(Good.class);
-    private EnumMap<Good, Integer> inventory = new EnumMap<>(Good.class);
-    private Player player;
-    private Ship ship;
+    private final EnumMap<Good, Integer> prices = new EnumMap<>(Good.class);
+    private final EnumMap<Good, Integer> inventory = new EnumMap<>(Good.class);
+    private final Player player;
+    private final Ship ship;
     private List<String> recycleViewList = new ArrayList<>(10);
-    private List<Good> goods = new ArrayList<>(10);
+    private final List<Good> goods = new ArrayList<>(10);
     GameData gameData = GameDataInstanceGetter.getGameData();
 
 
@@ -47,7 +49,7 @@ public class Market implements Serializable {
      * @return the price
      */
     private int calculatePrice(int techLevel, Good good) {
-        return good.base() + good.var() + good.ipl() * ( techLevel - good.mtlp() );
+        return good.base() + good.var() + (good.ipl() * (techLevel - good.mtlp()));
     }
 
     /**
@@ -58,7 +60,7 @@ public class Market implements Serializable {
      * @return the amount
      */
     private int calculateAmount(int techLevel, Good good) {
-        int amt = 10 * ( techLevel - good.mtlp() + 1 );
+        int amt = 10 * ((techLevel - good.mtlp()) + 1);
         if (amt < 0) {
             return 0;
         } else {
@@ -84,12 +86,12 @@ public class Market implements Serializable {
      * @param amount the amount of the good we want to buy
      * @return if we can buy it or not
      */
-    public boolean canBuy(int position, int amount) {
+    private boolean canBuy(int position, int amount) {
         Good good = Good.values()[position];
         if (this.techLevel < good.mtlu()) {
             System.out.println("This planet cannot produce this good.");
             return false;
-        } else if (player.getCredits() < prices.get(good) * amount) {
+        } else if (player.getCredits() < (prices.get(good) * amount)) {
             System.out.println("You don't have enough credits to buy this item.");
             return false;
         } else if (ship.getCargoSpace() == 0) {
@@ -106,11 +108,11 @@ public class Market implements Serializable {
         buy(position, 1);
     }
 
-    public int getInventory(Good good) {
+    private int getInventory(Good good) {
         return inventory.get(good);
     }
 
-    public void buy(int position, int amount) {
+    private void buy(int position, int amount) {
         Good good = Good.values()[position];
         inventory.put(good, getInventory(good) - amount);
         ship.setCurCargo(ship.getCurCargo() + amount);
@@ -120,7 +122,7 @@ public class Market implements Serializable {
         return updatePlayer(position, 1);
     }
 
-    public Player updatePlayer(int position, int amount) {
+    private Player updatePlayer(int position, int amount) {
         Good good = Good.values()[position];
         player.upCargo(position, amount);
         player.downCredits(prices, position, amount);
@@ -132,7 +134,7 @@ public class Market implements Serializable {
         inventory.put(good, getInventory(good) + amount);
     }
 
-    public String toString(Good good) {
+    private String toString(Good good) {
         String returnString = "";
         returnString += String.format("%1$11s", good.toString());
         returnString += String.format("%1$5s", "$" + getPrice(good));
@@ -140,7 +142,7 @@ public class Market implements Serializable {
         return returnString;
     }
 
-    public void makeList() {
+    private void makeList() {
         int i = 0;
         for (Good good: Good.values()) {
             recycleViewList.add(i + " " + toString(good));
@@ -159,11 +161,11 @@ public class Market implements Serializable {
     }
 
     public List<Good> getGoods() {
-        return goods;
+        return Collections.unmodifiableList(goods);
     }
 
     public List<String> getList() {
-        return recycleViewList;
+        return Collections.unmodifiableList(recycleViewList);
     }
 
     public EnumMap<Good, Integer> getPrices() { return prices; }

@@ -21,16 +21,13 @@ import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
 public class Trade extends AppCompatActivity {
 
-    Button buyButton;
-    Button sellButton;
-    Button backButton;
-    EditText buyCode;
-    MarketplaceRecyclerViewAdapter adapter;
+    private EditText buyCode;
+    private MarketplaceRecyclerViewAdapter adapter;
 
-    GameData gameData = GameDataInstanceGetter.getGameData();
+    private GameData gameData = GameDataInstanceGetter.getGameData();
 
-    Player player = gameData.getPlayer();
-    SolarSystem currSS = gameData.getCurrentSolarSystem();
+    private final Player player = gameData.getPlayer();
+    private final SolarSystem currSS = gameData.getCurrentSolarSystem();
     Ship ship = player.getShip();
 
 
@@ -41,9 +38,9 @@ public class Trade extends AppCompatActivity {
 
         gameData = GameDataInstanceGetter.getGameData();
 
-        buyButton = findViewById(R.id.mktbuy_button);
-        sellButton = findViewById(R.id.mktsell_button);
-        backButton = findViewById(R.id.mktback_button);
+        Button buyButton = findViewById(R.id.mktbuy_button);
+        Button sellButton = findViewById(R.id.mktsell_button);
+        Button backButton = findViewById(R.id.mktback_button);
         buyCode =  findViewById(R.id.mktplace_position);
         final RecyclerView recyclerView = findViewById(R.id.mktgoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -54,6 +51,7 @@ public class Trade extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         buyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
                 int bCode;
                 bCode = Integer.valueOf(buyCode.getText().toString());
@@ -77,6 +75,7 @@ public class Trade extends AppCompatActivity {
         });
 
         sellButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
                 openCargoScreen();
                 adapter.notifyDataSetChanged();
@@ -84,6 +83,7 @@ public class Trade extends AppCompatActivity {
         });
 
         backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
 
                 openChoiceScreen();
@@ -91,12 +91,12 @@ public class Trade extends AppCompatActivity {
         });
     }
 
-    public void openChoiceScreen() {
+    private void openChoiceScreen() {
         Intent intent = new Intent(this, ChoiceScreen.class);
         startActivity(intent);
     }
 
-    public void openCargoScreen() {
+    private void openCargoScreen() {
         adapter.notifyDataSetChanged();
         Intent intent = new Intent(this, CargoScreen.class);
         startActivity(intent);

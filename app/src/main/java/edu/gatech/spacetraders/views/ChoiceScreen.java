@@ -14,12 +14,7 @@ import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
 public class ChoiceScreen extends AppCompatActivity {
 
-    Button tradeButton;
-    Button travelButton;
-    Button save;
-    Button newGame;
-    Button loadGame;
-
+    @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -30,24 +25,27 @@ public class ChoiceScreen extends AppCompatActivity {
         setContentView(R.layout.activity_choicescreen);
 
 
-        tradeButton =  findViewById(R.id.trade_button);
-        travelButton = findViewById(R.id.travel_button);
-        save = findViewById(R.id.save);
-        newGame = findViewById(R.id.newGame);
-        loadGame = findViewById(R.id.loadGame);
+        Button tradeButton = findViewById(R.id.trade_button);
+        Button travelButton = findViewById(R.id.travel_button);
+        Button save = findViewById(R.id.save);
+        Button newGame = findViewById(R.id.newGame);
+        Button loadGame = findViewById(R.id.loadGame);
 
         tradeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
                 openTradeScreen();
             }
         });
 
         travelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
                 openTravelScreen();
             }
         });
         save.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
                 File file = new File(getFilesDir(), "data2.bin");
                 try{
@@ -60,6 +58,7 @@ public class ChoiceScreen extends AppCompatActivity {
             }
         });
         loadGame.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
                 File file = new File(getFilesDir(), "data2.bin");
                 if(file.exists()) {
@@ -68,6 +67,7 @@ public class ChoiceScreen extends AppCompatActivity {
             }
         });
         newGame.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
 //                File file = new File(getFilesDir(), "data3.bin");
 //                try{
@@ -81,15 +81,15 @@ public class ChoiceScreen extends AppCompatActivity {
             }
         });
     }
-    public void openTradeScreen() {
+    private void openTradeScreen() {
         Intent intent = new Intent(this, Trade.class);
         startActivity(intent);
     }
-    public void openTravelScreen() {
+    private void openTravelScreen() {
         Intent intent = new Intent(this, TravelScreen.class);
         startActivity(intent);
     }
-    public void openMainScreen() {
+    private void openMainScreen() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

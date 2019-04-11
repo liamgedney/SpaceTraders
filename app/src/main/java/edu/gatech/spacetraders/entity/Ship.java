@@ -2,36 +2,35 @@ package edu.gatech.spacetraders.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
-
-import static edu.gatech.spacetraders.entity.ShipType.*;
+import java.util.Map;
 
 public class Ship implements Serializable {
     private final int NUM_GOODS = 10;
-    private int maxFuel;
     private int curFuel;
-    private int maxCargo;
+    private final int maxCargo;
     private int curCargo; //current total cargo space occupied
     private EnumMap<Good, Integer> cargoHold = new EnumMap<>(Good.class); //keeps track of # of each item
-    private List<String> recycleViewList = new ArrayList<>(10);
+    private final List<String> recycleViewList = new ArrayList<>(10);
 
     public Ship() {
-        this(GNAT);
+        this(null);
     }
 
-    public Ship(ShipType type) {
-        this(GNAT, null);
+    public Ship(int maxCargo) {
+        this.maxCargo = maxCargo;
     }
 
-    public Ship(ShipType type, EnumMap<Good, Integer> cargoHold) {
+    private Ship(EnumMap<Good, Integer> cargoHold) {
         if (cargoHold == null) {
             populateCargoSpace();
         } else {
             this.cargoHold = cargoHold;
         }
-        this.maxFuel = type.fuel();
-        this.maxCargo = type.cargo();
+        int maxFuel = ShipType.GNAT.fuel();
+        this.maxCargo = ShipType.GNAT.cargo();
         this.curFuel = maxFuel;
         this.curCargo = 0;
     }
@@ -41,14 +40,10 @@ public class Ship implements Serializable {
     }
 
     public boolean cantHoldMore() {
-        if (curCargo >= maxCargo) {
-            return true;
-        } else {
-            return false;
-        }
+        return curCargo >= maxCargo;
     }
 
-    public void populateCargoSpace() {
+    private void populateCargoSpace() {
         for (Good good : Good.values()) {
             cargoHold.put(good, 0);
         }

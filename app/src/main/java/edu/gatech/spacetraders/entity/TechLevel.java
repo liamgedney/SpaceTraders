@@ -2,7 +2,7 @@ package edu.gatech.spacetraders.entity;
 import java.io.Serializable;
 import java.util.Random;
 
-public enum TechLevel implements Serializable{
+public enum TechLevel {
     PREAGRIGCULTURE ("Pre-Agriculture"),
     AGRICULTURE     ("Agriculture"),
     MEDIEVAL        ("Medieval"),

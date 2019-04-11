@@ -25,30 +25,25 @@ import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
 public class CargoScreen extends AppCompatActivity {
 
-    Button buyButton;
-    Button sellButton;
-    Button backButton;
-    EditText buyCode;
-    CargoRecyclerViewAdapter adapter;
+    private EditText buyCode;
+    private CargoRecyclerViewAdapter adapter;
 
-    GameData gameData = GameDataInstanceGetter.getGameData();
+    private final GameData gameData = GameDataInstanceGetter.getGameData();
 
-    Player player = gameData.getPlayer();
-    SolarSystem currSS = gameData.getCurrentSolarSystem();
+    private final Player player = gameData.getPlayer();
+    private final SolarSystem currSS = gameData.getCurrentSolarSystem();
     Ship ship = player.getShip();
-
-    private List<String> recycleViewList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        recycleViewList = player.makeList(currSS.getMarket());
+        List<String> recycleViewList = player.makeList(currSS.getMarket());
         setContentView(R.layout.activity_cargo);
         System.out.println(gameData.getPlayer().getShip().getCargoHold().get(Good.WATER));
 
-        buyButton = findViewById(R.id.cargobuy_button);
-        sellButton = findViewById(R.id.cargosell_button);
-        backButton = findViewById(R.id.cargoback_button);
+        Button buyButton = findViewById(R.id.cargobuy_button);
+        Button sellButton = findViewById(R.id.cargosell_button);
+        Button backButton = findViewById(R.id.cargoback_button);
         buyCode = findViewById(R.id.cargo_position);
         final RecyclerView recyclerView = findViewById(R.id.cargogoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -65,6 +60,7 @@ public class CargoScreen extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         buyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
                 adapter.notifyDataSetChanged();
                 openTradeScreen();
@@ -73,6 +69,7 @@ public class CargoScreen extends AppCompatActivity {
         });
 
         sellButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
                 int bCode = Integer.valueOf(buyCode.getText().toString());
                 Market market = currSS.getMarket();
@@ -98,6 +95,7 @@ public class CargoScreen extends AppCompatActivity {
         });
 
         backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View activity_main) {
 
                 openChoiceScreen();
@@ -105,12 +103,12 @@ public class CargoScreen extends AppCompatActivity {
         });
     }
 
-    public void openChoiceScreen() {
+    private void openChoiceScreen() {
         Intent intent = new Intent(this, ChoiceScreen.class);
         startActivity(intent);
     }
 
-    public void openTradeScreen() {
+    private void openTradeScreen() {
         adapter.notifyDataSetChanged();
         Intent intent = new Intent(this, Trade.class);
         startActivity(intent);
