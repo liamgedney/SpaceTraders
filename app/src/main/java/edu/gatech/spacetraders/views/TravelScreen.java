@@ -25,6 +25,9 @@ import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
 
+/**
+ * Screen for traveling
+ */
 public class TravelScreen extends AppCompatActivity {
 
     private EditText planetCode;

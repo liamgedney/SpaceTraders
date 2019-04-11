@@ -8,13 +8,16 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Random;
 
-//this class takes in list of planets already created from universe,
-// takes in ship for fuel and location
-//takes in Player
-//methods are calculatePlanetsInRange (also updates list for recyclerview),
-//method to decrement fuel and update location
-//method to  update current planet info(stringbuilder)
-//method for random encounters(two types: affect cargo and affect credits(maybe change ship))
+/**
+ * Travel class
+ * this class takes in list of planets already created from universe,
+ * takes in ship for fuel and location
+ * takes in Player
+ * methods are calculatePlanetsInRange (also updates list for recyclerview),
+ * method to decrement fuel and update location
+ * method to  update current planet info(stringbuilder)
+ * method for random encounters(two types: affect cargo and affect credits(maybe change ship))
+ */
 public class Travel implements Serializable{
     private final GameData gameData;
     private final SolarSystem currSS;
@@ -23,6 +26,10 @@ public class Travel implements Serializable{
     private final Ship myShip;
     private final Player player;
 
+    /**
+     * Constructor method
+     * @param gameData current game's data
+     */
     public Travel(GameData gameData) {
         this.gameData = gameData;
         currSS = gameData.getCurrentSolarSystem();
@@ -33,6 +40,10 @@ public class Travel implements Serializable{
 
     }
 
+    /**
+     * Returns list of planets in range
+     * @return list of planets in range
+     */
     public List<String> getInRangeList() {
         List<String> stringList = new ArrayList<>(systemsArray.length);
         SolarSystem[] inRange = calculatePlanetsInRange();
@@ -44,6 +55,11 @@ public class Travel implements Serializable{
         return stringList;
     }
 
+    /**
+     * The method called when traveling
+     * @param i the index of the planet in range selected
+     * @return the data of the game
+     */
     public GameData travel(int i) {
         SolarSystem newSS = calculatePlanetsInRange()[i];
         double range = Math.sqrt((Math.pow(newSS.getCoordinates().x - currCoord.x, 2)
@@ -55,6 +71,10 @@ public class Travel implements Serializable{
         return gameData;
     }
 
+    /**
+     * Creates a random event
+     * @return string message of random event occurence
+     */
     public String randomEvent() {
         int RANDOMNUM = 11;
         Random random = new Random();
@@ -148,6 +168,10 @@ public class Travel implements Serializable{
         return display;
     }
 
+    /**
+     * Calculates what planets are in range
+     * @return array of solar systems in range
+     */
     private SolarSystem[] calculatePlanetsInRange() {
         int numInRange = 0;
         for (SolarSystem system: systemsArray) {
@@ -167,7 +191,11 @@ public class Travel implements Serializable{
     }
 
 
-
+    /**
+     * Deteremines whether a planet is in range
+     * @param system the planet being looked at
+     * @return boolean value of whether a planet is in range
+     */
     private boolean isInRange(SolarSystem system) {
         int CURFUELNUM = 13;
         double range = Math.sqrt((Math.pow(system.getCoordinates().x - currCoord.x, 2)

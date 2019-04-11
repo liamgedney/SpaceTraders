@@ -19,6 +19,9 @@ import edu.gatech.spacetraders.entity.SolarSystem;
 import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
+/**
+ * Screen for trading
+ */
 public class Trade extends AppCompatActivity {
 
     private EditText buyCode;

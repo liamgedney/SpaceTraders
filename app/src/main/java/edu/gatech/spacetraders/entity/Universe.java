@@ -8,16 +8,29 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Universe Class
+ */
 public class Universe implements Serializable{
     private static final int NUM_SYSTEMS = 10;
     private final SolarSystem[] systems = new SolarSystem[NUM_SYSTEMS];
 
+    /**
+     * calculates a random number within a range
+     * @param max The max value
+     * @return the random vaue within range
+     */
     private int randomWithRange(int max)
     {
         int range = (max) + 1;
         return (int) (Math.random() * range);
     }
 
+    /**
+     * Instantiates the Universe
+     * @param player The player
+     * @param ship The ship
+     */
     public Universe(Player player, Ship ship) {
         // Many of these names are from Star Trek: The Next Generation, or are small changes
         // to names of this series. A few have different origins.
@@ -221,6 +234,10 @@ public class Universe implements Serializable{
     }
 
     @NonNull
+    /**
+     * Builds string
+     * For debugging
+     */
     public String toString() {
         StringBuilder answer = new StringBuilder();
         answer.append("UNIVERSE: \n");
@@ -232,6 +249,10 @@ public class Universe implements Serializable{
         return answer.toString();
     }
 
+    /**
+     * Returns all systems
+     * @return array of systems
+     */
     public SolarSystem[] getSystems() {
         return systems.clone();
     }
