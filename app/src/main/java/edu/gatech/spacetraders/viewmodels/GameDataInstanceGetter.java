@@ -69,6 +69,7 @@ public class GameDataInstanceGetter {
         try {
             GameData sm = getGameData();
             Player player = gameData.getPlayer();
+            assert player != null;
             Ship ship = player.getShip();
             AbstractMap<Good, Integer> map = ship.getCargoHold();
             Log.e("credits", String.valueOf(player.getCredits()));

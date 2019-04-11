@@ -120,5 +120,4 @@ public class CargoScreen extends AppCompatActivity {
         Intent intent = new Intent(this, Trade.class);
         startActivity(intent);
     }
-
 }
