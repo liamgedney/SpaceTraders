@@ -65,12 +65,13 @@ public class Trade extends AppCompatActivity {
                     adapter.setList(market.getList());
                     recyclerView.setAdapter(adapter);
                 }
-                System.out.println("CURCARGO: " + gameData.getPlayer().getShip().getCurCargo());
-                System.out.println("MAXCARGO: " + gameData.getPlayer().getShip().getMaxCargo());
-                System.out.println("CURRENT CREDITS: " + gameData.getPlayer().getCredits());
-                for (String s: market.getList()) {
-                    System.out.println(s);
-                }
+                //                                                                         DEBUGGING
+//                System.out.println("CURCARGO: " + gameData.getPlayer().getShip().getCurCargo());
+//                System.out.println("MAXCARGO: " + gameData.getPlayer().getShip().getMaxCargo());
+//                System.out.println("CURRENT CREDITS: " + gameData.getPlayer().getCredits());
+//                for (String s: market.getList()) {
+//                    System.out.println(s);
+//                }
             }
         });
 
