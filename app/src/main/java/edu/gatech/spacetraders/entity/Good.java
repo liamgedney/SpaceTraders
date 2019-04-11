@@ -2,6 +2,9 @@ package edu.gatech.spacetraders.entity;
 
 import java.util.Random;
 
+/**
+ * enum for goods
+ */
 public enum Good {
     //good      base    var     ipl     mtlp    mtlu
     WATER       (30,    4,      3,      0,      0),
@@ -29,12 +32,37 @@ public enum Good {
         this.mtlp = mtlp;
         this.mtlu = mtlu;
     }
+
+    /**
+     * getter for base
+     * @return int the base
+     */
     public int base() { return base; }
+
+    /**
+     * getter for var
+     * @return int the var
+     */
     public int var() {
         int coin = (rand.nextInt(2) * 2) - 1;
         return rand.nextInt(var) * coin;
     }
+
+    /**
+     * getter for ipl
+     * @return int ipl
+     */
     public int ipl() { return ipl; }
+
+    /**
+     * getter for mtlp
+     * @return int mtlp
+     */
     public int mtlp() { return mtlp; }
+
+    /**
+     * getter mtlu
+     * @return mtlu
+     */
     public int mtlu() { return mtlu; }
 }
