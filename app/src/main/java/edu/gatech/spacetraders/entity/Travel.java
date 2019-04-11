@@ -20,6 +20,7 @@ import java.util.Random;
  */
 public class Travel implements Serializable{
     private final GameData gameData;
+    private final SolarSystem currSS;
     private final SolarSystem[] systemsArray;
     private final Point2 currCoord;
     private final Ship myShip;
@@ -31,7 +32,7 @@ public class Travel implements Serializable{
      */
     public Travel(GameData gameData) {
         this.gameData = gameData;
-        SolarSystem currSS = gameData.getCurrentSolarSystem();
+        currSS = gameData.getCurrentSolarSystem();
         systemsArray = gameData.getUniverse().getSystems();
         currCoord = gameData.getCurrentSolarSystem().getCoordinates();
         myShip = gameData.getPlayer().getShip();
@@ -46,8 +47,8 @@ public class Travel implements Serializable{
     public List<String> getInRangeList() {
         List<String> stringList = new ArrayList<>(systemsArray.length);
         SolarSystem[] inRange = calculatePlanetsInRange();
-        //double range = Math.sqrt((Math.pow(currSS.getCoordinates().x - currCoord.x, 2)
-         //       + Math.pow(currSS.getCoordinates().y - currCoord.y, 2)));
+        double range = Math.sqrt((Math.pow(currSS.getCoordinates().x - currCoord.x, 2)
+                + Math.pow(currSS.getCoordinates().y - currCoord.y, 2)));
         for (int i = 0; i < inRange.length; i++) {
             stringList.add("Travel Code: " + i + " --> " + inRange[i].toString());
         }

@@ -79,14 +79,6 @@ public class Market implements Serializable {
         return prices.get(good);
     }
 
-    /**
-     * can we buy
-     * @param position good
-     * @return boolean can we
-     */
-    public boolean canBuy(int position) {
-        return canBuy(position, 1);
-    }
 
     /**
      * helper method determines if the player has enough money and space to
@@ -94,21 +86,20 @@ public class Market implements Serializable {
      * amount of the given good.
      *
      * @param position the good to check
-     * @param amount the amount of the good we want to buy
      * @return if we can buy it or not
      */
-    private boolean canBuy(int position, int amount) {
+    public boolean canBuy(int position) {
         Good good = Good.values()[position];
         if (this.techLevel < good.mtlu()) {
             Log.d("","This planet cannot produce this good.");
             return false;
-        } else if (player.getCredits() < (prices.get(good) * amount)) {
+        } else if (player.getCredits() < (prices.get(good))) {
             Log.d("","You don't have enough credits to buy this item.");
             return false;
         } else if (ship.getCargoSpace() == 0) {
             Log.d("","You don't have enough cargo space.");
             return false;
-        } else if (inventory.get(good) < amount) {
+        } else if (inventory.get(good) < 1) {
             Log.d("","This shop is all out of this good");
             return false;
         }
