@@ -109,17 +109,13 @@ public class Market implements Serializable {
     }
 
     public void buy(int position) {
-        buy(position, 1);
+        Good good = Good.values()[position];
+        inventory.put(good, getInventory(good) - 1);
+        ship.setCurCargo(ship.getCurCargo() + 1);
     }
 
     private int getInventory(Good good) {
         return inventory.get(good);
-    }
-
-    private void buy(int position, int amount) {
-        Good good = Good.values()[position];
-        inventory.put(good, getInventory(good) - amount);
-        ship.setCurCargo(ship.getCurCargo() + amount);
     }
 
     public Player updatePlayer(int position) {
