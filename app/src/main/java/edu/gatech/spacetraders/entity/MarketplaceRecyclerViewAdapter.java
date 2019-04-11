@@ -84,7 +84,7 @@ public class MarketplaceRecyclerViewAdapter extends
 
     /**
      * gets item
-     * @param id
+     * @param id id
      * @return String of id
      */
     public String getItem(int id) {

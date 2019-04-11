@@ -73,10 +73,20 @@ public class Market implements Serializable {
     }
 
 
+    /**
+     * gets price
+     * @param good good
+     * @return int good
+     */
     public int getPrice(Good good) {
         return prices.get(good);
     }
 
+    /**
+     * can we buy
+     * @param position good
+     * @return boolean can we
+     */
     public boolean canBuy(int position) {
         return canBuy(position, 1);
     }
@@ -108,6 +118,10 @@ public class Market implements Serializable {
         return true;
     }
 
+    /**
+     * buy it
+     * @param position good
+     */
     public void buy(int position) {
         Good good = Good.values()[position];
         inventory.put(good, getInventory(good) - 1);
@@ -118,10 +132,21 @@ public class Market implements Serializable {
         return inventory.get(good);
     }
 
+    /**
+     * update player
+     * @param position with good
+     * @return Player
+     */
     public Player updatePlayer(int position) {
         return updatePlayer(position, 1);
     }
 
+    /**
+     * update the player
+     * @param position good
+     * @param amount amount
+     * @return Player player
+     */
     private Player updatePlayer(int position, int amount) {
         Good good = Good.values()[position];
         player.upCargo(position, amount);
@@ -129,6 +154,11 @@ public class Market implements Serializable {
         return player;
     }
 
+    /**
+     * increase inventory
+     * @param position good
+     * @param amount money
+     */
     public void upInventory(int position, int amount) {
         Good good = Good.values()[position];
         inventory.put(good, getInventory(good) + amount);
@@ -172,12 +202,16 @@ public class Market implements Serializable {
     }
 
     /**
-     *
-     * @return
+     * getter for list
+     * @return List<String>
      */
     public List<String> getList() {
         return recycleViewList;
     }
 
+    /**
+     * get prices
+     * @return EnumMap<Good, Integer>
+     */
     public EnumMap<Good, Integer> getPrices() { return prices; }
 }
