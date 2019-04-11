@@ -104,7 +104,8 @@ public class TravelScreen extends AppCompatActivity {
                     currentFuel.setText("Current Fuel: "
                             + Objects.requireNonNull(gameData.getPlayer()).getShip().getCurFuel());
                     int currTechLvl = currSS.getTechLvl();
-                    currSS.setMarket(new Market(currTechLvl, player, Objects.requireNonNull(player).getShip()));
+                    currSS.setMarket(new Market(currTechLvl, player,
+                            Objects.requireNonNull(player).getShip()));
                     gameData.setCurrentSolarSystem(currSS);
                     String display = travel.randomEvent();
                     Toast.makeText(TravelScreen.this, display, Toast.LENGTH_SHORT).show();
