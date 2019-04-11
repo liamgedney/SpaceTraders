@@ -66,7 +66,6 @@ public class GameDataInstanceGetter {
      * @param file on android
      */
     public static void saveBinary(File file) {
-        boolean success = true;
         try {
             GameData sm = GameDataInstanceGetter.getGameData();
             Log.e("credits", String.valueOf(gameData.getPlayer().getCredits()));
@@ -79,7 +78,6 @@ public class GameDataInstanceGetter {
             out.close();
         } catch (IOException e){
             Log.e("Save", "Error writing an entry from binary file", e);
-            success = false;
         }
     }
 

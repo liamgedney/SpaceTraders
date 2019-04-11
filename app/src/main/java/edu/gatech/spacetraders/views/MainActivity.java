@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private int randomWithRange()
     {
-        int range = (9 - 0) + 1;
-        return (int)(Math.random() * range) + 0;
+        int range = (9) + 1;
+        return (int) (Math.random() * range);
     }
 
     private String nameStr;
@@ -117,8 +117,12 @@ public class MainActivity extends AppCompatActivity {
                     diffSpinText = (Difficulty) diffSpinner.getSelectedItem();
 
                     gameData = new GameData();
-
-                    Player player = new Player(nameStr, pil, fight, trade, engr, diffSpinText);
+                    int[] pointsArr = new int[4];
+                    pointsArr[0] = pil;
+                    pointsArr[1] = fight;
+                    pointsArr[2] = trade;
+                    pointsArr[3] = engr;
+                    Player player = new Player(nameStr, pointsArr, diffSpinText);
                     gameData.setPlayer(player);
                     //                                                                     DEBUGGING
 //                    System.out.println(player);
