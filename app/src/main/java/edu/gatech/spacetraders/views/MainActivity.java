@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -83,37 +84,43 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View activity_main) {
                 int LENGTHOFTHINGS = 16;
-                if ("".equals(playerName.getText().toString())) {
+                Editable txt = playerName.getText();
+                Editable ptxt = pilotSkill.getText();
+                Editable ftxt = fighterSkill.getText();
+                Editable ttxt = traderSkill.getText();
+                Editable etxt = engrSkill.getText();
+
+                if ("".equals(txt.toString())) {
                     Toast.makeText(MainActivity.this, "Please enter a name.",
                             Toast.LENGTH_SHORT).show();
-                } else if (isNotInteger(pilotSkill.getText().toString())
-                            || isNotInteger(fighterSkill.getText().toString())
-                            || isNotInteger(traderSkill.getText().toString())
-                            || isNotInteger(engrSkill.getText().toString())) {
+                } else if (isNotInteger(ptxt.toString())
+                            || isNotInteger(ftxt.toString())
+                            || isNotInteger(ttxt.toString())
+                            || isNotInteger(etxt.toString())) {
                     Toast.makeText(MainActivity.this,
                             "Points must be non-negative integers.",
                             Toast.LENGTH_SHORT).show();
-                } else if ((Integer.valueOf(pilotSkill.getText().toString()) < 0)
-                        || (Integer.valueOf(fighterSkill.getText().toString()) < 0)
-                        || (Integer.valueOf(traderSkill.getText().toString()) < 0)
-                        || (Integer.valueOf(engrSkill.getText().toString()) < 0)) {
+                } else if ((Integer.valueOf(ptxt.toString()) < 0)
+                        || (Integer.valueOf(ftxt.toString()) < 0)
+                        || (Integer.valueOf(ttxt.toString()) < 0)
+                        || (Integer.valueOf(etxt.toString()) < 0)) {
                     Toast.makeText(MainActivity.this,
                             "Points must be non-negative integers.",
                             Toast.LENGTH_SHORT).show();
-                } else if ((Integer.valueOf(pilotSkill.getText().toString())
-                        + Integer.valueOf(fighterSkill.getText().toString())
-                        + Integer.valueOf(traderSkill.getText().toString())
-                        + Integer.valueOf(engrSkill.getText().toString()))
+                } else if ((Integer.valueOf(ptxt.toString())
+                        + Integer.valueOf(ftxt.toString())
+                        + Integer.valueOf(ttxt.toString())
+                        + Integer.valueOf(etxt.toString()))
                         != LENGTHOFTHINGS) {
                     Toast.makeText(MainActivity.this,
                             "You must have a total of 16 skill points.",
                             Toast.LENGTH_SHORT).show();
                 } else {
                     nameStr = playerName.getText().toString();
-                    pil = Integer.valueOf(pilotSkill.getText().toString());
-                    fight = Integer.valueOf(fighterSkill.getText().toString());
-                    trade = Integer.valueOf(traderSkill.getText().toString());
-                    engr = Integer.valueOf(engrSkill.getText().toString());
+                    pil = Integer.valueOf(ptxt.toString());
+                    fight = Integer.valueOf(ftxt.toString());
+                    trade = Integer.valueOf(ttxt.toString());
+                    engr = Integer.valueOf(etxt.toString());
                     diffSpinText = (Difficulty) diffSpinner.getSelectedItem();
 
                     gameData = new GameData();

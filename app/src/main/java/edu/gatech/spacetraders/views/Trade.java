@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-import java.util.List;
-
 import edu.gatech.spacetraders.R;
 import edu.gatech.spacetraders.entity.Market;
 import edu.gatech.spacetraders.entity.MarketplaceRecyclerViewAdapter;

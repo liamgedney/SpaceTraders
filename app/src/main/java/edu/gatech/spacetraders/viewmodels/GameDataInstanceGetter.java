@@ -93,10 +93,12 @@ public class GameDataInstanceGetter {
         try {
             GameData sm = new GameData();
             setGameData(gameData);
-            Log.e("credits", String.valueOf(gameData.getPlayer().getCredits()));
+            Player player = gameData.getPlayer();
+            Ship ship = player.getShip();
+            EnumMap<Good, Integer> map = ship.getCargoHold();
+            Log.e("credits", String.valueOf(player.getCredits()));
             for (Good x : Good.values()) {
-                Log.e("ayylmao", x.toString() + String.valueOf(gameData.getPlayer()
-                        .getShip().getCargoHold().get(x)));
+                Log.e("ayylmao", x.toString() + String.valueOf(map.get(x)));
             }
             ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
             out.writeObject(sm);
