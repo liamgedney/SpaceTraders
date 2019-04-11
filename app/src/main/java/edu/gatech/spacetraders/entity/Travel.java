@@ -47,8 +47,8 @@ public class Travel implements Serializable{
     public List<String> getInRangeList() {
         List<String> stringList = new ArrayList<>(systemsArray.length);
         SolarSystem[] inRange = calculatePlanetsInRange();
-        double range = Math.sqrt((Math.pow(currSS.getCoordinates().x - currCoord.x, 2)
-                + Math.pow(currSS.getCoordinates().y - currCoord.y, 2)));
+        //double range = Math.sqrt((Math.pow(currSS.getCoordinates().x - currCoord.x, 2)
+        //        + Math.pow(currSS.getCoordinates().y - currCoord.y, 2)));
         for (int i = 0; i < inRange.length; i++) {
             stringList.add("Travel Code: " + i + " --> " + inRange[i].toString());
         }
@@ -62,10 +62,10 @@ public class Travel implements Serializable{
      */
     public GameData travel(int i) {
         SolarSystem newSS = calculatePlanetsInRange()[i];
-        double range = Math.sqrt((Math.pow(newSS.getCoordinates().x - currCoord.x, 2)
-                + Math.pow(newSS.getCoordinates().y - currCoord.y, 2)));
+        //double range = Math.sqrt((Math.pow(newSS.getCoordinates().x - currCoord.x, 2)
+        //        + Math.pow(newSS.getCoordinates().y - currCoord.y, 2)));
         gameData.setCurrentSolarSystem(newSS);
-        //myShip.setCurFuel((int) (myShip.getCurFuel() - range / 13));
+        myShip.setCurFuel((int) (myShip.getCurFuel() - range / 13));
         player.setShip(myShip);
         gameData.setPlayer(player);
         return gameData;
@@ -171,7 +171,7 @@ public class Travel implements Serializable{
         int addRem = random.nextInt(7);
         if (addRem == 0) {
             //good outcome
-            EnumMap<Good, Integer> cargoHold = (EnumMap<Good, Integer>) myShip.getCargoHold();
+            EnumMap<Good, Integer> cargoHold = myShip.getCargoHold();
             int currAmount = cargoHold.get(cargoUpdate);
             int amount = currAmount + random.nextInt(currAmount + 1) + 10;
             int total = (amount > myShip.getMaxCargo()) ? myShip.getMaxCargo() : amount;
@@ -181,7 +181,7 @@ public class Travel implements Serializable{
                     "this is not a good decision and gave you: " + total + " "
                     + cargoUpdate + "s <3";
         } else {
-            EnumMap<Good, Integer> cargoHold = (EnumMap<Good, Integer>) myShip.getCargoHold();
+            EnumMap<Good, Integer> cargoHold = myShip.getCargoHold();
             int currAmount = cargoHold.get(cargoUpdate);
             int amount = currAmount - random.nextInt(currAmount + 1) - 10;
             int total = (amount < 0) ? 0 : amount;

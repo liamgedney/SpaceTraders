@@ -72,15 +72,15 @@ public class TravelRecyclerViewAdapter extends RecyclerView.Adapter<edu.gatech.s
     }
 
     // convenience method for getting data at click position
-    String getItem(int id) {
+    /*String getItem(int id) {
         return mData.get(id);
-    }
+    }*/
 
     // allows clicks events to be caught
-    void setClickListener(edu.gatech.spacetraders.views.TravelRecyclerViewAdapter.ItemClickListener
+    /*void setClickListener(edu.gatech.spacetraders.views.TravelRecyclerViewAdapter.ItemClickListener
                                   itemClickListener) {
         this.mClickListener = itemClickListener;
-    }
+    }*/
 
     /**
      * setter for the list this adapter displays

@@ -14,12 +14,12 @@ import java.util.List;
  */
 public class Player implements Serializable{
 
-    private String playerName;
+    private final String playerName;
     private int pilotPoints;
     private int fighterPoints;
     private int traderPoints;
     private int engineerPoints;
-    private Difficulty difficulty;
+    private final Difficulty difficulty;
     private int credits;
     private Ship ship;
     private List<String> recycleViewList = new ArrayList<>(10);
@@ -44,9 +44,9 @@ public class Player implements Serializable{
         cargo = ship.getCargoHold();
     }
 
-    String getPlayerName() {
+    /*String getPlayerName() {
         return playerName;
-    }
+    }*/
 
     /**
      * pilot getter
@@ -84,9 +84,9 @@ public class Player implements Serializable{
      * difficulty getter
      * @return level
      */
-    public Difficulty getDifficulty() {
+    /*public Difficulty getDifficulty() {
         return difficulty;
-    }
+    }*/
 
     /**
      * credit getter
@@ -115,9 +115,9 @@ public class Player implements Serializable{
      * set name
      * @param playerName name
      */
-    public void setPlayerName(String playerName) {
+    /*public void setPlayerName(String playerName) {
         this.playerName = playerName;
-    }
+    }*/
 
     /**
      * set pilot points
@@ -155,9 +155,9 @@ public class Player implements Serializable{
      * sets difficulty
      * @param difficulty level
      */
-    public void setDifficulty(Difficulty difficulty) {
+    /*public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
-    }
+    }*/
 
     /**
      * sets credits
@@ -211,7 +211,6 @@ public class Player implements Serializable{
     /**
      * can we sell this much
      * @param position of good
-     * @param amount of good
      * @return boolean can sell
      */
     private boolean canSell(int position, int amount) {

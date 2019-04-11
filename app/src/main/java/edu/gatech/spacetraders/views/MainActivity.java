@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isNotInteger(String s) {
         try {
-            int num = Integer.parseInt(s);
+            //int num = Integer.parseInt(s);
             return false;
         } catch (NumberFormatException e) {
             return true;
@@ -155,20 +155,20 @@ public class MainActivity extends AppCompatActivity {
     /**
      * opens the Loading Screen
      */
-    public void openLoadingScreen() {
+    /*public void openLoadingScreen() {
         Intent intent = new Intent(this, Loading.class);
         startActivity(intent);
-    }
+    }*/
 
     private void openChoiceScreen() {
         Intent intent = new Intent(this, ChoiceScreen.class);
         startActivity(intent);
     }
 
-    /**
+   /* *//**
      * creates
      * @param view a view
-     */
+     *//*
     public void onCreate(View view) {
-    }
+    }*/
 }
