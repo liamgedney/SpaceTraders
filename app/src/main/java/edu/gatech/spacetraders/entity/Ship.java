@@ -115,7 +115,7 @@ public class Ship implements Serializable {
      * set the current fuel
      * @param curFuel number
      */
-    /*public void setCurFuel(int curFuel) {
+    public void setCurFuel(int curFuel) {
         this.curFuel = curFuel;
-    }*/
+    }
 }
