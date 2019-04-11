@@ -2,17 +2,15 @@ package edu.gatech.spacetraders.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 
 public class Ship implements Serializable {
     private final int NUM_GOODS = 10;
     private int curFuel;
     private final int maxCargo;
     private int curCargo; //current total cargo space occupied
-    private EnumMap<Good, Integer> cargoHold = new EnumMap<>(Good.class); //keeps track of # of each item
+    private EnumMap<Good, Integer> cargoHold = new EnumMap<>(Good.class); //keeps track of # item
     private final List<String> recycleViewList = new ArrayList<>(10);
 
     public Ship() {

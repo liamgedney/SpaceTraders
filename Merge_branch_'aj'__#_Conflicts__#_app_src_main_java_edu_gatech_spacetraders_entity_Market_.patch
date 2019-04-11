@@ -3,7 +3,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- app/src/main/java/edu/gatech/spacetraders/views/CargoScreen.java	(revision 1eaff612949b15db376c1ba9da63be31cdd69606)
+--- app/src/main/java/edu/gatech/spacetraders/views/CargoScreen.java
+(revision 1eaff612949b15db376c1ba9da63be31cdd69606)
 +++ app/src/main/java/edu/gatech/spacetraders/views/CargoScreen.java	(date 1553632357000)
 @@ -68,20 +68,22 @@
                  int bCode = Integer.valueOf(buyCode.getText().toString());
@@ -41,7 +42,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- app/src/main/java/edu/gatech/spacetraders/views/Trade.java	(revision 1eaff612949b15db376c1ba9da63be31cdd69606)
+--- app/src/main/java/edu/gatech/spacetraders/views/Trade.java
+(revision 1eaff612949b15db376c1ba9da63be31cdd69606)
 +++ app/src/main/java/edu/gatech/spacetraders/views/Trade.java	(date 1553632357000)
 @@ -54,13 +54,15 @@
                  int bCode;
@@ -71,7 +73,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- app/src/main/java/edu/gatech/spacetraders/entity/Player.java	(revision 1eaff612949b15db376c1ba9da63be31cdd69606)
+--- app/src/main/java/edu/gatech/spacetraders/entity/Player.java
+(revision 1eaff612949b15db376c1ba9da63be31cdd69606)
 +++ app/src/main/java/edu/gatech/spacetraders/entity/Player.java	(date 1553632357000)
 @@ -110,7 +110,12 @@
          this.ship = ship;
@@ -127,7 +130,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- app/src/main/java/edu/gatech/spacetraders/entity/Market.java	(revision 1eaff612949b15db376c1ba9da63be31cdd69606)
+--- app/src/main/java/edu/gatech/spacetraders/entity/Market.java
+(revision 1eaff612949b15db376c1ba9da63be31cdd69606)
 +++ app/src/main/java/edu/gatech/spacetraders/entity/Market.java	(date 1553632897000)
 @@ -67,23 +67,28 @@
          return prices.get(good);

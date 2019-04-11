@@ -67,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
         engrSkill = findViewById(R.id.engr_skill_input);
 
         diffSpinner =  findViewById(R.id.difficulty_spinner);
-        diffSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Difficulty.values()));
+        diffSpinner.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, Difficulty.values()));
         Button createButton = findViewById(R.id.create_button);
         Button exitButton = findViewById(R.id.exit_button);
 
@@ -76,20 +77,30 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View activity_main) {
                 int LENGTHOFTHINGS = 16;
                 if ("".equals(playerName.getText().toString())) {
-                    Toast.makeText(MainActivity.this, "Please enter a name.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Please enter a name.",
+                            Toast.LENGTH_SHORT).show();
                 } else if (!isAnInteger(pilotSkill.getText().toString())
                             || !isAnInteger(fighterSkill.getText().toString())
                             || !isAnInteger(traderSkill.getText().toString())
                             || !isAnInteger(engrSkill.getText().toString())) {
-                    Toast.makeText(MainActivity.this, "Points must be non-negative integers.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,
+                            "Points must be non-negative integers.",
+                            Toast.LENGTH_SHORT).show();
                 } else if ((Integer.valueOf(pilotSkill.getText().toString()) < 0)
                         || (Integer.valueOf(fighterSkill.getText().toString()) < 0)
                         || (Integer.valueOf(traderSkill.getText().toString()) < 0)
                         || (Integer.valueOf(engrSkill.getText().toString()) < 0)) {
-                    Toast.makeText(MainActivity.this, "Points must be non-negative integers.", Toast.LENGTH_SHORT).show();
-                } else if (Integer.valueOf(pilotSkill.getText().toString()) + Integer.valueOf(fighterSkill.getText().toString())
-                        + Integer.valueOf(traderSkill.getText().toString()) + Integer.valueOf(engrSkill.getText().toString()) != LENGTHOFTHINGS) {
-                    Toast.makeText(MainActivity.this, "You must have a total of 16 skill points.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,
+                            "Points must be non-negative integers.",
+                            Toast.LENGTH_SHORT).show();
+                } else if ((Integer.valueOf(pilotSkill.getText().toString())
+                        + Integer.valueOf(fighterSkill.getText().toString())
+                        + Integer.valueOf(traderSkill.getText().toString())
+                        + Integer.valueOf(engrSkill.getText().toString()))
+                        != LENGTHOFTHINGS) {
+                    Toast.makeText(MainActivity.this,
+                            "You must have a total of 16 skill points.",
+                            Toast.LENGTH_SHORT).show();
                 } else {
                     nameStr = playerName.getText().toString();
                     pil = Integer.valueOf(pilotSkill.getText().toString());
@@ -135,5 +146,8 @@ public class MainActivity extends AppCompatActivity {
     private void openChoiceScreen() {
         Intent intent = new Intent(this, ChoiceScreen.class);
         startActivity(intent);
+    }
+
+    public void onCreate(View view) {
     }
 }

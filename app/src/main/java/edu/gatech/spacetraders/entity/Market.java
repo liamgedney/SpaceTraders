@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
 
 import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;

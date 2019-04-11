@@ -12,7 +12,8 @@ import java.util.List;
 
 import edu.gatech.spacetraders.R;
 
-public class MarketplaceRecyclerViewAdapter extends RecyclerView.Adapter<MarketplaceRecyclerViewAdapter.ViewHolder> {
+public class MarketplaceRecyclerViewAdapter extends
+        RecyclerView.Adapter<MarketplaceRecyclerViewAdapter.ViewHolder> {
 
     private List<String> mData;
     private final LayoutInflater mInflater;

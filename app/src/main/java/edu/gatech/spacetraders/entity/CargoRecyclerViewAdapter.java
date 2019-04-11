@@ -12,7 +12,8 @@ import java.util.List;
 
 import edu.gatech.spacetraders.R;
 
-public class CargoRecyclerViewAdapter extends RecyclerView.Adapter<CargoRecyclerViewAdapter.ViewHolder> {
+public class CargoRecyclerViewAdapter extends
+        RecyclerView.Adapter<CargoRecyclerViewAdapter.ViewHolder> {
 
     private List<String> mData;
     private final LayoutInflater mInflater;

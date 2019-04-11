@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/current_fuel"
@@ -82,7 +83,8 @@
         app:layout_constraintBottom_toTopOf="@+id/planets_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/travel_header" />
+        app:layout_constraintTop_toBottomOf="@+id/travel_header"
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/currentplanet_header"

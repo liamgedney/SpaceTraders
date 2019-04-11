@@ -75,7 +75,7 @@ public class Universe implements Serializable{
         // From the first Ghostbusters movie
         String[] solarSystemNames = {
                 "Acamar",
-                "Adahn",        // The alternate personality for The Nameless One in "Planescape: Torment"
+                "Adahn",
                 "Aldea",
                 "Andevian",
                 "Antedi",

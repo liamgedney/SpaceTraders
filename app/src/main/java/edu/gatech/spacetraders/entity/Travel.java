@@ -97,7 +97,8 @@ public class Travel implements Serializable{
                 int amount = currAmount + random.nextInt(currAmount + 1) + 10;
                 int total = (amount > myShip.getMaxCargo()) ? myShip.getMaxCargo() : amount;
                 cargoHold.put(cargoUpdate, total);
-                display = "You ran into a nice Pirate, and he tried to steal but had enough emotional intelligence to realize " +
+                display = "You ran into a nice Pirate, and he tried to steal but had enough" +
+                        " emotional intelligence to realize " +
                         "this is not a good decision and gave you: " + total + " "
                         + cargoUpdate + "s <3";
             } else {
@@ -135,10 +136,12 @@ public class Travel implements Serializable{
         } else if (encounter == 9) {
             //pilot
             player.setTraderPoints(player.getTraderPoints() - 1);
-            display = "Your trader is convicted of insider trading! Your trading points decreased by 1";
+            display = "Your trader is convicted of insider trading! " +
+                    "Your trading points decreased by 1";
         } else if (encounter == 10) {
             player.setEngineerPoints(player.getEngineerPoints() - 1);
-            display = "Your engineer is replaced by a UGA grad! Your engineering points decreased by 1";
+            display = "Your engineer is replaced by a UGA grad! " +
+                    "Your engineering points decreased by 1";
         } else {
             display = "temp";
         }
@@ -169,7 +172,7 @@ public class Travel implements Serializable{
         int CURFUELNUM = 13;
         double range = Math.sqrt((Math.pow(system.getCoordinates().x - currCoord.x, 2)
                 + Math.pow(system.getCoordinates().y - currCoord.y, 2)));
-        return range <= CURFUELNUM * myShip.getCurFuel() && range > 0;
+        return (range <= (CURFUELNUM * myShip.getCurFuel())) && (range > 0);
     }
 
 }

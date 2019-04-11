@@ -45,7 +45,8 @@ public class GameDataInstanceGetter {
             GameData sm = GameDataInstanceGetter.getGameData();
             Log.e("credits", String.valueOf(gameData.getPlayer().getCredits()));
             for (Good x : Good.values()) {
-                Log.e("ayylmao", x.toString() + " " + String.valueOf(gameData.getPlayer().getShip().getCargoHold().get(x)));
+                Log.e("ayylmao", x.toString() + " " + String.valueOf(gameData
+                        .getPlayer().getShip().getCargoHold().get(x)));
             }
             ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
             out.writeObject(sm);
@@ -62,7 +63,8 @@ public class GameDataInstanceGetter {
             GameDataInstanceGetter.setGameData(gameData);
             Log.e("credits", String.valueOf(gameData.getPlayer().getCredits()));
             for (Good x : Good.values()) {
-                Log.e("ayylmao", x.toString() + String.valueOf(gameData.getPlayer().getShip().getCargoHold().get(x)));
+                Log.e("ayylmao", x.toString() + String.valueOf(gameData.getPlayer()
+                        .getShip().getCargoHold().get(x)));
             }
             ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
             out.writeObject(sm);

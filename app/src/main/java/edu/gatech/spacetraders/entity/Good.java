@@ -1,6 +1,5 @@
 package edu.gatech.spacetraders.entity;
 
-import java.io.Serializable;
 import java.util.Random;
 
 public enum Good {

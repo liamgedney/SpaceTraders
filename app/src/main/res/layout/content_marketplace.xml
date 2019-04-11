@@ -94,5 +94,6 @@
         app:layout_constraintBottom_toTopOf="@+id/mktgoods_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mktplace_header" />
+        app:layout_constraintTop_toBottomOf="@+id/mktplace_header"
+        android:autofillHints="" />
 </android.support.constraint.ConstraintLayout>

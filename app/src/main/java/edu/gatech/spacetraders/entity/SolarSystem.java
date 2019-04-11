@@ -20,8 +20,6 @@ public class SolarSystem implements Serializable {
         this.name = name;
         this.techLvl = techLvl;
         this.resLvl = reslvl;
-        Player player1 = player;
-        Ship ship1 = ship;
         this.coordinates = new Point2(x, y);
         this.market = new Market(techLvl, player, ship);
 

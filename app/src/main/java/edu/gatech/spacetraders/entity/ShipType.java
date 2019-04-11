@@ -1,7 +1,5 @@
 package edu.gatech.spacetraders.entity;
 
-import java.io.Serializable;
-
 public enum ShipType {
     //name      fuel    cargo
     FLEA        (20,    5),
