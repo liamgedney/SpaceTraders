@@ -201,6 +201,9 @@ public class Market implements Serializable {
         }
     }
 
+    /**
+     * updates the list
+     */
     public void updateList() {
         List<String> list =  new ArrayList<>(10);
         int i = 0;
@@ -211,13 +214,25 @@ public class Market implements Serializable {
         recycleViewList = list;
     }
 
+    /**
+     * getter for list of goods
+     * @return List<Good>
+     */
     public List<Good> getGoods() {
-        return Collections.unmodifiableList(goods);
+        return goods;
     }
 
+    /**
+     * gets recycleViewList
+     * @return List<String>
+     */
     public List<String> getList() {
-        return Collections.unmodifiableList(recycleViewList);
+        return recycleViewList;
     }
 
+    /**
+     * EnumMap of prices
+     * @return EnumMap<Good, Integer>
+     */
     public EnumMap<Good, Integer> getPrices() { return prices; }
 }

@@ -12,6 +12,9 @@ import java.util.List;
 
 import edu.gatech.spacetraders.R;
 
+/**
+ * adapter for market place recycler view
+ */
 public class MarketplaceRecyclerViewAdapter extends
         RecyclerView.Adapter<MarketplaceRecyclerViewAdapter.ViewHolder> {
 
@@ -20,12 +23,19 @@ public class MarketplaceRecyclerViewAdapter extends
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
+
+    /**
+     * constructor
+     * @param context contextual
+     * @param data data
+     */
     public MarketplaceRecyclerViewAdapter(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
 
     // inflates the row layout from xml when needed
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,6 +43,11 @@ public class MarketplaceRecyclerViewAdapter extends
         return new ViewHolder(view);
     }
 
+    /**
+     * binds it
+     * @param holder Views hold
+     * @param position of good?
+     */
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -66,6 +81,12 @@ public class MarketplaceRecyclerViewAdapter extends
     }
 
     // convenience method for getting data at click position
+
+    /**
+     * gets item
+     * @param id
+     * @return String of id
+     */
     public String getItem(int id) {
         return mData.get(id);
     }
@@ -75,6 +96,10 @@ public class MarketplaceRecyclerViewAdapter extends
         this.mClickListener = itemClickListener;
     }
 
+    /**
+     * sets the list
+     * @param data list of string
+     */
     public void setList(List<String> data) {
         mData = data;
     }
