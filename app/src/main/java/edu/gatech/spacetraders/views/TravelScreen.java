@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.EnumMap;
 import java.util.List;
 
 import edu.gatech.spacetraders.R;
@@ -39,10 +41,10 @@ public class TravelScreen extends AppCompatActivity {
 
     private final Player player = gameData.getPlayer();
     private final SolarSystem currSS = gameData.getCurrentSolarSystem();
-    int techLevel = gameData.getCurrentSolarSystem().getTechLvl();
     private final Ship ship = player.getShip();
     private Travel travel = new Travel(gameData);
     private List<String> recycleViewList = travel.getInRangeList();
+    private EnumMap<Good, Integer> cargoHold = ship.getCargoHold();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,7 @@ public class TravelScreen extends AppCompatActivity {
         }
         travel = new Travel(gameData);
         setContentView(R.layout.activity_travel);
-        Log.d("", "" + gameData.getPlayer().getShip().getCargoHold().get(Good.WATER));
+        Log.d("", "" + cargoHold.get(Good.WATER));
         Button travelButton = findViewById(R.id.travel_button);
         Button backButton = findViewById(R.id.travelback_button);
         planetCode = findViewById(R.id.travel_position);
@@ -82,9 +84,11 @@ public class TravelScreen extends AppCompatActivity {
         travelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View activity_main) {
-                Log.d("", gameData.getCurrentSolarSystem().toString());
-                Log.d("", gameData.getCurrentSolarSystem().getMarket().toString());
-                int tcode = Integer.valueOf(planetCode.getText().toString());
+                Log.d("", currSS.toString());
+                Market mkt = currSS.getMarket();
+                Log.d("", mkt.toString());
+                Editable ttxt = planetCode.getText();
+                int tcode = Integer.valueOf(ttxt.toString());
                 if ((tcode >= 0) && (tcode < travel.getInRangeList().size())) {
                     gameData = travel.travel(tcode);
                     travel = new Travel(gameData);
