@@ -235,7 +235,9 @@ public class Universe implements Serializable{
         StringBuilder answer = new StringBuilder();
         answer.append("UNIVERSE: \n");
         for (int i = 0; i < NUM_SYSTEMS; i++) {
-            answer.append("System ").append(i + 1).append(": ");
+            answer.append("System ");
+            answer.append(i + 1);
+            answer.append(": ");
             answer.append(systems[i].toString());
             answer.append("\n");
         }

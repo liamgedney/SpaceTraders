@@ -33,11 +33,11 @@ public class Travel implements Serializable{
     public Travel(GameData gameData) {
         this.gameData = gameData;
         currSS = gameData.getCurrentSolarSystem();
-        systemsArray = gameData.getUniverse().getSystems();
-        currCoord = gameData.getCurrentSolarSystem().getCoordinates();
-        myShip = gameData.getPlayer().getShip();
+        Universe uni = gameData.getUniverse();
+        systemsArray = uni.getSystems();
+        currCoord = currSS.getCoordinates();
         player = gameData.getPlayer();
-
+        myShip = player.getShip();
     }
 
     /**
