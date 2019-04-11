@@ -72,11 +72,20 @@ public class Market implements Serializable {
         }
     }
 
-
+    /**
+     * gets the price of a good
+     * @param good the good
+     * @return int price
+     */
     public int getPrice(Good good) {
         return prices.get(good);
     }
 
+    /**
+     * whether we can buy
+     * @param position where good is
+     * @return boolean whether can buy
+     */
     public boolean canBuy(int position) {
         return canBuy(position, 1);
     }
@@ -108,24 +117,49 @@ public class Market implements Serializable {
         return true;
     }
 
+    /**
+     * buys
+     * @param position good position
+     */
     public void buy(int position) {
         buy(position, 1);
     }
 
+    /**
+     * gets inventory of good
+     * @param good we want inventory of
+     * @return int inventory
+     */
     private int getInventory(Good good) {
         return inventory.get(good);
     }
 
+    /**
+     * buys
+     * @param position of good
+     * @param amount the int value
+     */
     private void buy(int position, int amount) {
         Good good = Good.values()[position];
         inventory.put(good, getInventory(good) - amount);
         ship.setCurCargo(ship.getCurCargo() + amount);
     }
 
+    /**
+     * updates the player
+     * @param position of good
+     * @return Player
+     */
     public Player updatePlayer(int position) {
         return updatePlayer(position, 1);
     }
 
+    /**
+     * update Player
+     * @param position good position
+     * @param amount to decrement by
+     * @return Player
+     */
     private Player updatePlayer(int position, int amount) {
         Good good = Good.values()[position];
         player.upCargo(position, amount);
@@ -133,11 +167,21 @@ public class Market implements Serializable {
         return player;
     }
 
+    /**
+     * increase Inventory
+     * @param position of good
+     * @param amount to increment by
+     */
     public void upInventory(int position, int amount) {
         Good good = Good.values()[position];
         inventory.put(good, getInventory(good) + amount);
     }
 
+    /**
+     * toString method
+     * @param good to return string of
+     * @return String
+     */
     private String toString(Good good) {
         String returnString = "";
         returnString += String.format("%1$11s", good.toString());
@@ -146,6 +190,9 @@ public class Market implements Serializable {
         return returnString;
     }
 
+    /**
+     * makes the list
+     */
     private void makeList() {
         int i = 0;
         for (Good good: Good.values()) {
