@@ -1,5 +1,7 @@
 package edu.gatech.spacetraders.entity;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,9 +14,9 @@ import java.util.List;
 public class Universe implements Serializable{
     private static final int NUM_SYSTEMS = 10;
     private final SolarSystem[] systems = new SolarSystem[NUM_SYSTEMS];
-    int XCAPACITY = 150;
-    int YCAPACITY = 150;
-    int RANGENUM = 12;
+    private final int XCAPACITY = 150;
+    private final int YCAPACITY = 150;
+    private final int RANGENUM = 12;
 
     /**
      * calculates a random number within a range
@@ -233,6 +235,7 @@ public class Universe implements Serializable{
         }
     }
 
+    @NonNull
     public String toString() {
         StringBuilder answer = new StringBuilder();
         answer.append("UNIVERSE: \n");

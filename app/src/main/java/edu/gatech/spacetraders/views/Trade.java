@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+import java.util.Objects;
+
 import edu.gatech.spacetraders.R;
 import edu.gatech.spacetraders.entity.Market;
 import edu.gatech.spacetraders.entity.MarketplaceRecyclerViewAdapter;
@@ -47,7 +49,7 @@ public class Trade extends AppCompatActivity {
         final RecyclerView recyclerView = findViewById(R.id.mktgoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Market mkt = currSS.getMarket();
+        Market mkt = Objects.requireNonNull(currSS).getMarket();
         mkt.updateList();
         currSS.setMarket(mkt);
         adapter = new MarketplaceRecyclerViewAdapter(this, mkt.getList());

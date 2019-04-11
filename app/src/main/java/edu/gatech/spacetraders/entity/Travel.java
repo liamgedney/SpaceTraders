@@ -6,6 +6,7 @@ import edu.gatech.spacetraders.viewmodels.GameData;
 import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -19,7 +20,7 @@ import java.util.Random;
  * method for random encounters(two types: affect cargo and affect credits(maybe change ship))
  */
 public class Travel implements Serializable{
-    int CURFUELNUM = 13;
+    private final int CURFUELNUM = 13;
     private final GameData gameData;
     private final SolarSystem[] systemsArray;
     private final Point2 currCoord;
@@ -34,10 +35,10 @@ public class Travel implements Serializable{
         this.gameData = gameData;
         SolarSystem currSS = gameData.getCurrentSolarSystem();
         Universe uni = gameData.getUniverse();
-        systemsArray = uni.getSystems();
-        currCoord = currSS.getCoordinates();
+        systemsArray = Objects.requireNonNull(uni).getSystems();
+        currCoord = Objects.requireNonNull(currSS).getCoordinates();
         player = gameData.getPlayer();
-        myShip = player.getShip();
+        myShip = Objects.requireNonNull(player).getShip();
     }
 
     /**

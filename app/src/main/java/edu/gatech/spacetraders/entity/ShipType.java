@@ -6,7 +6,7 @@ package edu.gatech.spacetraders.entity;
 public enum ShipType {
     //name      fuel    cargo
     //FLEA        (20,    5),
-    GNAT        (10,    10),
+    GNAT        (),
     //FIREFLY     (17,    20),
     //MOSQUITO    (13,    15),
     //BUMBLEBEE   (15,    20),
@@ -18,9 +18,9 @@ public enum ShipType {
 ;
     private final int fuel;
     private final int cargo;
-    ShipType(int fuel, int cargo) {
-        this.fuel = fuel;
-        this.cargo = cargo;
+    ShipType() {
+        this.fuel = 10;
+        this.cargo = 10;
     }
 
     /**

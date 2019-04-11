@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.AbstractMap;
+import java.util.Objects;
 
 import edu.gatech.spacetraders.entity.Good;
 import edu.gatech.spacetraders.entity.Player;
@@ -69,7 +70,7 @@ public class GameDataInstanceGetter {
         try {
             GameData sm = getGameData();
             Player player = gameData.getPlayer();
-            Ship ship = player.getShip();
+            Ship ship = Objects.requireNonNull(player).getShip();
             AbstractMap<Good, Integer> map = ship.getCargoHold();
             Log.e("credits", String.valueOf(player.getCredits()));
             for (Good x : Good.values()) {

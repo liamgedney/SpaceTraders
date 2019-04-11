@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Objects;
 
 import edu.gatech.spacetraders.R;
 import edu.gatech.spacetraders.entity.Good;
@@ -41,7 +42,7 @@ public class TravelScreen extends AppCompatActivity {
 
     private final Player player = gameData.getPlayer();
     private final SolarSystem currSS = gameData.getCurrentSolarSystem();
-    private final Ship ship = player.getShip();
+    private final Ship ship = Objects.requireNonNull(player).getShip();
     private Travel travel = new Travel(gameData);
     private List<String> recycleViewList = travel.getInRangeList();
     private final EnumMap<Good, Integer> cargoHold = ship.getCargoHold();
@@ -60,7 +61,7 @@ public class TravelScreen extends AppCompatActivity {
         planetCode = findViewById(R.id.travel_position);
         currentPlanet = findViewById(R.id.currentplanetstats);
         currentFuel = findViewById(R.id.current_fuellevel);
-        currentPlanet.setText(currSS.toString());
+        currentPlanet.setText(Objects.requireNonNull(currSS).toString());
         String fuel = "Current Fuel: " + ship.getCurFuel();
         currentFuel.setText(fuel);
 
@@ -95,15 +96,15 @@ public class TravelScreen extends AppCompatActivity {
                     recycleViewList = travel.getInRangeList();
                     adapter.setList(recycleViewList);
                     recyclerView.setAdapter(adapter);
-                    Log.d("", gameData.getCurrentSolarSystem().toString());
+                    Log.d("", Objects.requireNonNull(gameData.getCurrentSolarSystem()).toString());
 //                    Log.d("", gameData.getPlayer().getShip().getCurFuel().toString());
                     //TextView currentFuel = (TextView) findViewById(R.id.current_fuellevel);
                     //TextView currentPlanet = (TextView) findViewById(R.id.currentplanetstats);
                     currentPlanet.setText(gameData.getCurrentSolarSystem().toString());
                     currentFuel.setText("Current Fuel: "
-                            + gameData.getPlayer().getShip().getCurFuel());
+                            + Objects.requireNonNull(gameData.getPlayer()).getShip().getCurFuel());
                     int currTechLvl = currSS.getTechLvl();
-                    currSS.setMarket(new Market(currTechLvl, player, player.getShip()));
+                    currSS.setMarket(new Market(currTechLvl, player, Objects.requireNonNull(player).getShip()));
                     gameData.setCurrentSolarSystem(currSS);
                     String display = travel.randomEvent();
                     Toast.makeText(TravelScreen.this, display, Toast.LENGTH_SHORT).show();
