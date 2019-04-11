@@ -14,8 +14,8 @@ public class Universe implements Serializable{
 
     private int randomWithRange(int max)
     {
-        int range = (max - 0) + 1;
-        return (int)(Math.random() * range) + 0;
+        int range = (max) + 1;
+        return (int) (Math.random() * range);
     }
 
     public Universe(Player player, Ship ship) {
@@ -210,11 +210,13 @@ public class Universe implements Serializable{
         int RANGENUM = 12;
         for (int i = 0; i < NUM_SYSTEMS; i++) {
             String name = solarSystemNamesList.get(i);
-            int techLevel = randomWithRange(7);
-            int resourceLevel = randomWithRange(RANGENUM);
-            int x = xCoordinateList.get(i);
-            int y = yCoordinateList.get(i);
-            systems[i] = new SolarSystem(name, techLevel, resourceLevel, player, ship, x, y);
+            int[] levels = new int[2];
+            levels[0] = randomWithRange(7);
+            levels[1] = randomWithRange(RANGENUM);
+            int[] coords = new int[2];
+            coords[0] = xCoordinateList.get(i);
+            coords[1] = yCoordinateList.get(i);
+            systems[i] = new SolarSystem(name, levels, player, ship, coords);
         }
     }
 
@@ -223,7 +225,7 @@ public class Universe implements Serializable{
         StringBuilder answer = new StringBuilder();
         answer.append("UNIVERSE: \n");
         for (int i = 0; i < NUM_SYSTEMS; i++) {
-            answer.append("System " + (i + 1) + ": ");
+            answer.append("System ").append(i + 1).append(": ");
             answer.append(systems[i].toString());
             answer.append("\n");
         }

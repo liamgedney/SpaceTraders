@@ -23,13 +23,12 @@ public class Player implements Serializable{
     private final EnumMap<Good, Integer> cargo;
 
 
-    public Player(String playerName, int pilotPoints, int fighterPoints,
-                  int traderPoints, int engineerPoints, Difficulty difficulty) {
+    public Player(String playerName, int[] pointsArr, Difficulty difficulty) {
         this.playerName = playerName;
-        this.pilotPoints = pilotPoints;
-        this.fighterPoints = fighterPoints;
-        this.traderPoints = traderPoints;
-        this.engineerPoints = engineerPoints;
+        this.pilotPoints = pointsArr[0];
+        this.fighterPoints = pointsArr[1];
+        this.traderPoints = pointsArr[2];
+        this.engineerPoints = pointsArr[3];
         this.difficulty = difficulty;
         this.credits = 1000;
         this.ship = new Ship();

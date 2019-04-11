@@ -12,15 +12,11 @@ public class SolarSystem implements Serializable {
     private final Point2 coordinates;
     private static Market market;
 
-    SolarSystem(String name, int techLvl, int reslvl, Player player, Ship ship) {
-        this(name, techLvl, reslvl, player, ship, 0, 0);
-    }
-
-    SolarSystem(String name, int techLvl, int reslvl, Player player, Ship ship, int x, int y) {
+    SolarSystem(String name, int[] levels, Player player, Ship ship, int[] coords) {
         this.name = name;
-        this.techLvl = techLvl;
-        this.resLvl = reslvl;
-        this.coordinates = new Point2(x, y);
+        this.techLvl = levels[0];
+        this.resLvl = levels[1];
+        this.coordinates = new Point2(coords[0], coords[1]);
         market = new Market(techLvl, player, ship);
 
     }
