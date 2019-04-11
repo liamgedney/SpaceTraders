@@ -112,7 +112,7 @@ public class Travel implements Serializable{
             int addRem = random.nextInt(7);
             if (addRem == 0) {
                 //good outcome
-                EnumMap<Good, Integer> cargoHold = (EnumMap<Good, Integer>) myShip.getCargoHold();
+                EnumMap<Good, Integer> cargoHold = myShip.getCargoHold();
                 int currAmount = cargoHold.get(cargoUpdate);
                 int amount = currAmount + random.nextInt(currAmount + 1) + 10;
                 int total = (amount > myShip.getMaxCargo()) ? myShip.getMaxCargo() : amount;
@@ -122,7 +122,7 @@ public class Travel implements Serializable{
                         "this is not a good decision and gave you: " + total + " "
                         + cargoUpdate + "s <3";
             } else {
-                EnumMap<Good, Integer> cargoHold = (EnumMap<Good, Integer>) myShip.getCargoHold();
+                EnumMap<Good, Integer> cargoHold = myShip.getCargoHold();
                 int currAmount = cargoHold.get(cargoUpdate);
                 int amount = currAmount - random.nextInt(currAmount + 1) - 10;
                 int total = (amount < 0) ? 0 : amount;

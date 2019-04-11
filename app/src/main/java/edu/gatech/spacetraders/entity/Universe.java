@@ -215,7 +215,7 @@ public class Universe implements Serializable{
         List<Integer> xCoordinateList = new ArrayList<>(XCAPACITY);
         List<Integer> yCoordinateList = new ArrayList<>(YCAPACITY);
         for (int i = 1; i <= XCAPACITY; i++) {
-            if (i <= YCAPACITY) {xCoordinateList.add(i);}
+            xCoordinateList.add(i);
             yCoordinateList.add(i);
         }
         Collections.shuffle(xCoordinateList);

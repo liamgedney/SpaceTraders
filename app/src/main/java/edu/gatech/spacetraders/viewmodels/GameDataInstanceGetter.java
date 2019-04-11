@@ -47,17 +47,14 @@ public class GameDataInstanceGetter {
      * @param file in android
      */
     public static void loadBinary(File file){
-        boolean success = true;
         try{
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
             GameDataInstanceGetter.setGameData((GameData) in.readObject());
             in.close();
         } catch (IOException e) {
             Log.e("Load", "Error reading an entry from binary file", e);
-            success = false;
         } catch (ClassNotFoundException e){
             Log.e("Load", "Error reading an entry from binary file", e);
-            success = false;
         }
     }
 

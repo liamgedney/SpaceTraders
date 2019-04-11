@@ -32,7 +32,7 @@ public class GameData implements Serializable {
      * makes it a current solar system
      * @param currentSolarSystem the current one
      */
-    public void setCurrentSolarSystem(SolarSystem currentSolarSystem) {
+    public void setCurrentSolarSystem(@Nullable SolarSystem currentSolarSystem) {
         this.currentSolarSystem = currentSolarSystem;
     }
 
@@ -40,7 +40,7 @@ public class GameData implements Serializable {
      * makes a player
      * @param player the player we made
      */
-    public void setPlayer(Player player) {
+    public void setPlayer(@Nullable Player player) {
         this.player = player;
     }
 
@@ -48,6 +48,7 @@ public class GameData implements Serializable {
      * getter for player
      * @return Player the player
      */
+    @Nullable
     public Player getPlayer() {
         return player;
     }
@@ -56,6 +57,7 @@ public class GameData implements Serializable {
      * getter for currSolarSystem;
      * @return SolarSystem the system of solar
      */
+    @Nullable
     public SolarSystem getCurrentSolarSystem() {
         return currentSolarSystem;
     }
@@ -64,7 +66,7 @@ public class GameData implements Serializable {
      * setter for universe
      * @param universe the planet stuff
      */
-    public void setUniverse(Universe universe) {
+    public void setUniverse(@Nullable Universe universe) {
         this.universe = universe;
     }
 
@@ -72,6 +74,7 @@ public class GameData implements Serializable {
      * getter for universe
      * @return Universe the uni
      */
+    @Nullable
     public Universe getUniverse() {
         return universe;
     }

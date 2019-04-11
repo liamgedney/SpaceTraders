@@ -3,7 +3,6 @@ package edu.gatech.spacetraders.entity;
 import android.util.Log;
 
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.ArrayList;
