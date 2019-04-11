@@ -71,6 +71,8 @@ public class GameDataInstanceGetter {
             GameData sm = getGameData();
             Player player = gameData.getPlayer();
             Ship ship = Objects.requireNonNull(player).getShip();
+            assert player != null;
+            Ship ship = player.getShip();
             AbstractMap<Good, Integer> map = ship.getCargoHold();
             Log.e("credits", String.valueOf(player.getCredits()));
             for (Good x : Good.values()) {
