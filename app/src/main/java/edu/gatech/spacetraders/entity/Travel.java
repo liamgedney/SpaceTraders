@@ -106,31 +106,21 @@ public class Travel implements Serializable{
                         + " credits. :'(";
             }
         } else if (encounter == 2) {
-            //cargo
-            int cargoToChange = random.nextInt(10);
-            Good cargoUpdate = Good.values()[cargoToChange];
-            int addRem = random.nextInt(7);
-            if (addRem == 0) {
-                //good outcome
-                EnumMap<Good, Integer> cargoHold = (EnumMap<Good, Integer>) myShip.getCargoHold();
-                int currAmount = cargoHold.get(cargoUpdate);
-                int amount = currAmount + random.nextInt(currAmount + 1) + 10;
-                int total = (amount > myShip.getMaxCargo()) ? myShip.getMaxCargo() : amount;
-                cargoHold.put(cargoUpdate, total);
-                display = "You ran into a nice Pirate, and he tried to steal but had enough" +
-                        " emotional intelligence to realize " +
-                        "this is not a good decision and gave you: " + total + " "
-                        + cargoUpdate + "s <3";
-            } else {
-                EnumMap<Good, Integer> cargoHold = (EnumMap<Good, Integer>) myShip.getCargoHold();
-                int currAmount = cargoHold.get(cargoUpdate);
-                int amount = currAmount - random.nextInt(currAmount + 1) - 10;
-                int total = (amount < 0) ? 0 : amount;
-                cargoHold.put(cargoUpdate, total);
-                display = "You ran into a mean Pirate, and he stole: " + total + " "
-                        + cargoUpdate + "s </3";
-            }
-        } else if (encounter == 3) {
+            display = randomEvent3();
+        } else {
+            display = randomEvent2(encounter);
+        }
+        return display;
+    }
+
+    /**
+     * continuation of randomEvent()
+     * @param encounter the random number generated in randomEvent()
+     * @return a String describing what happened.
+     */
+    private String randomEvent2(int encounter) {
+        String display;
+        if (encounter == 3) {
             //pilot
             player.setPilotPoints(player.getPilotPoints() + 1);
             display = "You meet a new skilled Pilot, and he increased your pilot points by 1";
@@ -164,6 +154,40 @@ public class Travel implements Serializable{
                     "Your engineering points decreased by 1";
         } else {
             display = "temp";
+        }
+        return display;
+    }
+
+    /**
+     * continuation of randomEvent()
+     * @return a String describing what happened.
+     */
+    private String randomEvent3() {
+        String display;
+        Random random = new Random();
+        //cargo
+        int cargoToChange = random.nextInt(10);
+        Good cargoUpdate = Good.values()[cargoToChange];
+        int addRem = random.nextInt(7);
+        if (addRem == 0) {
+            //good outcome
+            EnumMap<Good, Integer> cargoHold = (EnumMap<Good, Integer>) myShip.getCargoHold();
+            int currAmount = cargoHold.get(cargoUpdate);
+            int amount = currAmount + random.nextInt(currAmount + 1) + 10;
+            int total = (amount > myShip.getMaxCargo()) ? myShip.getMaxCargo() : amount;
+            cargoHold.put(cargoUpdate, total);
+            display = "You ran into a nice Pirate, and he tried to steal but had enough" +
+                    " emotional intelligence to realize " +
+                    "this is not a good decision and gave you: " + total + " "
+                    + cargoUpdate + "s <3";
+        } else {
+            EnumMap<Good, Integer> cargoHold = (EnumMap<Good, Integer>) myShip.getCargoHold();
+            int currAmount = cargoHold.get(cargoUpdate);
+            int amount = currAmount - random.nextInt(currAmount + 1) - 10;
+            int total = (amount < 0) ? 0 : amount;
+            cargoHold.put(cargoUpdate, total);
+            display = "You ran into a mean Pirate, and he stole: " + total + " "
+                    + cargoUpdate + "s </3";
         }
         return display;
     }
