@@ -12,6 +12,9 @@ import java.io.IOException;
 import edu.gatech.spacetraders.R;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
+/**
+ * the main choice screen
+ */
 public class ChoiceScreen extends AppCompatActivity {
 
     @Override

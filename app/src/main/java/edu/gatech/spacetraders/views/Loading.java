@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import edu.gatech.spacetraders.R;
 
+/**
+ * Created loading screen
+ */
 public class Loading extends AppCompatActivity {
 
     @Override

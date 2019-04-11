@@ -20,6 +20,9 @@ import edu.gatech.spacetraders.entity.Universe;
 import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
+/**
+ * The MainActivity does everything
+ */
 public class MainActivity extends AppCompatActivity {
 
     private boolean isAnInteger(String s) {
@@ -31,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * gets the random with range
+     * @return int random number in range
+     */
     private int randomWithRange()
     {
         int range = (9 - 0) + 1;
@@ -138,6 +145,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * opens the Loading Screen
+     */
     public void openLoadingScreen() {
         Intent intent = new Intent(this, Loading.class);
         startActivity(intent);
@@ -148,6 +159,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * creates
+     * @param view a view
+     */
     public void onCreate(View view) {
     }
 }

@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
+/**
+ * Class for Market
+ */
 public class Market implements Serializable {
     private final int techLevel;
     //use an enum map to track prices and amount in stock of each good

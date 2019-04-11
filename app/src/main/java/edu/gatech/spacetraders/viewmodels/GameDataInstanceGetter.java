@@ -12,19 +12,40 @@ import java.io.ObjectOutputStream;
 
 import edu.gatech.spacetraders.entity.Good;
 
+/**
+ * Gets the GameData
+ */
 public class GameDataInstanceGetter {
     private static GameData gameData;
+
+    /**
+     * constructor
+     * @param gameData sets gameData
+     */
     public void newGameData(GameData gameData) {
         this.gameData = gameData;
     }
+
+    /**
+     * other constructor
+     * @param gameData2 for some reason
+     */
     private static void setGameData(GameData gameData2){
         gameData = gameData2;
     }
 
+    /**
+     * gameData getter
+     * @return GameData
+     */
     public static GameData getGameData() {
         return gameData;
     }
 
+    /**
+     * loads the file after it was saved
+     * @param file in android
+     */
     public static void loadBinary(File file){
         boolean success = true;
         try{
@@ -39,6 +60,11 @@ public class GameDataInstanceGetter {
             success = false;
         }
     }
+
+    /**
+     * saves the binary file
+     * @param file on android
+     */
     public static void saveBinary(File file) {
         boolean success = true;
         try {
@@ -56,6 +82,12 @@ public class GameDataInstanceGetter {
             success = false;
         }
     }
+
+    /**
+     * creates new file
+     * @param file the new file
+     * @return boolean whether it work
+     */
     public static boolean newBinary(File file) {
         boolean success = true;
         try {

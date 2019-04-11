@@ -23,6 +23,9 @@ import edu.gatech.spacetraders.entity.SolarSystem;
 import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
+/**
+ * class for the CargoScreen
+ */
 public class CargoScreen extends AppCompatActivity {
 
     private EditText buyCode;

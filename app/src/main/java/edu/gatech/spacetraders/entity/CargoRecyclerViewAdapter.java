@@ -12,6 +12,10 @@ import java.util.List;
 
 import edu.gatech.spacetraders.R;
 
+/**
+ * Adapter for CargoViewRecycler
+ * @author Jenny
+ */
 public class CargoRecyclerViewAdapter extends
         RecyclerView.Adapter<CargoRecyclerViewAdapter.ViewHolder> {
 
@@ -19,13 +23,24 @@ public class CargoRecyclerViewAdapter extends
     private final LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    // data is passed into the constructor
+    /**
+     * constructor
+     * @param context contextual
+     * @param data string
+     */
     public CargoRecyclerViewAdapter(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
 
     // inflates the row layout from xml when needed
+
+    /**
+     * Holds the view
+     * @param parent not the child
+     * @param viewType a type of view
+     * @return Viewholder
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -80,6 +95,10 @@ public class CargoRecyclerViewAdapter extends
         void onItemClick(View view, int position);
     }
 
+    /**
+     * new data set??
+     * @param data string
+     */
     public void setList(List<String> data) {
         mData = data;
     }
