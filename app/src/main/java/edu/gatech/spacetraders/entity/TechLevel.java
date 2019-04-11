@@ -23,10 +23,10 @@ public enum TechLevel {
      * Returns a random tech level
      * @return a random tech level
      */
-    public static TechLevel getRandom() {
+    /*public static TechLevel getRandom() {
         Random random = new Random();
         return values()[random.nextInt(values().length)];
-    }
+    }*/
     /**
      * Returns the name of a
      * @return a random tech level

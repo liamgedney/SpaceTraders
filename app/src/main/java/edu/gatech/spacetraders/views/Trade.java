@@ -31,7 +31,7 @@ public class Trade extends AppCompatActivity {
 
     private final Player player = gameData.getPlayer();
     private final SolarSystem currSS = gameData.getCurrentSolarSystem();
-    Ship ship = player.getShip();
+    //Ship ship = player.getShip();
 
 
     @Override

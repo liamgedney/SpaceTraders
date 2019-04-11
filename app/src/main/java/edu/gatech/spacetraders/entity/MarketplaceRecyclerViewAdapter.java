@@ -84,17 +84,17 @@ public class MarketplaceRecyclerViewAdapter extends
 
     /**
      * gets item
-     * @param id id
+     //* @param id id
      * @return String of id
      */
-    public String getItem(int id) {
+    /*public String getItem(int id) {
         return mData.get(id);
-    }
+    }*/
 
     // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
+    /*void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
-    }
+    }*/
 
     /**
      * sets the list

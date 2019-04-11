@@ -9,12 +9,12 @@ import java.util.List;
  * Ship class
  */
 public class Ship implements Serializable {
-    private final int NUM_GOODS = 10;
+    //private final int NUM_GOODS = 10;
     private int curFuel;
     private final int maxCargo;
     private int curCargo; //current total cargo space occupied
     private EnumMap<Good, Integer> cargoHold = new EnumMap<>(Good.class); //keeps track of # item
-    private final List<String> recycleViewList = new ArrayList<>(10);
+    //private final List<String> recycleViewList = new ArrayList<>(10);
 
     /**
      * constructor for ship
@@ -25,11 +25,11 @@ public class Ship implements Serializable {
 
     /**
      * constructor with maxCargo
-     * @param maxCargo cargo hold
+     //* @param maxCargo cargo hold
      */
-    public Ship(int maxCargo) {
+    /*public Ship(int maxCargo) {
         this.maxCargo = maxCargo;
-    }
+    }*/
 
     private Ship(EnumMap<Good, Integer> cargoHold) {
         if (cargoHold == null) {
@@ -55,9 +55,9 @@ public class Ship implements Serializable {
      * can we hold more
      * @return boolean yes or no
      */
-    public boolean cantHoldMore() {
+   /* public boolean cantHoldMore() {
         return curCargo >= maxCargo;
-    }
+    }*/
 
     private void populateCargoSpace() {
         for (Good good : Good.values()) {
@@ -115,7 +115,7 @@ public class Ship implements Serializable {
      * set the current fuel
      * @param curFuel number
      */
-    public void setCurFuel(int curFuel) {
+    /*public void setCurFuel(int curFuel) {
         this.curFuel = curFuel;
-    }
+    }*/
 }

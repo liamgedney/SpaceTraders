@@ -22,7 +22,7 @@ public class Market implements Serializable {
     private final Ship ship;
     private List<String> recycleViewList = new ArrayList<>(10);
     private final List<Good> goods = new ArrayList<>(10);
-    GameData gameData = GameDataInstanceGetter.getGameData();
+    //GameData gameData = GameDataInstanceGetter.getGameData();
 
 
     /**
@@ -147,7 +147,7 @@ public class Market implements Serializable {
      * @return Player player
      */
     private Player updatePlayer(int position, int amount) {
-        Good good = Good.values()[position];
+       // Good good = Good.values()[position];
         player.upCargo(position, amount);
         player.downCredits(prices, position, amount);
         return player;
@@ -196,9 +196,9 @@ public class Market implements Serializable {
      * getter for goods list
      * @return List<Good> of goods
      */
-    public List<Good> getGoods() {
+    /*public List<Good> getGoods() {
         return goods;
-    }
+    }*/
 
     /**
      * getter for list

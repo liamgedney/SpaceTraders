@@ -83,7 +83,7 @@ public class GameDataInstanceGetter {
      * @param file the new file
      * @return boolean whether it work
      */
-    public static boolean newBinary(File file) {
+    /*public static boolean newBinary(File file) {
         boolean success = true;
         try {
             GameData sm = new GameData();
@@ -101,6 +101,6 @@ public class GameDataInstanceGetter {
             success = false;
         }
         return success;
-    }
+    }*/
 
 }
