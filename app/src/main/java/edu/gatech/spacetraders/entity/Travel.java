@@ -34,7 +34,7 @@ public class Travel implements Serializable{
     }
 
     public List<String> getInRangeList() {
-        ArrayList<String> stringList = new ArrayList<>(systemsArray.length);
+        List<String> stringList = new ArrayList<>(systemsArray.length);
         SolarSystem[] inRange = calculatePlanetsInRange();
         double range = Math.sqrt((Math.pow(currSS.getCoordinates().x - currCoord.x, 2)
                 + Math.pow(currSS.getCoordinates().y - currCoord.y, 2)));
