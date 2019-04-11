@@ -49,10 +49,7 @@ public class Ship implements Serializable {
         return this.maxCargo - this.curCargo;
     }
 
-    /**
-     * can we hold more
-     * @return boolean yes or no
-     */
+
    /* public boolean cantHoldMore() {
         return curCargo >= maxCargo;
     }*/

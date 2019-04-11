@@ -14,8 +14,8 @@ public enum ShipType {
     //HORNET      (16,    20),
     //GRASSHOPPER (16,    30),
     //TERMITE     (13,    60),
-    WASP        (14,    35);
-
+    //WASP        (14,    35);
+;
     private final int fuel;
     private final int cargo;
     ShipType(int fuel, int cargo) {

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,10 +24,10 @@ import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
  * The MainActivity does everything
  */
 public class MainActivity extends AppCompatActivity {
-
+    private final int LENGTHOFTHINGS = 16;
     private boolean isNotInteger(String s) {
         try {
-            //int num = Integer.parseInt(s);
+            Integer.parseInt(s);
             return false;
         } catch (NumberFormatException e) {
             return true;
@@ -65,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner diffSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -83,53 +83,37 @@ public class MainActivity extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View activity_main) {
-                int LENGTHOFTHINGS = 16;
-                Editable txt = playerName.getText();
-                Editable ptxt = pilotSkill.getText();
-                Editable ftxt = fighterSkill.getText();
-                Editable ttxt = traderSkill.getText();
-                Editable etxt = engrSkill.getText();
+                String txt = playerName.getText().toString();
+                String ptxt = pilotSkill.getText().toString();
+                String ftxt = fighterSkill.getText().toString();
+                String ttxt = traderSkill.getText().toString();
+                String etxt = engrSkill.getText().toString();
 
-                if ("".equals(txt.toString())) {
+                if ("".equals(txt)) {
                     Toast.makeText(MainActivity.this, "Please enter a name.",
                             Toast.LENGTH_SHORT).show();
-                } else if (isNotInteger(ptxt.toString())
-                            || isNotInteger(ftxt.toString())
-                            || isNotInteger(ttxt.toString())
-                            || isNotInteger(etxt.toString())) {
+                } else if (allPointsNonNeg(ptxt, ftxt, ttxt, ptxt)) {
                     Toast.makeText(MainActivity.this,
                             "Points must be non-negative integers.",
                             Toast.LENGTH_SHORT).show();
-                } else if ((Integer.valueOf(ptxt.toString()) < 0)
-                        || (Integer.valueOf(ftxt.toString()) < 0)
-                        || (Integer.valueOf(ttxt.toString()) < 0)
-                        || (Integer.valueOf(etxt.toString()) < 0)) {
+                } else if (PointNeg(ptxt, ftxt, ttxt, ptxt)) {
                     Toast.makeText(MainActivity.this,
                             "Points must be non-negative integers.",
                             Toast.LENGTH_SHORT).show();
-                } else if ((Integer.valueOf(ptxt.toString())
-                        + Integer.valueOf(ftxt.toString())
-                        + Integer.valueOf(ttxt.toString())
-                        + Integer.valueOf(etxt.toString()))
-                        != LENGTHOFTHINGS) {
+                } else if (LessThanLength(ptxt, ftxt, ttxt, ptxt)) {
                     Toast.makeText(MainActivity.this,
                             "You must have a total of 16 skill points.",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    nameStr = playerName.getText().toString();
-                    pil = Integer.valueOf(ptxt.toString());
-                    fight = Integer.valueOf(ftxt.toString());
-                    trade = Integer.valueOf(ttxt.toString());
-                    engr = Integer.valueOf(etxt.toString());
+                    nameStr = playerName.toString();
+                    pil = Integer.valueOf(ptxt);
+                    fight = Integer.valueOf(ftxt);
+                    trade = Integer.valueOf(ttxt);
+                    engr = Integer.valueOf(etxt);
                     diffSpinText = (Difficulty) diffSpinner.getSelectedItem();
 
                     gameData = new GameData();
-                    int[] pointsArr = new int[4];
-                    pointsArr[0] = pil;
-                    pointsArr[1] = fight;
-                    pointsArr[2] = trade;
-                    pointsArr[3] = engr;
-                    Player player = new Player(nameStr, pointsArr, diffSpinText);
+                    Player player = new Player(nameStr, diffSpinText, pil, fight, trade, engr);
                     gameData.setPlayer(player);
                     //                                                                     DEBUGGING
 //                    System.out.println(player);
@@ -137,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                     Universe universe = new Universe(player, player.getShip());
                     gameData.setUniverse(universe);
                     //                                                                     DEBUGGING
-//                    System.out.println(universe.toString());
+//                    System.out.println(universe);
 
                     SolarSystem startingSystem = universe.getSystems()[randomWithRange()];
                     gameData.setCurrentSolarSystem(startingSystem);
@@ -172,7 +156,30 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /*public void onCreate(View view) {
+    }*/
+
    /*
     public void onCreate(View view) {
     }*/
+   
+   private boolean allPointsNonNeg(String ptxt, String ftxt, String ttxt, String etxt) {
+       return isNotInteger(ptxt)
+               || isNotInteger(ftxt)
+               || isNotInteger(ttxt)
+               || isNotInteger(etxt);
+   }
+   private boolean PointNeg(String ptxt, String ftxt, String ttxt, String etxt) {
+       return (Integer.valueOf(ptxt) < 0)
+               || (Integer.valueOf(ftxt) < 0)
+               || (Integer.valueOf(ttxt) < 0)
+               || (Integer.valueOf(etxt) < 0);
+   }
+    private boolean LessThanLength(String ptxt, String ftxt, String ttxt, String etxt) {
+            return (Integer.valueOf(ptxt)
+                    + Integer.valueOf(ftxt)
+                    + Integer.valueOf(ttxt)
+                    + Integer.valueOf(etxt))
+                    != LENGTHOFTHINGS;
+    }
 }

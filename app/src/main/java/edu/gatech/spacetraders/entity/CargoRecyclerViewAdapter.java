@@ -21,7 +21,6 @@ public class CargoRecyclerViewAdapter extends
 
     private List<String> mData;
     private final LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
 
     /**
      * constructor
@@ -63,29 +62,15 @@ public class CargoRecyclerViewAdapter extends
 
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         final TextView myTextView;
 
         ViewHolder(View itemView) {
             super(itemView);
             myTextView = itemView.findViewById(R.id.waterCargo);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) {
-                mClickListener.onItemClick(view, getAdapterPosition());
-            }
         }
     }
 
-
-
-    // parent activity will implement this method to respond to click events
-    interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
 
     /**
      * new data set??

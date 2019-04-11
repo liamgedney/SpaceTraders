@@ -20,8 +20,7 @@ public class TravelRecyclerViewAdapter extends RecyclerView.Adapter<edu.gatech.s
 
     private List<String> mData;
     private final LayoutInflater mInflater;
-    private edu.gatech.spacetraders.views.TravelRecyclerViewAdapter
-            .ItemClickListener mClickListener;
+
 
     // data is passed into the constructor
     TravelRecyclerViewAdapter (Context context, List<String> data) {
@@ -54,21 +53,20 @@ public class TravelRecyclerViewAdapter extends RecyclerView.Adapter<edu.gatech.s
 
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder{
         final TextView myTextView;
 
         ViewHolder(View itemView) {
             super(itemView);
             myTextView = itemView.findViewById(R.id.planets_row);
-            itemView.setOnClickListener(this);
         }
 
-        @Override
+        /*@Override
         public void onClick(View view) {
             if (mClickListener != null) {
                 mClickListener.onItemClick(view, getAdapterPosition());
             }
-        }
+        }*/
     }
 
     // convenience method for getting data at click position
@@ -92,8 +90,8 @@ public class TravelRecyclerViewAdapter extends RecyclerView.Adapter<edu.gatech.s
     }
 
     // parent activity will implement this method to respond to click events
-    interface ItemClickListener {
+    /*interface ItemClickListener {
         void onItemClick(View view, int position);
-    }
+    }*/
 
 }

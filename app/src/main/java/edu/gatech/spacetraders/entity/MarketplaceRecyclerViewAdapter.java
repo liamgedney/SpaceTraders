@@ -20,8 +20,6 @@ public class MarketplaceRecyclerViewAdapter extends
 
     private List<String> mData;
     private final LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
-
     // data is passed into the constructor
 
     /**
@@ -63,21 +61,14 @@ public class MarketplaceRecyclerViewAdapter extends
 
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         final TextView myTextView;
 
         ViewHolder(View itemView) {
             super(itemView);
             myTextView = itemView.findViewById(R.id.waterMkt);
-            itemView.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) {
-                mClickListener.onItemClick(view, getAdapterPosition());
-            }
-        }
     }
 
     // convenience method for getting data at click position
@@ -101,7 +92,5 @@ public class MarketplaceRecyclerViewAdapter extends
     }
 
     // parent activity will implement this method to respond to click events
-    interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
+
 }

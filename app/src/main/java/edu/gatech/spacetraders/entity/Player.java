@@ -32,7 +32,7 @@ public class Player implements Serializable{
      * @param pointsArr array of how points are distributed
      * @param difficulty level
      */
-    public Player(String playerName, int[] pointsArr, Difficulty difficulty) {
+    public Player(String playerName, Difficulty difficulty, int ... pointsArr) {
         this.playerName = playerName;
         this.pilotPoints = pointsArr[0];
         this.fighterPoints = pointsArr[1];
@@ -196,15 +196,6 @@ public class Player implements Serializable{
      * @return boolean whether we can
      */
     public boolean canSell(int position) {
-        return canSell(position, 1);
-    }
-
-    /**
-     * can we sell this much
-     * @param position of good
-     * @return boolean can sell
-     */
-    private boolean canSell(int position, int amount) {
         Good good = Good.values()[position];
         if (cargo.get(good) < 1) {
             Log.d("","Cannot sell more items than currently in inventory.");
@@ -212,6 +203,19 @@ public class Player implements Serializable{
         }
         return true;
     }
+/*
+    *
+     * can we sell this much
+     * @param position of good
+     * @return boolean can sell*/
+    /*private boolean canSell(int position, int amount) {
+        Good good = Good.values()[position];
+        if (cargo.get(good) < amount) {
+            Log.d("","Cannot sell more items than currently in inventory.");
+            return false;
+        }
+        return true;
+    }*/
 
     /**
      * sell

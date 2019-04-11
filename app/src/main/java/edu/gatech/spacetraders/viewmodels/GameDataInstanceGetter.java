@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
-import java.util.EnumMap;
+import java.util.AbstractMap;
 
 import edu.gatech.spacetraders.entity.Good;
 import edu.gatech.spacetraders.entity.Player;
@@ -25,7 +25,7 @@ public class GameDataInstanceGetter {
      * constructor
      * @param gameData sets gameData
      */
-    public void newGameData(GameData gameData) {
+    public static void newGameData(GameData gameData) {
         GameDataInstanceGetter.gameData = gameData;
     }
 
@@ -70,7 +70,7 @@ public class GameDataInstanceGetter {
             GameData sm = getGameData();
             Player player = gameData.getPlayer();
             Ship ship = player.getShip();
-            EnumMap<Good, Integer> map = ship.getCargoHold();
+            AbstractMap<Good, Integer> map = ship.getCargoHold();
             Log.e("credits", String.valueOf(player.getCredits()));
             for (Good x : Good.values()) {
                 Log.e("ayylmao", x.toString() + " " + String.valueOf(map.get(x)));

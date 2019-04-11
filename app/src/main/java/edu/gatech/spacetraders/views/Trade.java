@@ -14,7 +14,6 @@ import android.widget.EditText;
 import edu.gatech.spacetraders.R;
 import edu.gatech.spacetraders.entity.Market;
 import edu.gatech.spacetraders.entity.MarketplaceRecyclerViewAdapter;
-import edu.gatech.spacetraders.entity.Player;
 import edu.gatech.spacetraders.entity.SolarSystem;
 import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
@@ -29,7 +28,7 @@ public class Trade extends AppCompatActivity {
 
     private GameData gameData = GameDataInstanceGetter.getGameData();
 
-    private final Player player = gameData.getPlayer();
+    //private final Player player = gameData.getPlayer();
     private final SolarSystem currSS = gameData.getCurrentSolarSystem();
     //Ship ship = player.getShip();
 

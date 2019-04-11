@@ -44,7 +44,7 @@ public class TravelScreen extends AppCompatActivity {
     private final Ship ship = player.getShip();
     private Travel travel = new Travel(gameData);
     private List<String> recycleViewList = travel.getInRangeList();
-    private EnumMap<Good, Integer> cargoHold = ship.getCargoHold();
+    private final EnumMap<Good, Integer> cargoHold = ship.getCargoHold();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

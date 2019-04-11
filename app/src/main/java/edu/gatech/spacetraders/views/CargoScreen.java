@@ -39,6 +39,8 @@ public class CargoScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        assert player != null;
+        assert currSS != null;
         List<String> recycleViewList = player.makeList(currSS.getMarket());
         setContentView(R.layout.activity_cargo);
         //                                                                                 DEBUGGING
