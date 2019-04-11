@@ -14,9 +14,6 @@ import java.util.List;
 public class Universe implements Serializable{
     private static final int NUM_SYSTEMS = 10;
     private final SolarSystem[] systems = new SolarSystem[NUM_SYSTEMS];
-    private final int XCAPACITY = 150;
-    private final int YCAPACITY = 150;
-    private final int RANGENUM = 12;
 
     /**
      * calculates a random number within a range
@@ -214,7 +211,9 @@ public class Universe implements Serializable{
         List<String> solarSystemNamesList = Arrays.asList(solarSystemNames);
         Collections.shuffle(solarSystemNamesList);
 
+        int XCAPACITY = 150;
         List<Integer> xCoordinateList = new ArrayList<>(XCAPACITY);
+        int YCAPACITY = 150;
         List<Integer> yCoordinateList = new ArrayList<>(YCAPACITY);
         for (int i = 1; i <= XCAPACITY; i++) {
             xCoordinateList.add(i);
@@ -227,6 +226,7 @@ public class Universe implements Serializable{
             String name = solarSystemNamesList.get(i);
             int[] levels = new int[2];
             levels[0] = randomWithRange(7);
+            int RANGENUM = 12;
             levels[1] = randomWithRange(RANGENUM);
             int[] coords = new int[2];
             coords[0] = xCoordinateList.get(i);

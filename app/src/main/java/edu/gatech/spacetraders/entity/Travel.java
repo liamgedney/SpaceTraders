@@ -20,7 +20,8 @@ import java.util.Random;
  * method for random encounters(two types: affect cargo and affect credits(maybe change ship))
  */
 public class Travel implements Serializable{
-    private final int CURFUELNUM = 13;
+    int THIRTEEN = 13;
+    int RANDOMNUM = 11;
     private final GameData gameData;
     private final SolarSystem[] systemsArray;
     private final Point2 currCoord;
@@ -66,7 +67,7 @@ public class Travel implements Serializable{
         double range = Math.sqrt((Math.pow(newSS.getCoordinates().x - currCoord.x, 2)
                 + Math.pow(newSS.getCoordinates().y - currCoord.y, 2)));
         gameData.setCurrentSolarSystem(newSS);
-        int THIRTEEN = 13;
+
         myShip.setCurFuel((int) (myShip.getCurFuel() - (range / THIRTEEN)));
         player.setShip(myShip);
         gameData.setPlayer(player);
@@ -80,7 +81,7 @@ public class Travel implements Serializable{
     public String randomEvent() {
 
         Random random = new Random();
-        int RANDOMNUM = 11;
+
         int encounter = random.nextInt(RANDOMNUM);
         String display;
         if (encounter == 0) {
@@ -226,6 +227,7 @@ public class Travel implements Serializable{
     private boolean isInRange(SolarSystem system) {
         double range = Math.sqrt((Math.pow(system.getCoordinates().x - currCoord.x, 2)
                 + Math.pow(system.getCoordinates().y - currCoord.y, 2)));
+        int CURFUELNUM = 13;
         return (range <= (CURFUELNUM * myShip.getCurFuel())) && (range > 0);
     }
 

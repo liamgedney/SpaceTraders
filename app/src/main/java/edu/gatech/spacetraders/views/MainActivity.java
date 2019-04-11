@@ -24,6 +24,7 @@ import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
  * The MainActivity does everything
  */
 public class MainActivity extends AppCompatActivity {
+    int LENGTHOFTHINGS = 16;
     private boolean isNotInteger(String s) {
         try {
             Integer.parseInt(s);
@@ -175,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
                || (Integer.valueOf(etxt) < 0);
    }
     private boolean LessThanLength(String ptxt, String ftxt, String ttxt, String etxt) {
-        int LENGTHOFTHINGS = 16;
         return (Integer.valueOf(ptxt)
                     + Integer.valueOf(ftxt)
                     + Integer.valueOf(ttxt)

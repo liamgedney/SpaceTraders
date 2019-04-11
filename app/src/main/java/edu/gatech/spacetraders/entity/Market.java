@@ -36,8 +36,8 @@ public class Market implements Serializable {
         for (Good good : Good.values()) {
             prices.put(good, calculatePrice(techLevel, good));
             inventory.put(good, calculateAmount(techLevel, good));
-            Collection<Good> goods = new ArrayList<>(10);
-            goods.add(good);
+           // Collection<Good> goods = new ArrayList<>(10);
+            // goods.add(good);
         }
         makeList();
     }
