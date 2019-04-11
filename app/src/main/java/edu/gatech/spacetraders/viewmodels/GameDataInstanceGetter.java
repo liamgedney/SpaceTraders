@@ -9,8 +9,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.util.EnumMap;
 
 import edu.gatech.spacetraders.entity.Good;
+import edu.gatech.spacetraders.entity.Player;
+import edu.gatech.spacetraders.entity.Ship;
 
 /**
  * Gets the GameData
@@ -49,7 +52,7 @@ public class GameDataInstanceGetter {
     public static void loadBinary(File file){
         try{
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-            GameDataInstanceGetter.setGameData((GameData) in.readObject());
+            setGameData((GameData) in.readObject());
             in.close();
         } catch (IOException e) {
             Log.e("Load", "Error reading an entry from binary file", e);
@@ -64,11 +67,13 @@ public class GameDataInstanceGetter {
      */
     public static void saveBinary(File file) {
         try {
-            GameData sm = GameDataInstanceGetter.getGameData();
-            Log.e("credits", String.valueOf(gameData.getPlayer().getCredits()));
+            GameData sm = getGameData();
+            Player player = gameData.getPlayer();
+            Ship ship = player.getShip();
+            EnumMap<Good, Integer> map = ship.getCargoHold();
+            Log.e("credits", String.valueOf(player.getCredits()));
             for (Good x : Good.values()) {
-                Log.e("ayylmao", x.toString() + " " + String.valueOf(gameData
-                        .getPlayer().getShip().getCargoHold().get(x)));
+                Log.e("ayylmao", x.toString() + " " + String.valueOf(map.get(x)));
             }
             ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
             out.writeObject(sm);
@@ -87,7 +92,7 @@ public class GameDataInstanceGetter {
         boolean success = true;
         try {
             GameData sm = new GameData();
-            GameDataInstanceGetter.setGameData(gameData);
+            setGameData(gameData);
             Log.e("credits", String.valueOf(gameData.getPlayer().getCredits()));
             for (Good x : Good.values()) {
                 Log.e("ayylmao", x.toString() + String.valueOf(gameData.getPlayer()

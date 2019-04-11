@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +19,6 @@ import edu.gatech.spacetraders.entity.CargoRecyclerViewAdapter;
 import edu.gatech.spacetraders.entity.Good;
 import edu.gatech.spacetraders.entity.Market;
 import edu.gatech.spacetraders.entity.Player;
-import edu.gatech.spacetraders.entity.Ship;
 import edu.gatech.spacetraders.entity.SolarSystem;
 import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
@@ -74,7 +74,8 @@ public class CargoScreen extends AppCompatActivity {
         sellButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View activity_main) {
-                int bCode = Integer.valueOf(buyCode.getText().toString());
+                Editable txt = buyCode.getText();
+                int bCode = Integer.valueOf(txt.toString());
                 Market market = currSS.getMarket();
                 EnumMap<Good, Integer> prices = market.getPrices();
                 if (player.canSell(bCode)) {

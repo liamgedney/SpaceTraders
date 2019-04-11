@@ -5,10 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+
+import java.util.List;
 
 import edu.gatech.spacetraders.R;
 import edu.gatech.spacetraders.entity.Market;
@@ -48,8 +51,10 @@ public class Trade extends AppCompatActivity {
         final RecyclerView recyclerView = findViewById(R.id.mktgoods_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        currSS.getMarket().updateList();
-        adapter = new MarketplaceRecyclerViewAdapter(this, currSS.getMarket().getList());
+        Market mkt = currSS.getMarket();
+        mkt.updateList();
+        currSS.setMarket(mkt);
+        adapter = new MarketplaceRecyclerViewAdapter(this, mkt.getList());
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
 
@@ -57,7 +62,8 @@ public class Trade extends AppCompatActivity {
             @Override
             public void onClick(View activity_main) {
                 int bCode;
-                bCode = Integer.valueOf(buyCode.getText().toString());
+                Editable txt = buyCode.getText();
+                bCode = Integer.valueOf(txt.toString());
                 Market market = currSS.getMarket();
                 if (market.canBuy(bCode)) {
                     market.buy(bCode);
