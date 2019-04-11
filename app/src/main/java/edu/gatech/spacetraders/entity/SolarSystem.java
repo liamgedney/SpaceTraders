@@ -5,6 +5,9 @@ import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 
+/**
+ * represents a solarsystem - There are 10 in the universe.
+ */
 public class SolarSystem implements Serializable {
     private final String name;
     private final int techLvl;
@@ -21,12 +24,24 @@ public class SolarSystem implements Serializable {
 
     }
 
+    /**
+     * getter for techLvl
+     * @return this solar system's tech level
+     */
     public int getTechLvl() {
         return techLvl;
     }
 
+    /**
+     * getter for market
+     * @return this solar system's market
+     */
     public Market getMarket() { return market; }
 
+    /**
+     * setter for market
+     * @param m the new market for this solar system
+     */
     public void setMarket(Market m) {
         market = m;
     }
@@ -38,6 +53,10 @@ public class SolarSystem implements Serializable {
                 + coordinates;
     }
 
+    /**
+     * getter for coordinates
+     * @return this solar system's coordinates
+     */
     public Point2 getCoordinates() {
         return coordinates;
     }

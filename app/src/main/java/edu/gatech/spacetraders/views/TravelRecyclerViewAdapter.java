@@ -11,6 +11,10 @@ import android.widget.TextView;
 import java.util.List;
 
 import edu.gatech.spacetraders.R;
+
+/**
+ * Recycler View Adapter for Travel Screen
+ */
 public class TravelRecyclerViewAdapter extends RecyclerView.Adapter<edu.gatech.spacetraders.views.
         TravelRecyclerViewAdapter.ViewHolder> {
 
@@ -78,6 +82,10 @@ public class TravelRecyclerViewAdapter extends RecyclerView.Adapter<edu.gatech.s
         this.mClickListener = itemClickListener;
     }
 
+    /**
+     * setter for the list this adapter displays
+     * @param data the new list to be displayed
+     */
     public void setList(List<String> data) {
         mData = data;
     }

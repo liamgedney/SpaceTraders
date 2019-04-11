@@ -1,5 +1,8 @@
 package edu.gatech.spacetraders.entity;
 
+/**
+ * the possible shiptypes
+ */
 public enum ShipType {
     //name      fuel    cargo
     FLEA        (20,    5),
@@ -19,6 +22,16 @@ public enum ShipType {
         this.fuel = fuel;
         this.cargo = cargo;
     }
+
+    /**
+     * getter for fuel
+     * @return fuel level of shiptype
+     */
     public int fuel() { return fuel; }
+
+    /**
+     * getter for cargo
+     * @return maxcargo of shiptype
+     */
     public int cargo() { return cargo; }
 }
