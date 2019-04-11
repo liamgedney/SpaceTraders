@@ -1,9 +1,7 @@
 package edu.gatech.spacetraders.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.List;
 
 /**
  * Ship class

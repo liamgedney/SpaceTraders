@@ -80,10 +80,7 @@ public class Player implements Serializable{
         return engineerPoints;
     }
 
-    /**
-     * difficulty getter
-     * @return level
-     */
+
     /*public Difficulty getDifficulty() {
         return difficulty;
     }*/
@@ -111,10 +108,7 @@ public class Player implements Serializable{
         return ship;
     }
 
-    /**
-     * set name
-     * @param playerName name
-     */
+
     /*public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }*/
@@ -151,10 +145,7 @@ public class Player implements Serializable{
         this.engineerPoints = engineerPoints;
     }
 
-    /**
-     * sets difficulty
-     * @param difficulty level
-     */
+
     /*public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
     }*/

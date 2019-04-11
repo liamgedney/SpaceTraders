@@ -172,10 +172,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-   /* *//**
-     * creates
-     * @param view a view
-     *//*
+   /*
     public void onCreate(View view) {
     }*/
 }

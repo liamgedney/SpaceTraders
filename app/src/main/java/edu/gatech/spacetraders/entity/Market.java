@@ -8,9 +8,6 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.ArrayList;
 
-import edu.gatech.spacetraders.viewmodels.GameData;
-import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
-
 /**
  * Class for Market
  */
@@ -22,7 +19,6 @@ public class Market implements Serializable {
     private final Player player;
     private final Ship ship;
     private List<String> recycleViewList = new ArrayList<>(10);
-    private final Collection<Good> goods = new ArrayList<>(10);
     //GameData gameData = GameDataInstanceGetter.getGameData();
 
 
@@ -40,6 +36,7 @@ public class Market implements Serializable {
         for (Good good : Good.values()) {
             prices.put(good, calculatePrice(techLevel, good));
             inventory.put(good, calculateAmount(techLevel, good));
+            Collection<Good> goods = new ArrayList<>(10);
             goods.add(good);
         }
         makeList();
@@ -184,10 +181,7 @@ public class Market implements Serializable {
         recycleViewList = list;
     }
 
-    /**
-     * getter for goods list
-     * @return List<Good> of goods
-     */
+
     /*public List<Good> getGoods() {
         return goods;
     }*/
