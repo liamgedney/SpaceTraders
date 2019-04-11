@@ -29,19 +29,15 @@ public class Player implements Serializable{
     /**
      * Player constructor
      * @param playerName name
-     * @param pilotPoints pilot
-     * @param fighterPoints fighter
-     * @param traderPoints trader
-     * @param engineerPoints engineer
+     * @param pointsArr array of how points are distributed
      * @param difficulty level
      */
-    public Player(String playerName, int pilotPoints, int fighterPoints,
-                  int traderPoints, int engineerPoints, Difficulty difficulty) {
+    public Player(String playerName, int[] pointsArr, Difficulty difficulty) {
         this.playerName = playerName;
-        this.pilotPoints = pilotPoints;
-        this.fighterPoints = fighterPoints;
-        this.traderPoints = traderPoints;
-        this.engineerPoints = engineerPoints;
+        this.pilotPoints = pointsArr[0];
+        this.fighterPoints = pointsArr[1];
+        this.traderPoints = pointsArr[2];
+        this.engineerPoints = pointsArr[3];
         this.difficulty = difficulty;
         this.credits = 1000;
         this.ship = new Ship();
