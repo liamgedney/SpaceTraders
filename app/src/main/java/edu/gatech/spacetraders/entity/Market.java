@@ -3,6 +3,7 @@ package edu.gatech.spacetraders.entity;
 import android.util.Log;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class Market implements Serializable {
     private final Player player;
     private final Ship ship;
     private List<String> recycleViewList = new ArrayList<>(10);
-    private final List<Good> goods = new ArrayList<>(10);
+    private final Collection<Good> goods = new ArrayList<>(10);
     //GameData gameData = GameDataInstanceGetter.getGameData();
 
 
