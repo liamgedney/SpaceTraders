@@ -116,12 +116,8 @@ public class Player implements Serializable{
     }
 
     public boolean canSell(int position) {
-        return canSell(position, 1);
-    }
-
-    private boolean canSell(int position, int amount) {
         Good good = Good.values()[position];
-        if (cargo.get(good) < amount) {
+        if (cargo.get(good) < 1) {
             Log.d("","Cannot sell more items than currently in inventory.");
             return false;
         }
