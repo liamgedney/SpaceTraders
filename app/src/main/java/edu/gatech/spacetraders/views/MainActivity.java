@@ -120,11 +120,13 @@ public class MainActivity extends AppCompatActivity {
 
                     Player player = new Player(nameStr, pil, fight, trade, engr, diffSpinText);
                     gameData.setPlayer(player);
-                    System.out.println(player);
+                    //                                                                     DEBUGGING
+//                    System.out.println(player);
 
                     Universe universe = new Universe(player, player.getShip());
                     gameData.setUniverse(universe);
-                    System.out.println(universe.toString());
+                    //                                                                     DEBUGGING
+//                    System.out.println(universe.toString());
 
                     SolarSystem startingSystem = universe.getSystems()[randomWithRange()];
                     gameData.setCurrentSolarSystem(startingSystem);

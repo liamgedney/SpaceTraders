@@ -1,5 +1,7 @@
 package edu.gatech.spacetraders.entity;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.EnumMap;
@@ -91,16 +93,16 @@ public class Market implements Serializable {
     private boolean canBuy(int position, int amount) {
         Good good = Good.values()[position];
         if (this.techLevel < good.mtlu()) {
-            System.out.println("This planet cannot produce this good.");
+            Log.d("","This planet cannot produce this good.");
             return false;
         } else if (player.getCredits() < (prices.get(good) * amount)) {
-            System.out.println("You don't have enough credits to buy this item.");
+            Log.d("","You don't have enough credits to buy this item.");
             return false;
         } else if (ship.getCargoSpace() == 0) {
-            System.out.println("You don't have enough cargo space.");
+            Log.d("","You don't have enough cargo space.");
             return false;
         } else if (inventory.get(good) < amount) {
-            System.out.println("This shop is all out of this good");
+            Log.d("","This shop is all out of this good");
             return false;
         }
         return true;

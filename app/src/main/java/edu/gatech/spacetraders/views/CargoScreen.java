@@ -42,7 +42,8 @@ public class CargoScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         List<String> recycleViewList = player.makeList(currSS.getMarket());
         setContentView(R.layout.activity_cargo);
-        System.out.println(gameData.getPlayer().getShip().getCargoHold().get(Good.WATER));
+        //                                                                                 DEBUGGING
+//        System.out.println(gameData.getPlayer().getShip().getCargoHold().get(Good.WATER));
 
         Button buyButton = findViewById(R.id.cargobuy_button);
         Button sellButton = findViewById(R.id.cargosell_button);
@@ -88,12 +89,13 @@ public class CargoScreen extends AppCompatActivity {
                     adapter.setList(player.getList());
                     recyclerView.setAdapter(adapter);
                 }
-                System.out.println("CURCARGO: " + gameData.getPlayer().getShip().getCurCargo());
-                System.out.println("MAXCARGO: " + gameData.getPlayer().getShip().getMaxCargo());
-                System.out.println("CURRENT CREDITS: " + gameData.getPlayer().getCredits());
-                for (String s: market.getList()) {
-                    System.out.println(s);
-                }
+                //                                                                         DEBUGGING
+//                System.out.println("CURCARGO: " + gameData.getPlayer().getShip().getCurCargo());
+//                System.out.println("MAXCARGO: " + gameData.getPlayer().getShip().getMaxCargo());
+//                System.out.println("CURRENT CREDITS: " + gameData.getPlayer().getCredits());
+//                for (String s: market.getList()) {
+//                    System.out.println(s);
+//                }
             }
         });
 

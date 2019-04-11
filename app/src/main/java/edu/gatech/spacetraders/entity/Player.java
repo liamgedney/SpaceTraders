@@ -1,6 +1,7 @@
 package edu.gatech.spacetraders.entity;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class Player implements Serializable{
     private Ship ship;
     private List<String> recycleViewList = new ArrayList<>(10);
     private final EnumMap<Good, Integer> cargo;
+
 
     public Player(String playerName, int pilotPoints, int fighterPoints,
                   int traderPoints, int engineerPoints, Difficulty difficulty) {
@@ -120,7 +122,7 @@ public class Player implements Serializable{
     private boolean canSell(int position, int amount) {
         Good good = Good.values()[position];
         if (cargo.get(good) < amount) {
-            System.out.println("Cannot sell more items than currently in inventory.");
+            Log.d("","Cannot sell more items than currently in inventory.");
             return false;
         }
         return true;

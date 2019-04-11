@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,12 +45,11 @@ public class TravelScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         for (String s: travel.getInRangeList()) {
-            System.out.println(s);
+            Log.d("", s);
         }
         travel = new Travel(gameData);
         setContentView(R.layout.activity_travel);
-        System.out.println(gameData.getPlayer().getShip().getCargoHold().get(Good.WATER));
-
+        Log.d("", "" + gameData.getPlayer().getShip().getCargoHold().get(Good.WATER));
         Button travelButton = findViewById(R.id.travel_button);
         Button backButton = findViewById(R.id.travelback_button);
         planetCode = findViewById(R.id.travel_position);
@@ -62,7 +62,7 @@ public class TravelScreen extends AppCompatActivity {
         final RecyclerView recyclerView = findViewById(R.id.planets_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        int count = 0;
+//        int count = 0;
 //        for (SolarSystem planet: planets) {
 ////            String newString = count + " ";
 ////            newString += String.format("%1$11s", good.toString());
@@ -79,8 +79,8 @@ public class TravelScreen extends AppCompatActivity {
         travelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View activity_main) {
-                System.out.println(gameData.getCurrentSolarSystem());
-                System.out.println(gameData.getCurrentSolarSystem().getMarket());
+                Log.d("", gameData.getCurrentSolarSystem().toString());
+                Log.d("", gameData.getCurrentSolarSystem().getMarket().toString());
                 int tcode = Integer.valueOf(planetCode.getText().toString());
                 if ((tcode >= 0) && (tcode < travel.getInRangeList().size())) {
                     gameData = travel.travel(tcode);
@@ -88,8 +88,8 @@ public class TravelScreen extends AppCompatActivity {
                     recycleViewList = travel.getInRangeList();
                     adapter.setList(recycleViewList);
                     recyclerView.setAdapter(adapter);
-                    System.out.println(gameData.getCurrentSolarSystem().toString());
-                    System.out.println(gameData.getPlayer().getShip().getCurFuel());
+                    Log.d("", gameData.getCurrentSolarSystem().toString());
+//                    Log.d("", gameData.getPlayer().getShip().getCurFuel().toString());
                     //TextView currentFuel = (TextView) findViewById(R.id.current_fuellevel);
                     //TextView currentPlanet = (TextView) findViewById(R.id.currentplanetstats);
                     currentPlanet.setText(gameData.getCurrentSolarSystem().toString());
