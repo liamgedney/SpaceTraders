@@ -1,5 +1,4 @@
 package edu.gatech.spacetraders.entity;
-import java.util.Random;
 
 /**
  * Enum for Tech Levels

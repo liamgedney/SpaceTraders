@@ -82,11 +82,7 @@ public class MarketplaceRecyclerViewAdapter extends
 
     // convenience method for getting data at click position
 
-    /**
-     * gets item
-     //* @param id id
-     * @return String of id
-     */
+
     /*public String getItem(int id) {
         return mData.get(id);
     }*/

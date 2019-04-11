@@ -20,7 +20,6 @@ import java.util.Random;
  */
 public class Travel implements Serializable{
     private final GameData gameData;
-    private final SolarSystem currSS;
     private final SolarSystem[] systemsArray;
     private final Point2 currCoord;
     private final Ship myShip;
@@ -32,7 +31,7 @@ public class Travel implements Serializable{
      */
     public Travel(GameData gameData) {
         this.gameData = gameData;
-        currSS = gameData.getCurrentSolarSystem();
+        SolarSystem currSS = gameData.getCurrentSolarSystem();
         systemsArray = gameData.getUniverse().getSystems();
         currCoord = gameData.getCurrentSolarSystem().getCoordinates();
         myShip = gameData.getPlayer().getShip();
@@ -48,7 +47,7 @@ public class Travel implements Serializable{
         List<String> stringList = new ArrayList<>(systemsArray.length);
         SolarSystem[] inRange = calculatePlanetsInRange();
         //double range = Math.sqrt((Math.pow(currSS.getCoordinates().x - currCoord.x, 2)
-        //        + Math.pow(currSS.getCoordinates().y - currCoord.y, 2)));
+         //       + Math.pow(currSS.getCoordinates().y - currCoord.y, 2)));
         for (int i = 0; i < inRange.length; i++) {
             stringList.add("Travel Code: " + i + " --> " + inRange[i].toString());
         }
@@ -62,8 +61,8 @@ public class Travel implements Serializable{
      */
     public GameData travel(int i) {
         SolarSystem newSS = calculatePlanetsInRange()[i];
-        //double range = Math.sqrt((Math.pow(newSS.getCoordinates().x - currCoord.x, 2)
-        //        + Math.pow(newSS.getCoordinates().y - currCoord.y, 2)));
+        double range = Math.sqrt((Math.pow(newSS.getCoordinates().x - currCoord.x, 2)
+                + Math.pow(newSS.getCoordinates().y - currCoord.y, 2)));
         gameData.setCurrentSolarSystem(newSS);
         myShip.setCurFuel((int) (myShip.getCurFuel() - range / 13));
         player.setShip(myShip);

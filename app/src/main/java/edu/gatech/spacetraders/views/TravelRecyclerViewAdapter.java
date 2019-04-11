@@ -77,7 +77,8 @@ public class TravelRecyclerViewAdapter extends RecyclerView.Adapter<edu.gatech.s
     }*/
 
     // allows clicks events to be caught
-    /*void setClickListener(edu.gatech.spacetraders.views.TravelRecyclerViewAdapter.ItemClickListener
+    /*void setClickListener(edu.gatech.spacetraders.views.
+    TravelRecyclerViewAdapter.ItemClickListener
                                   itemClickListener) {
         this.mClickListener = itemClickListener;
     }*/

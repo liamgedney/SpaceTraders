@@ -1,9 +1,7 @@
 package edu.gatech.spacetraders.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.List;
 
 /**
  * Ship class
@@ -115,7 +113,7 @@ public class Ship implements Serializable {
      * set the current fuel
      * @param curFuel number
      */
-    /*public void setCurFuel(int curFuel) {
+    public void setCurFuel(int curFuel) {
         this.curFuel = curFuel;
-    }*/
+    }
 }

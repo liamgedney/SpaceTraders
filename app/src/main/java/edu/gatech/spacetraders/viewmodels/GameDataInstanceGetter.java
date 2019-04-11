@@ -83,11 +83,7 @@ public class GameDataInstanceGetter {
         }
     }
 
-    /**
-     * creates new file
-     * @param file the new file
-     * @return boolean whether it work
-     */
+
     /*public static boolean newBinary(File file) {
         boolean success = true;
         try {
