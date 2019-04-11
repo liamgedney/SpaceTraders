@@ -18,7 +18,6 @@ import edu.gatech.spacetraders.entity.CargoRecyclerViewAdapter;
 import edu.gatech.spacetraders.entity.Good;
 import edu.gatech.spacetraders.entity.Market;
 import edu.gatech.spacetraders.entity.Player;
-import edu.gatech.spacetraders.entity.Ship;
 import edu.gatech.spacetraders.entity.SolarSystem;
 import edu.gatech.spacetraders.viewmodels.GameData;
 import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
@@ -76,7 +75,7 @@ public class CargoScreen extends AppCompatActivity {
             public void onClick(View activity_main) {
                 int bCode = Integer.valueOf(buyCode.getText().toString());
                 Market market = currSS.getMarket();
-                EnumMap<Good, Integer> prices = market.getPrices();
+                EnumMap<Good, Integer> prices = currSS.getPrices();
                 if (player.canSell(bCode)) {
                     player.sell(bCode);
                     player.upCredits(prices, bCode);

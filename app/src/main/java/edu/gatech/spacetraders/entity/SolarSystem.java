@@ -4,6 +4,7 @@ package edu.gatech.spacetraders.entity;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
+import java.util.EnumMap;
 
 /**
  * represents a solarsystem - There are 10 in the universe.
@@ -59,5 +60,13 @@ public class SolarSystem implements Serializable {
      */
     public Point2 getCoordinates() {
         return coordinates;
+    }
+
+    /**
+     * returns this SS's market's prices
+     * @return this SS's market's prices
+     */
+    public EnumMap<Good, Integer> getPrices() {
+        return market.getPrices();
     }
 }
