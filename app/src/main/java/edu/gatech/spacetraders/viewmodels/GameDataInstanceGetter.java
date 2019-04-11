@@ -15,7 +15,7 @@ import edu.gatech.spacetraders.entity.Good;
 public class GameDataInstanceGetter {
     private static GameData gameData;
     public void newGameData(GameData gameData) {
-        this.gameData = gameData;
+        GameDataInstanceGetter.gameData = gameData;
     }
     private static void setGameData(GameData gameData2){
         gameData = gameData2;

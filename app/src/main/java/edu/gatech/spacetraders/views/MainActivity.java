@@ -22,12 +22,12 @@ import edu.gatech.spacetraders.viewmodels.GameDataInstanceGetter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private boolean isAnInteger(String s) {
+    private boolean isNotInteger(String s) {
         try {
             int num = Integer.parseInt(s);
-            return true;
-        } catch (Exception e) {
             return false;
+        } catch (NumberFormatException e) {
+            return true;
         }
     }
 
@@ -79,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
                 if ("".equals(playerName.getText().toString())) {
                     Toast.makeText(MainActivity.this, "Please enter a name.",
                             Toast.LENGTH_SHORT).show();
-                } else if (!isAnInteger(pilotSkill.getText().toString())
-                            || !isAnInteger(fighterSkill.getText().toString())
-                            || !isAnInteger(traderSkill.getText().toString())
-                            || !isAnInteger(engrSkill.getText().toString())) {
+                } else if (isNotInteger(pilotSkill.getText().toString())
+                            || isNotInteger(fighterSkill.getText().toString())
+                            || isNotInteger(traderSkill.getText().toString())
+                            || isNotInteger(engrSkill.getText().toString())) {
                     Toast.makeText(MainActivity.this,
                             "Points must be non-negative integers.",
                             Toast.LENGTH_SHORT).show();

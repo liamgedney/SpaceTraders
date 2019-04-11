@@ -21,7 +21,7 @@ public class SolarSystem implements Serializable {
         this.techLvl = techLvl;
         this.resLvl = reslvl;
         this.coordinates = new Point2(x, y);
-        this.market = new Market(techLvl, player, ship);
+        market = new Market(techLvl, player, ship);
 
     }
 
@@ -31,7 +31,9 @@ public class SolarSystem implements Serializable {
 
     public Market getMarket() { return market; }
 
-    public void setMarket(Market m) { market = m; }
+    public void setMarket(Market m) {
+        market = m;
+    }
 
     @NonNull
     public String toString() {
