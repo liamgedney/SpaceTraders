@@ -233,11 +233,6 @@ public class Universe implements Serializable{
         }
     }
 
-    @NonNull
-    /**
-     * Builds string
-     * For debugging
-     */
     public String toString() {
         StringBuilder answer = new StringBuilder();
         answer.append("UNIVERSE: \n");

@@ -124,10 +124,6 @@ public class TravelScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openTravelScreen() {
-        Intent intent = new Intent(this, TravelScreen.class);
-        startActivity(intent);
-    }
 //needs to be edited to updateView of recycler and current planet
 //    public List<String> updateView(Market market, Player player) {
 //        int count = 0;
