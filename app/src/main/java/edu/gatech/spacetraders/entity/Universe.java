@@ -14,7 +14,6 @@ import java.util.List;
 public class Universe implements Serializable{
     private static final int NUM_SYSTEMS = 10;
     private final SolarSystem[] systems = new SolarSystem[NUM_SYSTEMS];
-    private final int XCAPACITY = 150;
     private final int YCAPACITY = 150;
     private final int RANGENUM = 12;
 
@@ -214,6 +213,7 @@ public class Universe implements Serializable{
         List<String> solarSystemNamesList = Arrays.asList(solarSystemNames);
         Collections.shuffle(solarSystemNamesList);
 
+        int XCAPACITY = 150;
         List<Integer> xCoordinateList = new ArrayList<>(XCAPACITY);
         List<Integer> yCoordinateList = new ArrayList<>(YCAPACITY);
         for (int i = 1; i <= XCAPACITY; i++) {
