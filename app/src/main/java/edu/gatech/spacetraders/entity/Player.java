@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Player class
@@ -98,7 +99,15 @@ public class Player implements Serializable{
      * @param good from cargo
      * @return int good number
      */
-    private int getCargo(Good good) { return cargo.get(good); }
+    private int getCargo(Good good) {
+        int cargoNum;
+        if (good == null) {
+            throw new NullPointerException("Good parameter cannot be null.");
+        } else {
+            cargoNum = Objects.requireNonNull(cargo.get(good));
+        }
+        return cargoNum;
+    }
 
     /**
      * constructor ship
@@ -177,8 +186,14 @@ public class Player implements Serializable{
      */
     public void downCredits(EnumMap<Good, Integer> prices, int position, int amount) {
         Good good = Good.values()[position];
-        int price = prices.get(good);
-        int credits = getCredits();
+        int price;
+        int credits;
+        if (prices == null || good == null) {
+            throw new NullPointerException("Parameters cannot be null.");
+        } else {
+            price = Objects.requireNonNull(prices.get(good));
+            credits = getCredits();
+        }
         setCredits(credits - (price * amount));
     }
 
@@ -197,7 +212,13 @@ public class Player implements Serializable{
      */
     public boolean canSell(int position) {
         Good good = Good.values()[position];
-        if (cargo.get(good) < 1) {
+        int inventoryNum;
+        if (good == null) {
+            throw new NullPointerException("Good cannot be null.");
+        } else {
+            inventoryNum = Objects.requireNonNull(cargo.get(good));
+        }
+        if (inventoryNum < 1) {
             Log.d("","Cannot sell more items than currently in inventory.");
             return false;
         }
@@ -248,8 +269,14 @@ public class Player implements Serializable{
 
     private void upCredits(EnumMap<Good, Integer> prices, int position, int amount) {
         Good good = Good.values()[position];
-        int price = prices.get(good);
-        int credits = getCredits();
+        int price;
+        int credits;
+        if (good == null) {
+            throw new NullPointerException("Good cannot be null.");
+        } else {
+            price = Objects.requireNonNull(prices.get(good));
+            credits = getCredits();
+        }
         setCredits(credits + (price * amount));
     }
 

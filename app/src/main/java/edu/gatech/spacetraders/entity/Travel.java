@@ -174,7 +174,12 @@ public class Travel implements Serializable{
         if (addRem == 0) {
             //good outcome
             EnumMap<Good, Integer> cargoHold = myShip.getCargoHold();
-            int currAmount = cargoHold.get(cargoUpdate);
+            int currAmount;
+            if (cargoUpdate == null) {
+                throw new NullPointerException("cargoUpdate cannot be null.");
+            } else {
+                currAmount = Objects.requireNonNull(cargoHold.get(cargoUpdate));
+            }
             int amount = currAmount + random.nextInt(currAmount + 1) + 10;
             int total = (amount > myShip.getMaxCargo()) ? myShip.getMaxCargo() : amount;
             cargoHold.put(cargoUpdate, total);
@@ -184,7 +189,12 @@ public class Travel implements Serializable{
                     + cargoUpdate + "s <3";
         } else {
             EnumMap<Good, Integer> cargoHold = myShip.getCargoHold();
-            int currAmount = cargoHold.get(cargoUpdate);
+            int currAmount;
+            if (cargoUpdate == null) {
+                throw new NullPointerException("cargoUpdate cannot be null.");
+                } else {
+                currAmount = Objects.requireNonNull(cargoHold.get(cargoUpdate));
+            }
             int amount = currAmount - random.nextInt(currAmount + 1) - 10;
             int total = (amount < 0) ? 0 : amount;
             cargoHold.put(cargoUpdate, total);

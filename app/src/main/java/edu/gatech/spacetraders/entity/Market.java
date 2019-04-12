@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Class for Market
@@ -36,8 +37,6 @@ public class Market implements Serializable {
         for (Good good : Good.values()) {
             prices.put(good, calculatePrice(techLevel, good));
             inventory.put(good, calculateAmount(techLevel, good));
-            Collection<Good> goods = new ArrayList<>(10);
-            goods.add(good);
         }
         makeList();
     }
@@ -76,7 +75,7 @@ public class Market implements Serializable {
      * @return int good
      */
     public int getPrice(Good good) {
-        return prices.get(good);
+        return Objects.requireNonNull(prices.get(good));
     }
 
 
@@ -93,13 +92,13 @@ public class Market implements Serializable {
         if (this.techLevel < good.mtlu()) {
             Log.d("","This planet cannot produce this good.");
             return false;
-        } else if (player.getCredits() < (prices.get(good))) {
+        } else if (player.getCredits() < (Objects.requireNonNull(prices.get(good)))) {
             Log.d("","You don't have enough credits to buy this item.");
             return false;
         } else if (ship.getCargoSpace() == 0) {
             Log.d("","You don't have enough cargo space.");
             return false;
-        } else if (inventory.get(good) < 1) {
+        } else if (Objects.requireNonNull(inventory.get(good)) < 1) {
             Log.d("","This shop is all out of this good");
             return false;
         }
@@ -117,7 +116,7 @@ public class Market implements Serializable {
     }
 
     private int getInventory(Good good) {
-        return inventory.get(good);
+        return Objects.requireNonNull(inventory.get(good));
     }
 
     /**

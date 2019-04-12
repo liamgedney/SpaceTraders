@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
+        // ...
+        testOptions {
+            unitTests.returnDefaultValues = true
+        }
     compileSdkVersion 28
     defaultConfig {
         applicationId "edu.gatech.spacetraders"
