@@ -85,6 +85,7 @@ public class TravelScreen extends AppCompatActivity {
         travelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View activity_main) {
+                openLoadingScreen();
                 Log.d("", currSS.toString());
                 Market mkt = currSS.getMarket();
                 Log.d("", mkt.toString());
@@ -127,6 +128,11 @@ public class TravelScreen extends AppCompatActivity {
 
     private void openChoiceScreen() {
         Intent intent = new Intent(this, ChoiceScreen.class);
+        startActivity(intent);
+    }
+
+    private void openLoadingScreen() {
+        Intent intent = new Intent(this, Loading.class);
         startActivity(intent);
     }
 
