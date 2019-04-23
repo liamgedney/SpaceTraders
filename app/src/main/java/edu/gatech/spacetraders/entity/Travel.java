@@ -21,7 +21,7 @@ import java.util.Random;
  */
 public class Travel implements Serializable{
     int THIRTEEN = 13;
-    int RANDOMNUM = 11;
+    int RANDOMNUM = 12;
     private final GameData gameData;
     private final SolarSystem[] systemsArray;
     private final Point2 currCoord;
@@ -156,6 +156,16 @@ public class Travel implements Serializable{
             player.setEngineerPoints(player.getEngineerPoints() - 1);
             display = "Your engineer is replaced by a UGA grad! " +
                     "Your engineering points decreased by 1";
+        } else if (encounter == 11){
+            EnumMap<Good, Integer> cargoHold = myShip.getCargoHold();
+            Good cargoUpdate = Good.values()[7];
+            cargoHold.put(cargoUpdate, 0);
+            display = "You ran into the Police, and they took your narcotics";
+        } else if (encounter == 12) {
+            EnumMap<Good, Integer> cargoHold = myShip.getCargoHold();
+            Good cargoUpdate = Good.values()[6];
+            cargoHold.put(cargoUpdate, 0);
+            display = "You ran into the Police, and they took your narcotics";
         } else {
             display = "temp";
         }
